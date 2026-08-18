@@ -1,0 +1,7 @@
+# The fast checks only — roughly half a minute.
+#
+# The browser suites (49 Storybook stories, 126 Playwright e2e) stay in CI on
+# purpose: they take minutes and need a Chromium install, and a pre-push hook
+# slow enough to be annoying is a pre-push hook people start bypassing with
+# --no-verify. This catches the mistakes that are cheap to catch.
+pnpm lint && pnpm typecheck && pnpm test
