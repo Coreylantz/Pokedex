@@ -14,24 +14,19 @@ import type { Page, Region, RegionData, Route } from './types'
  *   /kanata/region/3           one area
  *   /kanata/settings           settings
  *
- * An `/explained` prefix swaps an entry's stats for the reasoning behind it.
- * It is deliberately unlinked — you get there by typing it.
- *
  * `readUrl` and `pathFor` are inverses, and both are total: any URL resolves to
  * some route rather than throwing or 404ing, because the address bar is user
  * input and a typo should land on the menu, not on an error.
  */
 
 /**
- * The generated JSON is structurally correct but typed loosely on import —
- * `skin` widens to `string`, and the criteria keys widen to `string`. The
- * generator validates both, so this is asserted once here rather than
- * re-checked at every use.
+ * The generated JSON is structurally correct but typed loosely on import:
+ * `skin` widens to `string`. The generator validates it, so this is asserted
+ * once here rather than re-checked at every use.
  */
 const data = regionData as unknown as RegionData
 
 export const regions = data.regions
-export const criteria = data.criteria
 
 /** Typed as present, not merely checked: every fallback below relies on it. */
 export const FIRST_REGION: Region = (() => {
@@ -50,8 +45,6 @@ export function regionById(id: string | undefined): Region {
 
 export function readUrl(pathname: string = location.pathname): Route {
   const parts = pathname.split('/').filter(Boolean)
-  const explained = parts[0] === 'explained'
-  if (explained) parts.shift()
 
   const regionId = regions.some((r) => r.id === parts[0]) ? parts.shift() : FIRST_REGION.id
   const region = regionById(regionId)
@@ -78,13 +71,11 @@ export function readUrl(pathname: string = location.pathname): Route {
     page = 'settings'
   }
 
-  return { regionId: region.id, page, mon, area, explained }
+  return { regionId: region.id, page, mon, area }
 }
 
-export function pathFor({ regionId, page, mon, area, explained }: Route): string {
-  const segments: string[] = []
-  if (explained) segments.push('explained')
-  segments.push(regionId)
+export function pathFor({ regionId, page, mon, area }: Route): string {
+  const segments: string[] = [regionId]
   if (page === 'dex') {
     segments.push('pokemon')
     if (mon) segments.push(mon)

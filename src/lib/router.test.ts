@@ -55,21 +55,6 @@ describe('readUrl', () => {
     }
   })
 
-  it('reads the explained prefix, and only as a prefix', () => {
-    expect(readUrl('/explained/kanata/pokemon').explained).toBe(true)
-    expect(readUrl('/kanata/pokemon').explained).toBe(false)
-    // `explained` in any other position is just an unknown segment.
-    expect(readUrl('/kanata/explained').explained).toBe(false)
-  })
-
-  it('treats a bare /explained as the first region', () => {
-    expect(readUrl('/explained')).toMatchObject({
-      regionId: FIRST_REGION.id,
-      page: 'menu',
-      explained: true,
-    })
-  })
-
   it('tolerates trailing slashes and repeated separators', () => {
     expect(readUrl('/kanata//pokemon//').page).toBe('dex')
     expect(readUrl('/kanata/settings/').page).toBe('settings')
@@ -80,13 +65,13 @@ describe('pathFor', () => {
   it('round-trips every page', () => {
     const first = FIRST_REGION.sections[0]?.entries[0]
     const routes = [
-      { regionId: 'kanata', page: 'menu', mon: null, area: null, explained: false },
-      { regionId: 'kanata', page: 'dex', mon: null, area: null, explained: false },
-      { regionId: 'kanata', page: 'dex', mon: first?.slug ?? null, area: null, explained: false },
-      { regionId: 'kanata', page: 'region', mon: null, area: null, explained: false },
-      { regionId: 'kanata', page: 'area', mon: null, area: 1, explained: false },
-      { regionId: 'kanata', page: 'settings', mon: null, area: null, explained: false },
-      { regionId: 'kanata', page: 'dex', mon: null, area: null, explained: true },
+      { regionId: 'kanata', page: 'menu', mon: null, area: null },
+      { regionId: 'kanata', page: 'dex', mon: null, area: null },
+      { regionId: 'kanata', page: 'dex', mon: first?.slug ?? null, area: null },
+      { regionId: 'kanata', page: 'region', mon: null, area: null },
+      { regionId: 'kanata', page: 'area', mon: null, area: 1 },
+      { regionId: 'kanata', page: 'settings', mon: null, area: null },
+      { regionId: 'kanata', page: 'dex', mon: null, area: null },
     ] as const
 
     for (const route of routes) {
@@ -95,7 +80,7 @@ describe('pathFor', () => {
   })
 
   it('always produces an absolute path', () => {
-    expect(pathFor({ regionId: 'kanata', page: 'menu', mon: null, area: null, explained: false }))
+    expect(pathFor({ regionId: 'kanata', page: 'menu', mon: null, area: null }))
       .toBe('/kanata')
   })
 })

@@ -4,22 +4,11 @@ import { createRoot } from 'react-dom/client'
 import App from './App'
 import { must, q, qa, nth, text } from './test/dom'
 import { speciesName } from './lib/format'
-import type { DexEntry, Explained, RegionData } from './lib/types'
+import type { RegionData } from './lib/types'
 import rawRegionData from './data/regions.json'
-import rawExplained from './data/explained.json'
 
 // The generator validates this shape; the JSON import widens the unions.
 const regionData = rawRegionData as unknown as RegionData
-const explained = rawExplained as unknown as Explained
-
-/**
- * The reasoning lives in its own lazily-loaded file now, joined on lineHead.
- * Looking it up here rather than reading it off the entry means these tests
- * also prove the join the app depends on.
- */
-const reasonFor = (entry: DexEntry) =>
-  must(explained.lines[entry.lineHead], `a rationale for the ${entry.lineHead} line`)
-
 /**
  * Smoke test: mounts the whole app against a stubbed PokeAPI and asserts the
  * dex actually renders, so a runtime error can never ship silently.
@@ -304,12 +293,6 @@ describe('Twin Dex', () => {
     expect(container.querySelector('.monpage')).not.toBeNull()
   })
 
-  it('never links to the unlisted /explained route', async () => {
-    const container = await mount('/kanata/pokemon')
-    const hrefs = qa(container, 'a[href]').map((a) => a.getAttribute('href'))
-    expect(hrefs.some((href) => href?.includes('explained'))).toBe(false)
-  })
-
   it('opens an entry as a page, not a dialog, and Back returns to the list', async () => {
     const container = document.createElement('div')
     document.body.append(container)
@@ -344,57 +327,6 @@ describe('Twin Dex', () => {
     expect(container.querySelector('.monpage')).toBeNull()
     expect(location.pathname).toBe('/kanata/pokemon')
     expect(document.activeElement).toBe(container.querySelector(`[data-slug="${first.slug}"]`))
-  })
-
-  it('explains why a Pokemon is in its region on /explained', async () => {
-    const container = document.createElement('div')
-    document.body.append(container)
-    history.replaceState(null, '', '/explained/anahua/pokemon')
-
-    await act(async () => {
-      createRoot(container).render(<App />)
-    })
-    await act(async () => {
-      await new Promise((r) => setTimeout(r, 250))
-    })
-
-    const anahua = regionAt(1)
-    const ludicoloEntry = anahua.sections
-      .flatMap((s) => s.entries)
-      .find((e) => e.slug === 'ludicolo')
-    const ludicolo = must(ludicoloEntry, 'the Ludicolo entry')
-
-    await open(q(container, '[data-slug="ludicolo"]'))
-
-    // The reasoning replaces the stat block rather than sitting alongside it.
-    expect(text(container, '.why__text')).toBe(reasonFor(ludicolo).why)
-    expect(text(container, '.why__text')).toMatch(/sombrero/)
-    expect(container.querySelector('.stats')).toBeNull()
-    // The criteria it scores on are shown, met and unmet alike.
-    expect(container.querySelectorAll('.why__tag')).toHaveLength(4)
-    const score = reasonFor(ludicolo).tags.length
-    expect(container.querySelectorAll('.why__tag[data-met="true"]')).toHaveLength(score)
-    expect(text(container, '.why__score-head')).toMatch(new RegExp(`Meets ${score} of 4`))
-    // The route is preserved across the navigation, and the entry is a path.
-    expect(location.pathname).toBe('/explained/anahua/pokemon/ludicolo')
-  })
-
-  it('keeps the plain dex on / showing stats rather than reasoning', async () => {
-    const container = document.createElement('div')
-    document.body.append(container)
-    history.replaceState(null, '', '/anahua/pokemon')
-
-    await act(async () => {
-      createRoot(container).render(<App />)
-    })
-    await act(async () => {
-      await new Promise((r) => setTimeout(r, 250))
-    })
-    await open(q(container, '[data-slug="ludicolo"]'))
-
-    expect(container.querySelector('.stats')).not.toBeNull()
-    expect(container.querySelector('.why__text')).toBeNull()
-    expect(location.pathname).toBe('/anahua/pokemon/ludicolo')
   })
 
   it('never downloads the whole dex without being asked', async () => {
@@ -482,78 +414,6 @@ describe('dex data', () => {
     }
   })
 
-  it('makes every line earn its place on at least one criterion, ideally two', () => {
-    const valid = Object.keys(regionData.criteria)
-    expect(valid.sort()).toEqual(['fauna', 'mechanics', 'stylistic', 'thematic'])
-
-    for (const region of all) {
-      for (const section of region.sections) {
-        for (const entry of section.entries) {
-          const { tags } = reasonFor(entry)
-          for (const tag of tags) expect(valid).toContain(tag)
-          expect(new Set(tags).size).toBe(tags.length)
-          // The hard floor: nothing gets in on zero.
-          expect({ line: entry.lineHead, met: tags.length >= 1 }).toEqual({
-            line: entry.lineHead,
-            met: true,
-          })
-        }
-      }
-    }
-  })
-
-  it('draws on all four criteria in both regions rather than leaning on one', () => {
-    for (const region of all) {
-      const lines = new Map(
-        region.sections.flatMap((s) => s.entries).map((e) => [e.lineHead, reasonFor(e).tags]),
-      )
-      const counts: Record<string, number> = {}
-      for (const tags of lines.values()) {
-        for (const tag of tags) counts[tag] = (counts[tag] ?? 0) + 1
-      }
-      // Every criterion is genuinely used, and none of them carries the region
-      // on its own.
-      for (const key of Object.keys(regionData.criteria)) {
-        const used = counts[key] ?? 0
-        expect({ key, used: used > 0 }).toEqual({ key, used: true })
-        expect(used).toBeLessThan(lines.size)
-      }
-    }
-  })
-
-  it('gives every species a reason, carried by its evolution line', () => {
-    for (const region of all) {
-      for (const section of region.sections) {
-        for (const entry of section.entries) {
-          // A length floor is a crude proxy for "actually says something", but
-          // it does catch a placeholder that never got written properly.
-          expect({ slug: entry.slug, hasWhy: reasonFor(entry).why.length > 40 }).toEqual({
-            slug: entry.slug,
-            hasWhy: true,
-          })
-          expect(entry.lineHead).toBeTruthy()
-        }
-      }
-    }
-  })
-
-  it('writes the reason once per line, on the base form', () => {
-    for (const region of all) {
-      const entries = region.sections.flatMap((s) => s.entries)
-      const heads = new Set<string>()
-      for (const entry of entries) {
-        heads.add(entry.lineHead)
-        // The head is always the earliest member of that line.
-        const head = entries.find((e) => e.slug === entry.lineHead)
-        expect(must(head, `the ${entry.lineHead} line head`).regionalNo).toBeLessThanOrEqual(
-          entry.regionalNo,
-        )
-      }
-      // Known lines really are collapsed rather than each stage repeating.
-      expect(heads.size).toBeLessThan(entries.length)
-    }
-  })
-
   it('keeps primates and kaiju designs out of Kanata', () => {
     // No monkeys or apes north of the treeline, and no rubber-suit monsters in
     // a region built on real northern wildlife.
@@ -621,21 +481,6 @@ describe('dex data', () => {
           expect(legendaries.has(entry.nationalNo)).toBe(false)
         }
       }
-    }
-  })
-
-  it('keeps each legendary roster to a tight, distinct three or four', () => {
-    for (const region of all) {
-      const last = must(region.sections.at(-1), `the last section of ${region.id}`)
-      // A pile of seven has no shape. A domain trio plus a mythical does.
-      expect({ region: region.id, n: last.entries.length }).toEqual({
-        region: region.id,
-        n: 4,
-      })
-      // Each one holds a distinct domain, called out in its own reasoning.
-      const domains = last.entries.map((e) => reasonFor(e).why.match(/^THE [A-Z]+/)?.[0])
-      expect(domains.every(Boolean)).toBe(true)
-      expect(new Set(domains).size).toBe(domains.length)
     }
   })
 

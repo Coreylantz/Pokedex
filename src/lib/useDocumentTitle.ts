@@ -22,9 +22,8 @@ const TITLES: Record<Route['page'], (region: Region, route: Route) => string> = 
 /**
  * Keeps `document.title` in step with the route.
  *
- * An entry page names the species; everything else names the screen. The
- * suffix changes on /explained because that route is a different reading of
- * the same dex, and a tab history full of identical titles is unusable.
+ * An entry page names the species; everything else names the screen. A tab
+ * history full of identical titles is unusable.
  */
 export function useDocumentTitle(
   route: Route,
@@ -33,7 +32,7 @@ export function useDocumentTitle(
   mon: Pokemon | undefined,
 ) {
   useEffect(() => {
-    const suffix = route.explained ? 'Field Notes' : 'Twin Dex'
+    const suffix = 'Twin Dex'
     const title = entry
       ? `${monName(entry, mon)} — ${region.name} Pokédex`
       : (TITLES[route.page]?.(region, route) ?? region.name)

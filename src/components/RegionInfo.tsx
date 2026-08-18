@@ -37,10 +37,6 @@ export function RegionInfo({
           <dd>{region.professor}</dd>
         </div>
         <div>
-          <dt>Name origin</dt>
-          <dd>{region.etymology}</dd>
-        </div>
-        <div>
           <dt>Pokédex model</dt>
           <dd>{region.skin === 'gen1' ? 'Model 001' : 'Model 002'}</dd>
         </div>

@@ -4,7 +4,6 @@
       "id": "kanata",
       "name": "Kanata",
       "tagline": "The Region of the Long Winter",
-      "etymology": "From kanata, the St. Lawrence Iroquoian word for \"village\" — a small place that lent its name to somewhere very large.",
       "blurb": "A vast northern region of boreal pine, shield rock and frozen coast. Trainers start among the maple groves of the south, climb the mining ranges, cross the cattle prairies, and finish their journey on the aurora-lit tundra where the ice legends nest.",
       "professor": "Professor Maple",
       "skin": "gen1",
@@ -15,57 +14,48 @@
           "entries": [
             {
               "regionalNo": 1,
-              "nationalNo": 387,
               "slug": "turtwig",
-              "lineHead": "turtwig"
+              "nationalNo": 387
             },
             {
               "regionalNo": 2,
-              "nationalNo": 388,
               "slug": "grotle",
-              "lineHead": "turtwig"
+              "nationalNo": 388
             },
             {
               "regionalNo": 3,
-              "nationalNo": 389,
               "slug": "torterra",
-              "lineHead": "turtwig"
+              "nationalNo": 389
             },
             {
               "regionalNo": 4,
-              "nationalNo": 653,
               "slug": "fennekin",
-              "lineHead": "fennekin"
+              "nationalNo": 653
             },
             {
               "regionalNo": 5,
-              "nationalNo": 654,
               "slug": "braixen",
-              "lineHead": "fennekin"
+              "nationalNo": 654
             },
             {
               "regionalNo": 6,
-              "nationalNo": 655,
               "slug": "delphox",
-              "lineHead": "fennekin"
+              "nationalNo": 655
             },
             {
               "regionalNo": 7,
-              "nationalNo": 393,
               "slug": "piplup",
-              "lineHead": "piplup"
+              "nationalNo": 393
             },
             {
               "regionalNo": 8,
-              "nationalNo": 394,
               "slug": "prinplup",
-              "lineHead": "piplup"
+              "nationalNo": 394
             },
             {
               "regionalNo": 9,
-              "nationalNo": 395,
               "slug": "empoleon",
-              "lineHead": "piplup"
+              "nationalNo": 395
             }
           ]
         },
@@ -75,69 +65,58 @@
           "entries": [
             {
               "regionalNo": 10,
-              "nationalNo": 396,
               "slug": "starly",
-              "lineHead": "starly"
+              "nationalNo": 396
             },
             {
               "regionalNo": 11,
-              "nationalNo": 397,
               "slug": "staravia",
-              "lineHead": "starly"
+              "nationalNo": 397
             },
             {
               "regionalNo": 12,
-              "nationalNo": 398,
               "slug": "staraptor",
-              "lineHead": "starly"
+              "nationalNo": 398
             },
             {
               "regionalNo": 13,
-              "nationalNo": 399,
               "slug": "bidoof",
-              "lineHead": "bidoof"
+              "nationalNo": 399
             },
             {
               "regionalNo": 14,
-              "nationalNo": 400,
               "slug": "bibarel",
-              "lineHead": "bidoof"
+              "nationalNo": 400
             },
             {
               "regionalNo": 15,
-              "nationalNo": 161,
               "slug": "sentret",
-              "lineHead": "sentret"
+              "nationalNo": 161
             },
             {
               "regionalNo": 16,
-              "nationalNo": 162,
               "slug": "furret",
-              "lineHead": "sentret"
+              "nationalNo": 162
             },
             {
               "regionalNo": 17,
-              "nationalNo": 401,
               "slug": "kricketot",
-              "lineHead": "kricketot"
+              "nationalNo": 401
             },
             {
               "regionalNo": 18,
-              "nationalNo": 402,
               "slug": "kricketune",
-              "lineHead": "kricketot"
+              "nationalNo": 402
             },
             {
               "regionalNo": 19,
-              "nationalNo": 165,
               "slug": "ledyba",
-              "lineHead": "ledyba"
+              "nationalNo": 165
             },
             {
               "regionalNo": 20,
-              "nationalNo": 166,
               "slug": "ledian",
-              "lineHead": "ledyba"
+              "nationalNo": 166
             }
           ]
         },
@@ -147,27 +126,23 @@
           "entries": [
             {
               "regionalNo": 21,
-              "nationalNo": 417,
               "slug": "pachirisu",
-              "lineHead": "pachirisu"
+              "nationalNo": 417
             },
             {
               "regionalNo": 22,
-              "nationalNo": 239,
               "slug": "elekid",
-              "lineHead": "elekid"
+              "nationalNo": 239
             },
             {
               "regionalNo": 23,
-              "nationalNo": 125,
               "slug": "electabuzz",
-              "lineHead": "elekid"
+              "nationalNo": 125
             },
             {
               "regionalNo": 24,
-              "nationalNo": 466,
               "slug": "electivire",
-              "lineHead": "elekid"
+              "nationalNo": 466
             }
           ]
         },
@@ -177,123 +152,103 @@
           "entries": [
             {
               "regionalNo": 25,
-              "nationalNo": 163,
               "slug": "hoothoot",
-              "lineHead": "hoothoot"
+              "nationalNo": 163
             },
             {
               "regionalNo": 26,
-              "nationalNo": 164,
               "slug": "noctowl",
-              "lineHead": "hoothoot"
+              "nationalNo": 164
             },
             {
               "regionalNo": 27,
-              "nationalNo": 198,
               "slug": "murkrow",
-              "lineHead": "murkrow"
+              "nationalNo": 198
             },
             {
               "regionalNo": 28,
-              "nationalNo": 430,
               "slug": "honchkrow",
-              "lineHead": "murkrow"
+              "nationalNo": 430
             },
             {
               "regionalNo": 29,
-              "nationalNo": 821,
               "slug": "rookidee",
-              "lineHead": "rookidee"
+              "nationalNo": 821
             },
             {
               "regionalNo": 30,
-              "nationalNo": 822,
               "slug": "corvisquire",
-              "lineHead": "rookidee"
+              "nationalNo": 822
             },
             {
               "regionalNo": 31,
-              "nationalNo": 823,
               "slug": "corviknight",
-              "lineHead": "rookidee"
+              "nationalNo": 823
             },
             {
               "regionalNo": 32,
-              "nationalNo": 459,
               "slug": "snover",
-              "lineHead": "snover"
+              "nationalNo": 459
             },
             {
               "regionalNo": 33,
-              "nationalNo": 460,
               "slug": "abomasnow",
-              "lineHead": "snover"
+              "nationalNo": 460
             },
             {
               "regionalNo": 34,
-              "nationalNo": 708,
               "slug": "phantump",
-              "lineHead": "phantump"
+              "nationalNo": 708
             },
             {
               "regionalNo": 35,
-              "nationalNo": 709,
               "slug": "trevenant",
-              "lineHead": "phantump"
+              "nationalNo": 709
             },
             {
               "regionalNo": 36,
-              "nationalNo": 204,
               "slug": "pineco",
-              "lineHead": "pineco"
+              "nationalNo": 204
             },
             {
               "regionalNo": 37,
-              "nationalNo": 205,
               "slug": "forretress",
-              "lineHead": "pineco"
+              "nationalNo": 205
             },
             {
               "regionalNo": 38,
-              "nationalNo": 285,
               "slug": "shroomish",
-              "lineHead": "shroomish"
+              "nationalNo": 285
             },
             {
               "regionalNo": 39,
-              "nationalNo": 286,
               "slug": "breloom",
-              "lineHead": "shroomish"
+              "nationalNo": 286
             },
             {
               "regionalNo": 40,
-              "nationalNo": 185,
               "slug": "sudowoodo",
-              "lineHead": "sudowoodo"
+              "nationalNo": 185
             },
             {
               "regionalNo": 41,
-              "nationalNo": 570,
               "slug": "zorua",
-              "lineHead": "zorua"
+              "nationalNo": 570
             },
             {
               "regionalNo": 42,
-              "nationalNo": 571,
               "slug": "zoroark",
-              "lineHead": "zorua"
+              "nationalNo": 571
             },
             {
               "regionalNo": 43,
-              "nationalNo": 585,
               "slug": "deerling",
-              "lineHead": "deerling"
+              "nationalNo": 585
             },
             {
               "regionalNo": 44,
-              "nationalNo": 586,
               "slug": "sawsbuck",
-              "lineHead": "deerling"
+              "nationalNo": 586
             }
           ]
         },
@@ -303,87 +258,73 @@
           "entries": [
             {
               "regionalNo": 45,
-              "nationalNo": 74,
               "slug": "geodude",
-              "lineHead": "geodude"
+              "nationalNo": 74
             },
             {
               "regionalNo": 46,
-              "nationalNo": 75,
               "slug": "graveler",
-              "lineHead": "geodude"
+              "nationalNo": 75
             },
             {
               "regionalNo": 47,
-              "nationalNo": 76,
               "slug": "golem",
-              "lineHead": "geodude"
+              "nationalNo": 76
             },
             {
               "regionalNo": 48,
-              "nationalNo": 95,
               "slug": "onix",
-              "lineHead": "onix"
+              "nationalNo": 95
             },
             {
               "regionalNo": 49,
-              "nationalNo": 208,
               "slug": "steelix",
-              "lineHead": "onix"
+              "nationalNo": 208
             },
             {
               "regionalNo": 50,
-              "nationalNo": 932,
               "slug": "nacli",
-              "lineHead": "nacli"
+              "nationalNo": 932
             },
             {
               "regionalNo": 51,
-              "nationalNo": 933,
               "slug": "naclstack",
-              "lineHead": "nacli"
+              "nationalNo": 933
             },
             {
               "regionalNo": 52,
-              "nationalNo": 934,
               "slug": "garganacl",
-              "lineHead": "nacli"
+              "nationalNo": 934
             },
             {
               "regionalNo": 53,
-              "nationalNo": 837,
               "slug": "rolycoly",
-              "lineHead": "rolycoly"
+              "nationalNo": 837
             },
             {
               "regionalNo": 54,
-              "nationalNo": 838,
               "slug": "carkol",
-              "lineHead": "rolycoly"
+              "nationalNo": 838
             },
             {
               "regionalNo": 55,
-              "nationalNo": 839,
               "slug": "coalossal",
-              "lineHead": "rolycoly"
+              "nationalNo": 839
             },
             {
               "regionalNo": 56,
-              "nationalNo": 299,
               "slug": "nosepass",
-              "lineHead": "nosepass"
+              "nationalNo": 299
             },
             {
               "regionalNo": 57,
-              "nationalNo": 476,
               "slug": "probopass",
-              "lineHead": "nosepass"
+              "nationalNo": 476
             },
             {
               "regionalNo": 58,
-              "nationalNo": 874,
               "slug": "stonjourner",
-              "lineHead": "stonjourner"
+              "nationalNo": 874
             }
           ]
         },
@@ -393,177 +334,149 @@
           "entries": [
             {
               "regionalNo": 59,
-              "nationalNo": 187,
               "slug": "hoppip",
-              "lineHead": "hoppip"
+              "nationalNo": 187
             },
             {
               "regionalNo": 60,
-              "nationalNo": 188,
               "slug": "skiploom",
-              "lineHead": "hoppip"
+              "nationalNo": 188
             },
             {
               "regionalNo": 61,
-              "nationalNo": 189,
               "slug": "jumpluff",
-              "lineHead": "hoppip"
+              "nationalNo": 189
             },
             {
               "regionalNo": 62,
-              "nationalNo": 179,
               "slug": "mareep",
-              "lineHead": "mareep"
+              "nationalNo": 179
             },
             {
               "regionalNo": 63,
-              "nationalNo": 180,
               "slug": "flaaffy",
-              "lineHead": "mareep"
+              "nationalNo": 180
             },
             {
               "regionalNo": 64,
-              "nationalNo": 181,
               "slug": "ampharos",
-              "lineHead": "mareep"
+              "nationalNo": 181
             },
             {
               "regionalNo": 65,
-              "nationalNo": 241,
               "slug": "miltank",
-              "lineHead": "miltank"
+              "nationalNo": 241
             },
             {
               "regionalNo": 66,
-              "nationalNo": 77,
               "slug": "ponyta",
-              "lineHead": "ponyta"
+              "nationalNo": 77
             },
             {
               "regionalNo": 67,
-              "nationalNo": 78,
               "slug": "rapidash",
-              "lineHead": "ponyta"
+              "nationalNo": 78
             },
             {
               "regionalNo": 68,
-              "nationalNo": 58,
               "slug": "growlithe",
-              "lineHead": "growlithe"
+              "nationalNo": 58
             },
             {
               "regionalNo": 69,
-              "nationalNo": 59,
               "slug": "arcanine",
-              "lineHead": "growlithe"
+              "nationalNo": 59
             },
             {
               "regionalNo": 70,
-              "nationalNo": 626,
               "slug": "bouffalant",
-              "lineHead": "bouffalant"
+              "nationalNo": 626
             }
           ]
         },
         {
-          "label": "Karonto City & the Ravines",
+          "label": "The Ravine City",
           "note": "The region's largest city: a lakefront, a needle you can see from an hour away, more construction cranes than anywhere on the continent, and a ravine system nobody ever managed to build over. Everything here has learned to live off people, and most of it is winning.",
           "entries": [
             {
               "regionalNo": 71,
-              "nationalNo": 263,
               "slug": "zigzagoon",
-              "lineHead": "zigzagoon"
+              "nationalNo": 263
             },
             {
               "regionalNo": 72,
-              "nationalNo": 264,
               "slug": "linoone",
-              "lineHead": "zigzagoon"
+              "nationalNo": 264
             },
             {
               "regionalNo": 73,
-              "nationalNo": 819,
               "slug": "skwovet",
-              "lineHead": "skwovet"
+              "nationalNo": 819
             },
             {
               "regionalNo": 74,
-              "nationalNo": 820,
               "slug": "greedent",
-              "lineHead": "skwovet"
+              "nationalNo": 820
             },
             {
               "regionalNo": 75,
-              "nationalNo": 434,
               "slug": "stunky",
-              "lineHead": "stunky"
+              "nationalNo": 434
             },
             {
               "regionalNo": 76,
-              "nationalNo": 435,
               "slug": "skuntank",
-              "lineHead": "stunky"
+              "nationalNo": 435
             },
             {
               "regionalNo": 77,
-              "nationalNo": 568,
               "slug": "trubbish",
-              "lineHead": "trubbish"
+              "nationalNo": 568
             },
             {
               "regionalNo": 78,
-              "nationalNo": 569,
               "slug": "garbodor",
-              "lineHead": "trubbish"
+              "nationalNo": 569
             },
             {
               "regionalNo": 79,
-              "nationalNo": 532,
               "slug": "timburr",
-              "lineHead": "timburr"
+              "nationalNo": 532
             },
             {
               "regionalNo": 80,
-              "nationalNo": 533,
               "slug": "gurdurr",
-              "lineHead": "timburr"
+              "nationalNo": 533
             },
             {
               "regionalNo": 81,
-              "nationalNo": 534,
               "slug": "conkeldurr",
-              "lineHead": "timburr"
+              "nationalNo": 534
             },
             {
               "regionalNo": 82,
-              "nationalNo": 81,
               "slug": "magnemite",
-              "lineHead": "magnemite"
+              "nationalNo": 81
             },
             {
               "regionalNo": 83,
-              "nationalNo": 82,
               "slug": "magneton",
-              "lineHead": "magnemite"
+              "nationalNo": 82
             },
             {
               "regionalNo": 84,
-              "nationalNo": 462,
               "slug": "magnezone",
-              "lineHead": "magnemite"
+              "nationalNo": 462
             },
             {
               "regionalNo": 85,
-              "nationalNo": 353,
               "slug": "shuppet",
-              "lineHead": "shuppet"
+              "nationalNo": 353
             },
             {
               "regionalNo": 86,
-              "nationalNo": 354,
               "slug": "banette",
-              "lineHead": "shuppet"
+              "nationalNo": 354
             }
           ]
         },
@@ -573,165 +486,139 @@
           "entries": [
             {
               "regionalNo": 87,
-              "nationalNo": 54,
               "slug": "psyduck",
-              "lineHead": "psyduck"
+              "nationalNo": 54
             },
             {
               "regionalNo": 88,
-              "nationalNo": 55,
               "slug": "golduck",
-              "lineHead": "psyduck"
+              "nationalNo": 55
             },
             {
               "regionalNo": 89,
-              "nationalNo": 580,
               "slug": "ducklett",
-              "lineHead": "ducklett"
+              "nationalNo": 580
             },
             {
               "regionalNo": 90,
-              "nationalNo": 581,
               "slug": "swanna",
-              "lineHead": "ducklett"
+              "nationalNo": 581
             },
             {
               "regionalNo": 91,
-              "nationalNo": 183,
               "slug": "marill",
-              "lineHead": "marill"
+              "nationalNo": 183
             },
             {
               "regionalNo": 92,
-              "nationalNo": 184,
               "slug": "azumarill",
-              "lineHead": "marill"
+              "nationalNo": 184
             },
             {
               "regionalNo": 93,
-              "nationalNo": 418,
               "slug": "buizel",
-              "lineHead": "buizel"
+              "nationalNo": 418
             },
             {
               "regionalNo": 94,
-              "nationalNo": 419,
               "slug": "floatzel",
-              "lineHead": "buizel"
+              "nationalNo": 419
             },
             {
               "regionalNo": 95,
-              "nationalNo": 349,
               "slug": "feebas",
-              "lineHead": "feebas"
+              "nationalNo": 349
             },
             {
               "regionalNo": 96,
-              "nationalNo": 350,
               "slug": "milotic",
-              "lineHead": "feebas"
+              "nationalNo": 350
             },
             {
               "regionalNo": 97,
-              "nationalNo": 550,
               "slug": "basculin-red-striped",
-              "lineHead": "basculin-red-striped"
+              "nationalNo": 550
             },
             {
               "regionalNo": 98,
-              "nationalNo": 902,
               "slug": "basculegion-male",
-              "lineHead": "basculin-red-striped"
+              "nationalNo": 902
             },
             {
               "regionalNo": 99,
-              "nationalNo": 131,
               "slug": "lapras",
-              "lineHead": "lapras"
+              "nationalNo": 131
             }
           ]
         },
         {
-          "label": "The Cold Atlantic",
+          "label": "The Cold Coast",
           "note": "Lobster traps, fog banks, and a lighthouse that has never once been switched off.",
           "entries": [
             {
               "regionalNo": 100,
-              "nationalNo": 278,
               "slug": "wingull",
-              "lineHead": "wingull"
+              "nationalNo": 278
             },
             {
               "regionalNo": 101,
-              "nationalNo": 279,
               "slug": "pelipper",
-              "lineHead": "wingull"
+              "nationalNo": 279
             },
             {
               "regionalNo": 102,
-              "nationalNo": 98,
               "slug": "krabby",
-              "lineHead": "krabby"
+              "nationalNo": 98
             },
             {
               "regionalNo": 103,
-              "nationalNo": 99,
               "slug": "kingler",
-              "lineHead": "krabby"
+              "nationalNo": 99
             },
             {
               "regionalNo": 104,
-              "nationalNo": 90,
               "slug": "shellder",
-              "lineHead": "shellder"
+              "nationalNo": 90
             },
             {
               "regionalNo": 105,
-              "nationalNo": 91,
               "slug": "cloyster",
-              "lineHead": "shellder"
+              "nationalNo": 91
             },
             {
               "regionalNo": 106,
-              "nationalNo": 170,
               "slug": "chinchou",
-              "lineHead": "chinchou"
+              "nationalNo": 170
             },
             {
               "regionalNo": 107,
-              "nationalNo": 171,
               "slug": "lanturn",
-              "lineHead": "chinchou"
+              "nationalNo": 171
             },
             {
               "regionalNo": 108,
-              "nationalNo": 211,
               "slug": "qwilfish",
-              "lineHead": "qwilfish"
+              "nationalNo": 211
             },
             {
               "regionalNo": 109,
-              "nationalNo": 223,
               "slug": "remoraid",
-              "lineHead": "remoraid"
+              "nationalNo": 223
             },
             {
               "regionalNo": 110,
-              "nationalNo": 224,
               "slug": "octillery",
-              "lineHead": "remoraid"
+              "nationalNo": 224
             },
             {
               "regionalNo": 111,
-              "nationalNo": 320,
               "slug": "wailmer",
-              "lineHead": "wailmer"
+              "nationalNo": 320
             },
             {
               "regionalNo": 112,
-              "nationalNo": 321,
               "slug": "wailord",
-              "lineHead": "wailmer"
+              "nationalNo": 321
             }
           ]
         },
@@ -741,123 +628,103 @@
           "entries": [
             {
               "regionalNo": 113,
-              "nationalNo": 234,
               "slug": "stantler",
-              "lineHead": "stantler"
+              "nationalNo": 234
             },
             {
               "regionalNo": 114,
-              "nationalNo": 899,
               "slug": "wyrdeer",
-              "lineHead": "stantler"
+              "nationalNo": 899
             },
             {
               "regionalNo": 115,
-              "nationalNo": 216,
               "slug": "teddiursa",
-              "lineHead": "teddiursa"
+              "nationalNo": 216
             },
             {
               "regionalNo": 116,
-              "nationalNo": 217,
               "slug": "ursaring",
-              "lineHead": "teddiursa"
+              "nationalNo": 217
             },
             {
               "regionalNo": 117,
-              "nationalNo": 901,
               "slug": "ursaluna",
-              "lineHead": "teddiursa"
+              "nationalNo": 901
             },
             {
               "regionalNo": 118,
-              "nationalNo": 613,
               "slug": "cubchoo",
-              "lineHead": "cubchoo"
+              "nationalNo": 613
             },
             {
               "regionalNo": 119,
-              "nationalNo": 614,
               "slug": "beartic",
-              "lineHead": "cubchoo"
+              "nationalNo": 614
             },
             {
               "regionalNo": 120,
-              "nationalNo": 215,
               "slug": "sneasel",
-              "lineHead": "sneasel"
+              "nationalNo": 215
             },
             {
               "regionalNo": 121,
-              "nationalNo": 461,
               "slug": "weavile",
-              "lineHead": "sneasel"
+              "nationalNo": 461
             },
             {
               "regionalNo": 122,
-              "nationalNo": 220,
               "slug": "swinub",
-              "lineHead": "swinub"
+              "nationalNo": 220
             },
             {
               "regionalNo": 123,
-              "nationalNo": 221,
               "slug": "piloswine",
-              "lineHead": "swinub"
+              "nationalNo": 221
             },
             {
               "regionalNo": 124,
-              "nationalNo": 473,
               "slug": "mamoswine",
-              "lineHead": "swinub"
+              "nationalNo": 473
             },
             {
               "regionalNo": 125,
-              "nationalNo": 86,
               "slug": "seel",
-              "lineHead": "seel"
+              "nationalNo": 86
             },
             {
               "regionalNo": 126,
-              "nationalNo": 87,
               "slug": "dewgong",
-              "lineHead": "seel"
+              "nationalNo": 87
             },
             {
               "regionalNo": 127,
-              "nationalNo": 363,
               "slug": "spheal",
-              "lineHead": "spheal"
+              "nationalNo": 363
             },
             {
               "regionalNo": 128,
-              "nationalNo": 364,
               "slug": "sealeo",
-              "lineHead": "spheal"
+              "nationalNo": 364
             },
             {
               "regionalNo": 129,
-              "nationalNo": 365,
               "slug": "walrein",
-              "lineHead": "spheal"
+              "nationalNo": 365
             },
             {
               "regionalNo": 130,
-              "nationalNo": 712,
               "slug": "bergmite",
-              "lineHead": "bergmite"
+              "nationalNo": 712
             },
             {
               "regionalNo": 131,
-              "nationalNo": 713,
               "slug": "avalugg",
-              "lineHead": "bergmite"
+              "nationalNo": 713
             },
             {
               "regionalNo": 132,
-              "nationalNo": 225,
               "slug": "delibird",
-              "lineHead": "delibird"
+              "nationalNo": 225
             }
           ]
         },
@@ -867,57 +734,48 @@
           "entries": [
             {
               "regionalNo": 133,
-              "nationalNo": 133,
               "slug": "eevee",
-              "lineHead": "eevee"
+              "nationalNo": 133
             },
             {
               "regionalNo": 134,
-              "nationalNo": 134,
               "slug": "vaporeon",
-              "lineHead": "eevee"
+              "nationalNo": 134
             },
             {
               "regionalNo": 135,
-              "nationalNo": 135,
               "slug": "jolteon",
-              "lineHead": "eevee"
+              "nationalNo": 135
             },
             {
               "regionalNo": 136,
-              "nationalNo": 136,
               "slug": "flareon",
-              "lineHead": "eevee"
+              "nationalNo": 136
             },
             {
               "regionalNo": 137,
-              "nationalNo": 196,
               "slug": "espeon",
-              "lineHead": "eevee"
+              "nationalNo": 196
             },
             {
               "regionalNo": 138,
-              "nationalNo": 197,
               "slug": "umbreon",
-              "lineHead": "eevee"
+              "nationalNo": 197
             },
             {
               "regionalNo": 139,
-              "nationalNo": 470,
               "slug": "leafeon",
-              "lineHead": "eevee"
+              "nationalNo": 470
             },
             {
               "regionalNo": 140,
-              "nationalNo": 471,
               "slug": "glaceon",
-              "lineHead": "eevee"
+              "nationalNo": 471
             },
             {
               "regionalNo": 141,
-              "nationalNo": 700,
               "slug": "sylveon",
-              "lineHead": "eevee"
+              "nationalNo": 700
             }
           ]
         },
@@ -927,63 +785,53 @@
           "entries": [
             {
               "regionalNo": 142,
-              "nationalNo": 347,
               "slug": "anorith",
-              "lineHead": "anorith"
+              "nationalNo": 347
             },
             {
               "regionalNo": 143,
-              "nationalNo": 348,
               "slug": "armaldo",
-              "lineHead": "anorith"
+              "nationalNo": 348
             },
             {
               "regionalNo": 144,
-              "nationalNo": 138,
               "slug": "omanyte",
-              "lineHead": "omanyte"
+              "nationalNo": 138
             },
             {
               "regionalNo": 145,
-              "nationalNo": 139,
               "slug": "omastar",
-              "lineHead": "omanyte"
+              "nationalNo": 139
             },
             {
               "regionalNo": 146,
-              "nationalNo": 408,
               "slug": "cranidos",
-              "lineHead": "cranidos"
+              "nationalNo": 408
             },
             {
               "regionalNo": 147,
-              "nationalNo": 409,
               "slug": "rampardos",
-              "lineHead": "cranidos"
+              "nationalNo": 409
             },
             {
               "regionalNo": 148,
-              "nationalNo": 696,
               "slug": "tyrunt",
-              "lineHead": "tyrunt"
+              "nationalNo": 696
             },
             {
               "regionalNo": 149,
-              "nationalNo": 697,
               "slug": "tyrantrum",
-              "lineHead": "tyrunt"
+              "nationalNo": 697
             },
             {
               "regionalNo": 150,
-              "nationalNo": 698,
               "slug": "amaura",
-              "lineHead": "amaura"
+              "nationalNo": 698
             },
             {
               "regionalNo": 151,
-              "nationalNo": 699,
               "slug": "aurorus",
-              "lineHead": "amaura"
+              "nationalNo": 699
             }
           ]
         },
@@ -993,21 +841,18 @@
           "entries": [
             {
               "regionalNo": 152,
-              "nationalNo": 996,
               "slug": "frigibax",
-              "lineHead": "frigibax"
+              "nationalNo": 996
             },
             {
               "regionalNo": 153,
-              "nationalNo": 997,
               "slug": "arctibax",
-              "lineHead": "frigibax"
+              "nationalNo": 997
             },
             {
               "regionalNo": 154,
-              "nationalNo": 998,
               "slug": "baxcalibur",
-              "lineHead": "frigibax"
+              "nationalNo": 998
             }
           ]
         },
@@ -1017,27 +862,23 @@
           "entries": [
             {
               "regionalNo": 155,
-              "nationalNo": 145,
               "slug": "zapdos",
-              "lineHead": "zapdos"
+              "nationalNo": 145
             },
             {
               "regionalNo": 156,
-              "nationalNo": 646,
               "slug": "kyurem",
-              "lineHead": "kyurem"
+              "nationalNo": 646
             },
             {
               "regionalNo": 157,
-              "nationalNo": 249,
               "slug": "lugia",
-              "lineHead": "lugia"
+              "nationalNo": 249
             },
             {
               "regionalNo": 158,
-              "nationalNo": 251,
               "slug": "celebi",
-              "lineHead": "celebi"
+              "nationalNo": 251
             }
           ]
         }
@@ -1048,7 +889,6 @@
       "id": "anahua",
       "name": "Anahua",
       "tagline": "The Region Where the Sun is Kept",
-      "etymology": "From Anáhuac, the Nahuatl name — roughly \"land ringed by water\" — for the highland valley at the region’s heart.",
       "blurb": "A sun-hammered region of cactus flats, live volcanoes and green cenote country. Trainers begin in the jungle lowlands, cross the desert, climb the smoking sierra, and end among the glyph-carved tombs where the sun legend still roosts.",
       "professor": "Professor Ceiba",
       "skin": "gen2",
@@ -1059,57 +899,48 @@
           "entries": [
             {
               "regionalNo": 1,
-              "nationalNo": 252,
               "slug": "treecko",
-              "lineHead": "treecko"
+              "nationalNo": 252
             },
             {
               "regionalNo": 2,
-              "nationalNo": 253,
               "slug": "grovyle",
-              "lineHead": "treecko"
+              "nationalNo": 253
             },
             {
               "regionalNo": 3,
-              "nationalNo": 254,
               "slug": "sceptile",
-              "lineHead": "treecko"
+              "nationalNo": 254
             },
             {
               "regionalNo": 4,
-              "nationalNo": 909,
               "slug": "fuecoco",
-              "lineHead": "fuecoco"
+              "nationalNo": 909
             },
             {
               "regionalNo": 5,
-              "nationalNo": 910,
               "slug": "crocalor",
-              "lineHead": "fuecoco"
+              "nationalNo": 910
             },
             {
               "regionalNo": 6,
-              "nationalNo": 911,
               "slug": "skeledirge",
-              "lineHead": "fuecoco"
+              "nationalNo": 911
             },
             {
               "regionalNo": 7,
-              "nationalNo": 258,
               "slug": "mudkip",
-              "lineHead": "mudkip"
+              "nationalNo": 258
             },
             {
               "regionalNo": 8,
-              "nationalNo": 259,
               "slug": "marshtomp",
-              "lineHead": "mudkip"
+              "nationalNo": 259
             },
             {
               "regionalNo": 9,
-              "nationalNo": 260,
               "slug": "swampert",
-              "lineHead": "mudkip"
+              "nationalNo": 260
             }
           ]
         },
@@ -1119,75 +950,63 @@
           "entries": [
             {
               "regionalNo": 10,
-              "nationalNo": 661,
               "slug": "fletchling",
-              "lineHead": "fletchling"
+              "nationalNo": 661
             },
             {
               "regionalNo": 11,
-              "nationalNo": 662,
               "slug": "fletchinder",
-              "lineHead": "fletchling"
+              "nationalNo": 662
             },
             {
               "regionalNo": 12,
-              "nationalNo": 663,
               "slug": "talonflame",
-              "lineHead": "fletchling"
+              "nationalNo": 663
             },
             {
               "regionalNo": 13,
-              "nationalNo": 84,
               "slug": "doduo",
-              "lineHead": "doduo"
+              "nationalNo": 84
             },
             {
               "regionalNo": 14,
-              "nationalNo": 85,
               "slug": "dodrio",
-              "lineHead": "doduo"
+              "nationalNo": 85
             },
             {
               "regionalNo": 15,
-              "nationalNo": 504,
               "slug": "patrat",
-              "lineHead": "patrat"
+              "nationalNo": 504
             },
             {
               "regionalNo": 16,
-              "nationalNo": 505,
               "slug": "watchog",
-              "lineHead": "patrat"
+              "nationalNo": 505
             },
             {
               "regionalNo": 17,
-              "nationalNo": 167,
               "slug": "spinarak",
-              "lineHead": "spinarak"
+              "nationalNo": 167
             },
             {
               "regionalNo": 18,
-              "nationalNo": 168,
               "slug": "ariados",
-              "lineHead": "spinarak"
+              "nationalNo": 168
             },
             {
               "regionalNo": 19,
-              "nationalNo": 664,
               "slug": "scatterbug",
-              "lineHead": "scatterbug"
+              "nationalNo": 664
             },
             {
               "regionalNo": 20,
-              "nationalNo": 665,
               "slug": "spewpa",
-              "lineHead": "scatterbug"
+              "nationalNo": 665
             },
             {
               "regionalNo": 21,
-              "nationalNo": 666,
               "slug": "vivillon",
-              "lineHead": "scatterbug"
+              "nationalNo": 666
             }
           ]
         },
@@ -1197,21 +1016,18 @@
           "entries": [
             {
               "regionalNo": 22,
-              "nationalNo": 172,
               "slug": "pichu",
-              "lineHead": "pichu"
+              "nationalNo": 172
             },
             {
               "regionalNo": 23,
-              "nationalNo": 25,
               "slug": "pikachu",
-              "lineHead": "pichu"
+              "nationalNo": 25
             },
             {
               "regionalNo": 24,
-              "nationalNo": 26,
               "slug": "raichu",
-              "lineHead": "pichu"
+              "nationalNo": 26
             }
           ]
         },
@@ -1221,27 +1037,23 @@
           "entries": [
             {
               "regionalNo": 25,
-              "nationalNo": 41,
               "slug": "zubat",
-              "lineHead": "zubat"
+              "nationalNo": 41
             },
             {
               "regionalNo": 26,
-              "nationalNo": 42,
               "slug": "golbat",
-              "lineHead": "zubat"
+              "nationalNo": 42
             },
             {
               "regionalNo": 27,
-              "nationalNo": 169,
               "slug": "crobat",
-              "lineHead": "zubat"
+              "nationalNo": 169
             },
             {
               "regionalNo": 28,
-              "nationalNo": 703,
               "slug": "carbink",
-              "lineHead": "carbink"
+              "nationalNo": 703
             }
           ]
         },
@@ -1251,141 +1063,118 @@
           "entries": [
             {
               "regionalNo": 29,
-              "nationalNo": 27,
               "slug": "sandshrew",
-              "lineHead": "sandshrew"
+              "nationalNo": 27
             },
             {
               "regionalNo": 30,
-              "nationalNo": 28,
               "slug": "sandslash",
-              "lineHead": "sandshrew"
+              "nationalNo": 28
             },
             {
               "regionalNo": 31,
-              "nationalNo": 551,
               "slug": "sandile",
-              "lineHead": "sandile"
+              "nationalNo": 551
             },
             {
               "regionalNo": 32,
-              "nationalNo": 552,
               "slug": "krokorok",
-              "lineHead": "sandile"
+              "nationalNo": 552
             },
             {
               "regionalNo": 33,
-              "nationalNo": 553,
               "slug": "krookodile",
-              "lineHead": "sandile"
+              "nationalNo": 553
             },
             {
               "regionalNo": 34,
-              "nationalNo": 328,
               "slug": "trapinch",
-              "lineHead": "trapinch"
+              "nationalNo": 328
             },
             {
               "regionalNo": 35,
-              "nationalNo": 329,
               "slug": "vibrava",
-              "lineHead": "trapinch"
+              "nationalNo": 329
             },
             {
               "regionalNo": 36,
-              "nationalNo": 330,
               "slug": "flygon",
-              "lineHead": "trapinch"
+              "nationalNo": 330
             },
             {
               "regionalNo": 37,
-              "nationalNo": 331,
               "slug": "cacnea",
-              "lineHead": "cacnea"
+              "nationalNo": 331
             },
             {
               "regionalNo": 38,
-              "nationalNo": 332,
               "slug": "cacturne",
-              "lineHead": "cacnea"
+              "nationalNo": 332
             },
             {
               "regionalNo": 39,
-              "nationalNo": 556,
               "slug": "maractus",
-              "lineHead": "maractus"
+              "nationalNo": 556
             },
             {
               "regionalNo": 40,
-              "nationalNo": 843,
               "slug": "silicobra",
-              "lineHead": "silicobra"
+              "nationalNo": 843
             },
             {
               "regionalNo": 41,
-              "nationalNo": 844,
               "slug": "sandaconda",
-              "lineHead": "silicobra"
+              "nationalNo": 844
             },
             {
               "regionalNo": 42,
-              "nationalNo": 23,
               "slug": "ekans",
-              "lineHead": "ekans"
+              "nationalNo": 23
             },
             {
               "regionalNo": 43,
-              "nationalNo": 24,
               "slug": "arbok",
-              "lineHead": "ekans"
+              "nationalNo": 24
             },
             {
               "regionalNo": 44,
-              "nationalNo": 207,
               "slug": "gligar",
-              "lineHead": "gligar"
+              "nationalNo": 207
             },
             {
               "regionalNo": 45,
-              "nationalNo": 472,
               "slug": "gliscor",
-              "lineHead": "gligar"
+              "nationalNo": 472
             },
             {
               "regionalNo": 46,
-              "nationalNo": 104,
               "slug": "cubone",
-              "lineHead": "cubone"
+              "nationalNo": 104
             },
             {
               "regionalNo": 47,
-              "nationalNo": 105,
               "slug": "marowak-alola",
-              "lineHead": "cubone"
+              "nationalNo": 105
             },
             {
               "regionalNo": 48,
-              "nationalNo": 769,
               "slug": "sandygast",
-              "lineHead": "sandygast"
+              "nationalNo": 769
             },
             {
               "regionalNo": 49,
-              "nationalNo": 770,
               "slug": "palossand",
-              "lineHead": "sandygast"
+              "nationalNo": 770
             },
             {
               "regionalNo": 50,
-              "nationalNo": 744,
               "slug": "rockruff",
-              "lineHead": "rockruff"
+              "nationalNo": 744
             },
             {
               "regionalNo": 51,
-              "nationalNo": 745,
               "slug": "lycanroc-midday",
-              "lineHead": "rockruff"
+              "nationalNo": 745
             }
           ]
         },
@@ -1395,39 +1184,33 @@
           "entries": [
             {
               "regionalNo": 52,
-              "nationalNo": 191,
               "slug": "sunkern",
-              "lineHead": "sunkern"
+              "nationalNo": 191
             },
             {
               "regionalNo": 53,
-              "nationalNo": 192,
               "slug": "sunflora",
-              "lineHead": "sunkern"
+              "nationalNo": 192
             },
             {
               "regionalNo": 54,
-              "nationalNo": 694,
               "slug": "helioptile",
-              "lineHead": "helioptile"
+              "nationalNo": 694
             },
             {
               "regionalNo": 55,
-              "nationalNo": 695,
               "slug": "heliolisk",
-              "lineHead": "helioptile"
+              "nationalNo": 695
             },
             {
               "regionalNo": 56,
-              "nationalNo": 338,
               "slug": "solrock",
-              "lineHead": "solrock"
+              "nationalNo": 338
             },
             {
               "regionalNo": 57,
-              "nationalNo": 337,
               "slug": "lunatone",
-              "lineHead": "lunatone"
+              "nationalNo": 337
             }
           ]
         },
@@ -1437,165 +1220,139 @@
           "entries": [
             {
               "regionalNo": 58,
-              "nationalNo": 322,
               "slug": "numel",
-              "lineHead": "numel"
+              "nationalNo": 322
             },
             {
               "regionalNo": 59,
-              "nationalNo": 323,
               "slug": "camerupt",
-              "lineHead": "numel"
+              "nationalNo": 323
             },
             {
               "regionalNo": 60,
-              "nationalNo": 218,
               "slug": "slugma",
-              "lineHead": "slugma"
+              "nationalNo": 218
             },
             {
               "regionalNo": 61,
-              "nationalNo": 219,
               "slug": "magcargo",
-              "lineHead": "slugma"
+              "nationalNo": 219
             },
             {
               "regionalNo": 62,
-              "nationalNo": 240,
               "slug": "magby",
-              "lineHead": "magby"
+              "nationalNo": 240
             },
             {
               "regionalNo": 63,
-              "nationalNo": 126,
               "slug": "magmar",
-              "lineHead": "magby"
+              "nationalNo": 126
             },
             {
               "regionalNo": 64,
-              "nationalNo": 467,
               "slug": "magmortar",
-              "lineHead": "magby"
+              "nationalNo": 467
             },
             {
               "regionalNo": 65,
-              "nationalNo": 757,
               "slug": "salandit",
-              "lineHead": "salandit"
+              "nationalNo": 757
             },
             {
               "regionalNo": 66,
-              "nationalNo": 758,
               "slug": "salazzle",
-              "lineHead": "salandit"
+              "nationalNo": 758
             }
           ]
         },
         {
-          "label": "Yucatl Jungle",
+          "label": "The Deep Jungle",
           "note": "Canopy so thick the floor never dries. Watch the branches, not the path.",
           "entries": [
             {
               "regionalNo": 67,
-              "nationalNo": 69,
               "slug": "bellsprout",
-              "lineHead": "bellsprout"
+              "nationalNo": 69
             },
             {
               "regionalNo": 68,
-              "nationalNo": 70,
               "slug": "weepinbell",
-              "lineHead": "bellsprout"
+              "nationalNo": 70
             },
             {
               "regionalNo": 69,
-              "nationalNo": 71,
               "slug": "victreebel",
-              "lineHead": "bellsprout"
+              "nationalNo": 71
             },
             {
               "regionalNo": 70,
-              "nationalNo": 114,
               "slug": "tangela",
-              "lineHead": "tangela"
+              "nationalNo": 114
             },
             {
               "regionalNo": 71,
-              "nationalNo": 465,
               "slug": "tangrowth",
-              "lineHead": "tangela"
+              "nationalNo": 465
             },
             {
               "regionalNo": 72,
-              "nationalNo": 102,
               "slug": "exeggcute",
-              "lineHead": "exeggcute"
+              "nationalNo": 102
             },
             {
               "regionalNo": 73,
-              "nationalNo": 103,
               "slug": "exeggutor",
-              "lineHead": "exeggcute"
+              "nationalNo": 103
             },
             {
               "regionalNo": 74,
-              "nationalNo": 357,
               "slug": "tropius",
-              "lineHead": "tropius"
+              "nationalNo": 357
             },
             {
               "regionalNo": 75,
-              "nationalNo": 731,
               "slug": "pikipek",
-              "lineHead": "pikipek"
+              "nationalNo": 731
             },
             {
               "regionalNo": 76,
-              "nationalNo": 732,
               "slug": "trumbeak",
-              "lineHead": "pikipek"
+              "nationalNo": 732
             },
             {
               "regionalNo": 77,
-              "nationalNo": 733,
               "slug": "toucannon",
-              "lineHead": "pikipek"
+              "nationalNo": 733
             },
             {
               "regionalNo": 78,
-              "nationalNo": 56,
               "slug": "mankey",
-              "lineHead": "mankey"
+              "nationalNo": 56
             },
             {
               "regionalNo": 79,
-              "nationalNo": 57,
               "slug": "primeape",
-              "lineHead": "mankey"
+              "nationalNo": 57
             },
             {
               "regionalNo": 80,
-              "nationalNo": 979,
               "slug": "annihilape",
-              "lineHead": "mankey"
+              "nationalNo": 979
             },
             {
               "regionalNo": 81,
-              "nationalNo": 52,
               "slug": "meowth",
-              "lineHead": "meowth"
+              "nationalNo": 52
             },
             {
               "regionalNo": 82,
-              "nationalNo": 53,
               "slug": "persian",
-              "lineHead": "meowth"
+              "nationalNo": 53
             },
             {
               "regionalNo": 83,
-              "nationalNo": 214,
               "slug": "heracross",
-              "lineHead": "heracross"
+              "nationalNo": 214
             }
           ]
         },
@@ -1605,153 +1362,129 @@
           "entries": [
             {
               "regionalNo": 84,
-              "nationalNo": 194,
               "slug": "wooper",
-              "lineHead": "wooper"
+              "nationalNo": 194
             },
             {
               "regionalNo": 85,
-              "nationalNo": 195,
               "slug": "quagsire",
-              "lineHead": "wooper"
+              "nationalNo": 195
             },
             {
               "regionalNo": 86,
-              "nationalNo": 938,
               "slug": "tadbulb",
-              "lineHead": "tadbulb"
+              "nationalNo": 938
             },
             {
               "regionalNo": 87,
-              "nationalNo": 939,
               "slug": "bellibolt",
-              "lineHead": "tadbulb"
+              "nationalNo": 939
             },
             {
               "regionalNo": 88,
-              "nationalNo": 270,
               "slug": "lotad",
-              "lineHead": "lotad"
+              "nationalNo": 270
             },
             {
               "regionalNo": 89,
-              "nationalNo": 271,
               "slug": "lombre",
-              "lineHead": "lotad"
+              "nationalNo": 271
             },
             {
               "regionalNo": 90,
-              "nationalNo": 272,
               "slug": "ludicolo",
-              "lineHead": "lotad"
+              "nationalNo": 272
             }
           ]
         },
         {
-          "label": "Tenoch City",
+          "label": "The Lake City",
           "note": "One of the largest cities on earth, sunk a little further into its old lakebed every year. Painted wall to wall, loud from before dawn, and fed entirely from the street.",
           "entries": [
             {
               "regionalNo": 91,
-              "nationalNo": 945,
               "slug": "grafaiai",
-              "lineHead": "grafaiai"
+              "nationalNo": 945
             },
             {
               "regionalNo": 92,
-              "nationalNo": 926,
               "slug": "fidough",
-              "lineHead": "fidough"
+              "nationalNo": 926
             },
             {
               "regionalNo": 93,
-              "nationalNo": 927,
               "slug": "dachsbun",
-              "lineHead": "fidough"
+              "nationalNo": 927
             },
             {
               "regionalNo": 94,
-              "nationalNo": 951,
               "slug": "capsakid",
-              "lineHead": "capsakid"
+              "nationalNo": 951
             },
             {
               "regionalNo": 95,
-              "nationalNo": 952,
               "slug": "scovillain",
-              "lineHead": "capsakid"
+              "nationalNo": 952
             },
             {
               "regionalNo": 96,
-              "nationalNo": 761,
               "slug": "bounsweet",
-              "lineHead": "bounsweet"
+              "nationalNo": 761
             },
             {
               "regionalNo": 97,
-              "nationalNo": 762,
               "slug": "steenee",
-              "lineHead": "bounsweet"
+              "nationalNo": 762
             },
             {
               "regionalNo": 98,
-              "nationalNo": 763,
               "slug": "tsareena",
-              "lineHead": "bounsweet"
+              "nationalNo": 763
             },
             {
               "regionalNo": 99,
-              "nationalNo": 741,
               "slug": "oricorio-baile",
-              "lineHead": "oricorio-baile"
+              "nationalNo": 741
             },
             {
               "regionalNo": 100,
-              "nationalNo": 848,
               "slug": "toxel",
-              "lineHead": "toxel"
+              "nationalNo": 848
             },
             {
               "regionalNo": 101,
-              "nationalNo": 849,
               "slug": "toxtricity-amped",
-              "lineHead": "toxel"
+              "nationalNo": 849
             },
             {
               "regionalNo": 102,
-              "nationalNo": 436,
               "slug": "bronzor",
-              "lineHead": "bronzor"
+              "nationalNo": 436
             },
             {
               "regionalNo": 103,
-              "nationalNo": 437,
               "slug": "bronzong",
-              "lineHead": "bronzor"
+              "nationalNo": 437
             },
             {
               "regionalNo": 104,
-              "nationalNo": 878,
               "slug": "cufant",
-              "lineHead": "cufant"
+              "nationalNo": 878
             },
             {
               "regionalNo": 105,
-              "nationalNo": 879,
               "slug": "copperajah",
-              "lineHead": "cufant"
+              "nationalNo": 879
             },
             {
               "regionalNo": 106,
-              "nationalNo": 446,
               "slug": "munchlax",
-              "lineHead": "munchlax"
+              "nationalNo": 446
             },
             {
               "regionalNo": 107,
-              "nationalNo": 143,
               "slug": "snorlax",
-              "lineHead": "munchlax"
+              "nationalNo": 143
             }
           ]
         },
@@ -1761,117 +1494,98 @@
           "entries": [
             {
               "regionalNo": 108,
-              "nationalNo": 92,
               "slug": "gastly",
-              "lineHead": "gastly"
+              "nationalNo": 92
             },
             {
               "regionalNo": 109,
-              "nationalNo": 93,
               "slug": "haunter",
-              "lineHead": "gastly"
+              "nationalNo": 93
             },
             {
               "regionalNo": 110,
-              "nationalNo": 94,
               "slug": "gengar",
-              "lineHead": "gastly"
+              "nationalNo": 94
             },
             {
               "regionalNo": 111,
-              "nationalNo": 200,
               "slug": "misdreavus",
-              "lineHead": "misdreavus"
+              "nationalNo": 200
             },
             {
               "regionalNo": 112,
-              "nationalNo": 429,
               "slug": "mismagius",
-              "lineHead": "misdreavus"
+              "nationalNo": 429
             },
             {
               "regionalNo": 113,
-              "nationalNo": 355,
               "slug": "duskull",
-              "lineHead": "duskull"
+              "nationalNo": 355
             },
             {
               "regionalNo": 114,
-              "nationalNo": 356,
               "slug": "dusclops",
-              "lineHead": "duskull"
+              "nationalNo": 356
             },
             {
               "regionalNo": 115,
-              "nationalNo": 477,
               "slug": "dusknoir",
-              "lineHead": "duskull"
+              "nationalNo": 477
             },
             {
               "regionalNo": 116,
-              "nationalNo": 971,
               "slug": "greavard",
-              "lineHead": "greavard"
+              "nationalNo": 971
             },
             {
               "regionalNo": 117,
-              "nationalNo": 972,
               "slug": "houndstone",
-              "lineHead": "greavard"
+              "nationalNo": 972
             },
             {
               "regionalNo": 118,
-              "nationalNo": 607,
               "slug": "litwick",
-              "lineHead": "litwick"
+              "nationalNo": 607
             },
             {
               "regionalNo": 119,
-              "nationalNo": 608,
               "slug": "lampent",
-              "lineHead": "litwick"
+              "nationalNo": 608
             },
             {
               "regionalNo": 120,
-              "nationalNo": 609,
               "slug": "chandelure",
-              "lineHead": "litwick"
+              "nationalNo": 609
             },
             {
               "regionalNo": 121,
-              "nationalNo": 764,
               "slug": "comfey",
-              "lineHead": "comfey"
+              "nationalNo": 764
             },
             {
               "regionalNo": 122,
-              "nationalNo": 710,
               "slug": "pumpkaboo-average",
-              "lineHead": "pumpkaboo-average"
+              "nationalNo": 710
             },
             {
               "regionalNo": 123,
-              "nationalNo": 711,
               "slug": "gourgeist-average",
-              "lineHead": "pumpkaboo-average"
+              "nationalNo": 711
             },
             {
               "regionalNo": 124,
-              "nationalNo": 425,
               "slug": "drifloon",
-              "lineHead": "drifloon"
+              "nationalNo": 425
             },
             {
               "regionalNo": 125,
-              "nationalNo": 426,
               "slug": "drifblim",
-              "lineHead": "drifloon"
+              "nationalNo": 426
             },
             {
               "regionalNo": 126,
-              "nationalNo": 778,
               "slug": "mimikyu-disguised",
-              "lineHead": "mimikyu-disguised"
+              "nationalNo": 778
             }
           ]
         },
@@ -1881,87 +1595,73 @@
           "entries": [
             {
               "regionalNo": 127,
-              "nationalNo": 63,
               "slug": "abra",
-              "lineHead": "abra"
+              "nationalNo": 63
             },
             {
               "regionalNo": 128,
-              "nationalNo": 64,
               "slug": "kadabra",
-              "lineHead": "abra"
+              "nationalNo": 64
             },
             {
               "regionalNo": 129,
-              "nationalNo": 65,
               "slug": "alakazam",
-              "lineHead": "abra"
+              "nationalNo": 65
             },
             {
               "regionalNo": 130,
-              "nationalNo": 177,
               "slug": "natu",
-              "lineHead": "natu"
+              "nationalNo": 177
             },
             {
               "regionalNo": 131,
-              "nationalNo": 178,
               "slug": "xatu",
-              "lineHead": "natu"
+              "nationalNo": 178
             },
             {
               "regionalNo": 132,
-              "nationalNo": 201,
               "slug": "unown",
-              "lineHead": "unown"
+              "nationalNo": 201
             },
             {
               "regionalNo": 133,
-              "nationalNo": 343,
               "slug": "baltoy",
-              "lineHead": "baltoy"
+              "nationalNo": 343
             },
             {
               "regionalNo": 134,
-              "nationalNo": 344,
               "slug": "claydol",
-              "lineHead": "baltoy"
+              "nationalNo": 344
             },
             {
               "regionalNo": 135,
-              "nationalNo": 561,
               "slug": "sigilyph",
-              "lineHead": "sigilyph"
+              "nationalNo": 561
             },
             {
               "regionalNo": 136,
-              "nationalNo": 622,
               "slug": "golett",
-              "lineHead": "golett"
+              "nationalNo": 622
             },
             {
               "regionalNo": 137,
-              "nationalNo": 623,
               "slug": "golurk",
-              "lineHead": "golett"
+              "nationalNo": 623
             },
             {
               "regionalNo": 138,
-              "nationalNo": 173,
               "slug": "cleffa",
-              "lineHead": "cleffa"
+              "nationalNo": 173
             },
             {
               "regionalNo": 139,
-              "nationalNo": 35,
               "slug": "clefairy",
-              "lineHead": "cleffa"
+              "nationalNo": 35
             },
             {
               "regionalNo": 140,
-              "nationalNo": 36,
               "slug": "clefable",
-              "lineHead": "cleffa"
+              "nationalNo": 36
             }
           ]
         },
@@ -1971,75 +1671,63 @@
           "entries": [
             {
               "regionalNo": 141,
-              "nationalNo": 701,
               "slug": "hawlucha",
-              "lineHead": "hawlucha"
+              "nationalNo": 701
             },
             {
               "regionalNo": 142,
-              "nationalNo": 766,
               "slug": "passimian",
-              "lineHead": "passimian"
+              "nationalNo": 766
             },
             {
               "regionalNo": 143,
-              "nationalNo": 559,
               "slug": "scraggy",
-              "lineHead": "scraggy"
+              "nationalNo": 559
             },
             {
               "regionalNo": 144,
-              "nationalNo": 560,
               "slug": "scrafty",
-              "lineHead": "scraggy"
+              "nationalNo": 560
             },
             {
               "regionalNo": 145,
-              "nationalNo": 236,
               "slug": "tyrogue",
-              "lineHead": "tyrogue"
+              "nationalNo": 236
             },
             {
               "regionalNo": 146,
-              "nationalNo": 106,
               "slug": "hitmonlee",
-              "lineHead": "tyrogue"
+              "nationalNo": 106
             },
             {
               "regionalNo": 147,
-              "nationalNo": 107,
               "slug": "hitmonchan",
-              "lineHead": "tyrogue"
+              "nationalNo": 107
             },
             {
               "regionalNo": 148,
-              "nationalNo": 237,
               "slug": "hitmontop",
-              "lineHead": "tyrogue"
+              "nationalNo": 237
             },
             {
               "regionalNo": 149,
-              "nationalNo": 66,
               "slug": "machop",
-              "lineHead": "machop"
+              "nationalNo": 66
             },
             {
               "regionalNo": 150,
-              "nationalNo": 67,
               "slug": "machoke",
-              "lineHead": "machop"
+              "nationalNo": 67
             },
             {
               "regionalNo": 151,
-              "nationalNo": 68,
               "slug": "machamp",
-              "lineHead": "machop"
+              "nationalNo": 68
             },
             {
               "regionalNo": 152,
-              "nationalNo": 128,
               "slug": "tauros",
-              "lineHead": "tauros"
+              "nationalNo": 128
             }
           ]
         },
@@ -2049,63 +1737,53 @@
           "entries": [
             {
               "regionalNo": 153,
-              "nationalNo": 116,
               "slug": "horsea",
-              "lineHead": "horsea"
+              "nationalNo": 116
             },
             {
               "regionalNo": 154,
-              "nationalNo": 117,
               "slug": "seadra",
-              "lineHead": "horsea"
+              "nationalNo": 117
             },
             {
               "regionalNo": 155,
-              "nationalNo": 230,
               "slug": "kingdra",
-              "lineHead": "horsea"
+              "nationalNo": 230
             },
             {
               "regionalNo": 156,
-              "nationalNo": 120,
               "slug": "staryu",
-              "lineHead": "staryu"
+              "nationalNo": 120
             },
             {
               "regionalNo": 157,
-              "nationalNo": 121,
               "slug": "starmie",
-              "lineHead": "staryu"
+              "nationalNo": 121
             },
             {
               "regionalNo": 158,
-              "nationalNo": 222,
               "slug": "corsola",
-              "lineHead": "corsola"
+              "nationalNo": 222
             },
             {
               "regionalNo": 159,
-              "nationalNo": 458,
               "slug": "mantyke",
-              "lineHead": "mantyke"
+              "nationalNo": 458
             },
             {
               "regionalNo": 160,
-              "nationalNo": 226,
               "slug": "mantine",
-              "lineHead": "mantyke"
+              "nationalNo": 226
             },
             {
               "regionalNo": 161,
-              "nationalNo": 318,
               "slug": "carvanha",
-              "lineHead": "carvanha"
+              "nationalNo": 318
             },
             {
               "regionalNo": 162,
-              "nationalNo": 319,
               "slug": "sharpedo",
-              "lineHead": "carvanha"
+              "nationalNo": 319
             }
           ]
         },
@@ -2115,21 +1793,18 @@
           "entries": [
             {
               "regionalNo": 163,
-              "nationalNo": 345,
               "slug": "lileep",
-              "lineHead": "lileep"
+              "nationalNo": 345
             },
             {
               "regionalNo": 164,
-              "nationalNo": 346,
               "slug": "cradily",
-              "lineHead": "lileep"
+              "nationalNo": 346
             },
             {
               "regionalNo": 165,
-              "nationalNo": 142,
               "slug": "aerodactyl",
-              "lineHead": "aerodactyl"
+              "nationalNo": 142
             }
           ]
         },
@@ -2139,21 +1814,18 @@
           "entries": [
             {
               "regionalNo": 166,
-              "nationalNo": 443,
               "slug": "gible",
-              "lineHead": "gible"
+              "nationalNo": 443
             },
             {
               "regionalNo": 167,
-              "nationalNo": 444,
               "slug": "gabite",
-              "lineHead": "gible"
+              "nationalNo": 444
             },
             {
               "regionalNo": 168,
-              "nationalNo": 445,
               "slug": "garchomp",
-              "lineHead": "gible"
+              "nationalNo": 445
             }
           ]
         },
@@ -2163,27 +1835,23 @@
           "entries": [
             {
               "regionalNo": 169,
-              "nationalNo": 250,
               "slug": "ho-oh",
-              "lineHead": "ho-oh"
+              "nationalNo": 250
             },
             {
               "regionalNo": 170,
-              "nationalNo": 384,
               "slug": "rayquaza",
-              "lineHead": "rayquaza"
+              "nationalNo": 384
             },
             {
               "regionalNo": 171,
-              "nationalNo": 383,
               "slug": "groudon",
-              "lineHead": "groudon"
+              "nationalNo": 383
             },
             {
               "regionalNo": 172,
-              "nationalNo": 151,
               "slug": "mew",
-              "lineHead": "mew"
+              "nationalNo": 151
             }
           ]
         }
@@ -2522,23 +2190,5 @@
     "zoroark",
     "zorua",
     "zubat"
-  ],
-  "criteria": {
-    "thematic": {
-      "label": "Thematic",
-      "blurb": "Built on the region's real-world cultures, myths, stories, industries or institutions."
-    },
-    "fauna": {
-      "label": "Animal / Fauna",
-      "blurb": "Based on an animal or plant genuinely tied to the region."
-    },
-    "stylistic": {
-      "label": "Stylistic",
-      "blurb": "Matches the region's design aesthetic — its landscape, palette and mood."
-    },
-    "mechanics": {
-      "label": "Mechanics",
-      "blurb": "Fills a slot a Pokémon region needs: a starter, a route staple, type coverage, a fossil, a pseudo-legendary, a legendary."
-    }
-  }
+  ]
 }

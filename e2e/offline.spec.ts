@@ -67,7 +67,6 @@ test('registers a worker and precaches the app shell', async ({ page }) => {
     /RegionInfo/,
     /AreaScreen/,
     /DexToolbar/,
-    /explained/,
   ]
 
   await expect

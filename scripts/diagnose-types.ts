@@ -147,9 +147,9 @@ for (const region of data.regions) {
   const lines = new Map<string, Line>()
   for (const entry of entries) {
     const types = typesOf.get(entry.slug) ?? []
-    const prev = lines.get(entry.lineHead)
-    lines.set(entry.lineHead, {
-      head: entry.lineHead,
+    const prev = lines.get(entry.slug)
+    lines.set(entry.slug, {
+      head: entry.slug,
       firstNo: prev?.firstNo ?? entry.regionalNo,
       finalTypes: types,
       finalSlug: entry.slug,

@@ -11,7 +11,6 @@ import { writeFile, mkdir } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
 import { dirname, resolve } from 'node:path'
 import { REGIONS } from './region-lists.ts'
-import { RATIONALES, VARIANT_NOTES, CRITERIA } from './rationales.ts'
 import { ALLOWED_VARIANTS as VARIANT_LIST } from '../src/lib/variants.ts'
 import type { DraftEntry, Resolved } from './build-types.ts'
 
@@ -103,14 +102,6 @@ const regions = REGIONS.map((region) => {
   return { ...meta, sections, count: regionalNo }
 })
 
-/**
- * Placement is decided per evolution line, not per stage: nobody puts Bayleef
- * in a region for a different reason than Chikorita. So the reasoning is
- * written once, against the base form, and every later stage inherits it.
- *
- * Chains come from the API rather than being hand-grouped, so an evolution
- * added to a line later cannot silently orphan itself.
- */
 const allSlugs = regions.flatMap((r) => r.sections.flatMap((s) => s.entries.map((e) => e.slug)))
 
 // Report every bad slug at once rather than dying on the first one.
@@ -121,8 +112,6 @@ if (problems.length) {
 
 const resolved = await pooled([...new Set(allSlugs)], resolveSpecies)
 
-const lineHeads = new Set<string>()
-
 /** Every slug was resolved above, so a miss here is a bug, not a data case. */
 function speciesFor(slug: string) {
   const record = resolved.get(slug)
@@ -131,51 +120,10 @@ function speciesFor(slug: string) {
 }
 
 for (const region of regions) {
-  // Within a region, the line's head is simply its lowest-numbered member.
-  const headOfChain = new Map<string, string>()
   for (const section of region.sections) {
     for (const entry of section.entries) {
-      const { nationalNo, chain } = speciesFor(entry.slug)
-      entry.nationalNo = nationalNo
-      if (!headOfChain.has(chain)) headOfChain.set(chain, entry.slug)
+      entry.nationalNo = speciesFor(entry.slug).nationalNo
     }
-  }
-  for (const slug of headOfChain.values()) lineHeads.add(slug)
-
-  for (const section of region.sections) {
-    for (const entry of section.entries) {
-      // The chain was registered in the pass above, so its head is present.
-      const head = headOfChain.get(speciesFor(entry.slug).chain) ?? entry.slug
-      const rationale = RATIONALES[head]
-      entry.lineHead = head
-      entry.why = rationale?.why ?? ''
-      entry.tags = rationale?.tags ?? []
-      // The score is simply how many of the four criteria the line meets.
-      entry.score = entry.tags.length
-      // A form-suffixed slug means a form was picked over its alternatives,
-      // which is a separate decision and gets its own note.
-      const note = VARIANT_NOTES[entry.slug]
-      if (note) entry.variantNote = note
-
-      if (!rationale) {
-        problems.push(`${region.id}: line head "${head}" has no entry in rationales.ts`)
-      } else if (!rationale.tags?.length) {
-        problems.push(`${region.id}: "${head}" meets none of the criteria, so it cannot be included`)
-      } else {
-        for (const tag of rationale.tags) {
-          if (!CRITERIA[tag]) problems.push(`${region.id}: "${head}" has unknown criterion "${tag}"`)
-        }
-        if (new Set(rationale.tags).size !== rationale.tags.length) {
-          problems.push(`${region.id}: "${head}" repeats a criterion`)
-        }
-      }
-    }
-  }
-}
-
-for (const slug of Object.keys(VARIANT_NOTES)) {
-  if (!ALLOWED_VARIANTS.has(slug)) {
-    problems.push(`rationales.ts: "${slug}" is not a variant form, so it needs no variant note`)
   }
 }
 
@@ -183,7 +131,7 @@ for (const slug of Object.keys(VARIANT_NOTES)) {
 // by a professor, so it must not also be catchable on a route.
 const STARTER_LINES = await fetch('https://pokeapi.co/api/v2/pokemon-species?limit=100000')
   .then((r) => r.json())
-  .then(async ({ results }: { results: { name: string }[] }) => {
+  .then(({ results }: { results: { name: string }[] }) => {
     // PokeAPI exposes no "is a starter" flag, so the trios are the hardcoded
     // national-dex ranges below; the species list is fetched only to turn those
     // ids into slugs. The same table is asserted in src/App.test.tsx.
@@ -201,8 +149,7 @@ const STARTER_LINES = await fetch('https://pokeapi.co/api/v2/pokemon-species?lim
 for (const region of regions) {
   region.sections.forEach((section, index) => {
     for (const entry of section.entries) {
-      const base = speciesFor(entry.slug).name
-      if (STARTER_LINES.has(base) && index !== 0) {
+      if (STARTER_LINES.has(speciesFor(entry.slug).name) && index !== 0) {
         problems.push(`${region.id}: starter "${entry.slug}" appears outside the starters section`)
       }
     }
@@ -210,10 +157,10 @@ for (const region of regions) {
 }
 
 /**
- * Kanata is a naturalistic region built on real northern wildlife, so it also
- * excludes the kaiju lineage — the Pokemon designed as rubber-suit monsters
- * rather than as animals. Same reason the set is explicit: nothing in the API
- * records design ancestry.
+ * Kanata is a naturalistic northern region built on real cold-climate wildlife,
+ * so it excludes the kaiju lineage — the Pokemon designed as rubber-suit
+ * monsters rather than as animals. The set is explicit because nothing in the
+ * API records design ancestry.
  */
 const KAIJU = new Set([
   'nidoran-f', 'nidorina', 'nidoqueen',
@@ -226,9 +173,9 @@ const KAIJU = new Set([
 ])
 
 /**
- * Kanata is a boreal/arctic region and there are no primates north of the
- * treeline, so no monkey- or ape-based species may appear in it. There is no
- * way to derive "is a monkey" from the API, so the set is explicit.
+ * Kanata is boreal and arctic, and there are no primates north of the treeline,
+ * so no monkey- or ape-based species may appear in it. Explicit for the same
+ * reason: "is a monkey" cannot be derived from the API.
  */
 const PRIMATES = new Set([
   'mankey', 'primeape', 'annihilape',
@@ -264,21 +211,6 @@ for (const slug of first) {
   if (second.has(slug)) problems.push(`"${slug}" appears in both regions`)
 }
 
-// ...and no rationale may outlive the species it was written for, nor be
-// written for an evolved form that inherits its line's reasoning anyway.
-for (const slug of Object.keys(RATIONALES)) {
-  if (!first.has(slug) && !second.has(slug)) {
-    problems.push(`rationales.ts: "${slug}" is not in either dex`)
-  } else if (!lineHeads.has(slug)) {
-    problems.push(`rationales.ts: "${slug}" is an evolved form; reason belongs on its line's base`)
-  }
-}
-for (const slug of Object.keys(VARIANT_NOTES)) {
-  if (!first.has(slug) && !second.has(slug)) {
-    problems.push(`rationales.ts: variant note for "${slug}", which is not in either dex`)
-  }
-}
-
 if (problems.length) {
   console.error(problems.join('\n'))
   process.exit(1)
@@ -287,69 +219,15 @@ if (problems.length) {
 // Every species either dex references, so the offline prefetch knows its work list.
 const uniqueSlugs = [...new Set(allSlugs)].sort()
 
-/**
- * The reasoning is written per evolution line but was stored per stage, so
- * every word of it appeared two or three times — 66 kB of a 115 kB payload for
- * 31 kB of actual text. Worse, all of it shipped in the entry bundle to render
- * a route nothing links to.
- *
- * So it goes to its own file, keyed by line head, loaded only when /explained
- * is actually opened. `regions.json` keeps `lineHead`, which is the join key.
- */
-const explained = {
-  lines: Object.fromEntries(
-    [...lineHeads].sort().map((head) => {
-      const rationale = RATIONALES[head]
-      return [head, { why: rationale?.why ?? '', tags: rationale?.tags ?? [] }]
-    }),
-  ),
-  // Keyed by slug, not line head: it is the *form* that was chosen.
-  variantNotes: VARIANT_NOTES,
-}
-
-const stripped = regions.map((region) => ({
-  ...region,
-  sections: region.sections.map((section) => ({
-    ...section,
-    entries: section.entries.map(({ regionalNo, nationalNo, slug, lineHead }) => ({
-      regionalNo,
-      nationalNo,
-      slug,
-      lineHead,
-    })),
-  })),
-}))
-
 await mkdir(dirname(outFile), { recursive: true })
 await writeFile(
   outFile,
-  `${JSON.stringify({ regions: stripped, allSlugs: uniqueSlugs, criteria: CRITERIA }, null, 2)}\n`,
-  'utf8',
-)
-await writeFile(
-  resolve(dirname(outFile), 'explained.json'),
-  `${JSON.stringify(explained, null, 2)}\n`,
+  `${JSON.stringify({ regions, allSlugs: uniqueSlugs }, null, 2)}\n`,
   'utf8',
 )
 
 for (const region of regions) {
-  const lines = new Map<string, DraftEntry>()
-  for (const entry of region.sections.flatMap((s) => s.entries)) {
-    lines.set(entry.lineHead ?? entry.slug, entry)
-  }
-  const counts: Record<string, number> = Object.fromEntries(Object.keys(CRITERIA).map((k) => [k, 0]))
-  const single: string[] = []
-  for (const [head, entry] of lines) {
-    for (const tag of entry.tags ?? []) counts[tag] = (counts[tag] ?? 0) + 1
-    if ((entry.score ?? 0) < 2) single.push(head)
-  }
-  console.log(
-    `${region.name}: ${region.count} entries, ${lines.size} lines — ` +
-      Object.entries(counts).map(([k, v]) => `${k} ${v}`).join(', '),
-  )
-  // The bar is one criterion; the target is two. Anything on one gets named so
-  // it can be justified better or cut.
-  if (single.length) console.log(`  scraping in on a single criterion: ${single.join(', ')}`)
+  console.log(`${region.name}: ${region.count} entries`)
 }
 console.log(`${uniqueSlugs.length} unique species total`)
 console.log(`Wrote ${outFile}`)

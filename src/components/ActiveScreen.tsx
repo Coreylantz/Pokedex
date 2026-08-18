@@ -3,16 +3,7 @@ import { DexScreen } from './DexScreen'
 import { ErrorScreen } from './ErrorScreen'
 import { MenuScreen } from './MenuScreen'
 import { dexNumber, monName } from '../lib/format'
-import type {
-  Criterion,
-  CriterionInfo,
-  DexEntry,
-  Explained,
-  Page,
-  Pokemon,
-  Region,
-  Route,
-} from '../lib/types'
+import type { DexEntry, Page, Pokemon, Region, Route } from '../lib/types'
 
 /**
  * Everything past the menu and the list is loaded on demand.
@@ -39,8 +30,6 @@ export interface ActiveScreenProps {
   /** Which slugs failed outright, so a dead entry shows an error not a spinner. */
   failedSlugs: ReadonlySet<string>
   area: string | null
-  explainedData: Explained | undefined
-  criteria: Record<Criterion, CriterionInfo>
 
   visibleEntries: readonly DexEntry[]
   byslug: ReadonlyMap<string, Pokemon>
@@ -114,10 +103,6 @@ export function ActiveScreen(props: ActiveScreenProps) {
         region={region}
         area={props.area}
         shiny={props.shiny}
-        explained={route.explained}
-        criteria={props.criteria}
-        rationale={props.explainedData?.lines[entry.lineHead]}
-        variantNote={props.explainedData?.variantNotes[entry.slug]}
         onBack={props.onBack}
         onStep={props.onStep}
       />
@@ -180,7 +165,6 @@ export function ActiveScreen(props: ActiveScreenProps) {
         entries={props.visibleEntries}
         byslug={props.byslug}
         shiny={props.shiny}
-        explained={route.explained}
         filtered={props.filtered}
         filterOpen={props.filterOpen}
         onToggleFilter={props.onToggleFilter}

@@ -30,10 +30,7 @@ export const REGIONS: SourceRegion[] = [
     id: 'kanata',
     name: 'Kanata',
     tagline: 'The Region of the Long Winter',
-    // "Kanata" is the St. Lawrence Iroquoian word for "village".
     // actually descends from.
-    etymology:
-      'From kanata, the St. Lawrence Iroquoian word for "village" — a small place that lent its name to somewhere very large.',
     blurb:
       'A vast northern region of boreal pine, shield rock and frozen coast. Trainers start among the maple groves of the south, climb the mining ranges, cross the cattle prairies, and finish their journey on the aurora-lit tundra where the ice legends nest.',
     professor: 'Professor Maple',
@@ -115,8 +112,7 @@ export const REGIONS: SourceRegion[] = [
       {
         // Karonto is from tkaronto, the Mohawk phrase for "where there are
         // trees standing in the water" — the fish weirs at the Narrows, and
-        // the actual origin of the name Toronto.
-        label: 'Karonto City & the Ravines',
+        label: 'The Ravine City',
         note: 'The region\'s largest city: a lakefront, a needle you can see from an hour away, more construction cranes than anywhere on the continent, and a ravine system nobody ever managed to build over. Everything here has learned to live off people, and most of it is winning.',
         species: [
           'zigzagoon', 'linoone',
@@ -142,7 +138,7 @@ export const REGIONS: SourceRegion[] = [
         ],
       },
       {
-        label: 'The Cold Atlantic',
+        label: 'The Cold Coast',
         note: 'Lobster traps, fog banks, and a lighthouse that has never once been switched off.',
         species: [
           'wingull', 'pelipper',
@@ -208,9 +204,6 @@ export const REGIONS: SourceRegion[] = [
     id: 'anahua',
     name: 'Anahua',
     tagline: 'The Region Where the Sun is Kept',
-    // From Anahuac, the Nahuatl name for a highland valley ringed by mountains.
-    etymology:
-      'From Anáhuac, the Nahuatl name — roughly "land ringed by water" — for the highland valley at the region’s heart.',
     blurb:
       'A sun-hammered region of cactus flats, live volcanoes and green cenote country. Trainers begin in the jungle lowlands, cross the desert, climb the smoking sierra, and end among the glyph-carved tombs where the sun legend still roosts.',
     professor: 'Professor Ceiba',
@@ -286,7 +279,7 @@ export const REGIONS: SourceRegion[] = [
         ],
       },
       {
-        label: 'Yucatl Jungle',
+        label: 'The Deep Jungle',
         note: 'Canopy so thick the floor never dries. Watch the branches, not the path.',
         species: [
           'bellsprout', 'weepinbell', 'victreebel',
@@ -309,9 +302,7 @@ export const REGIONS: SourceRegion[] = [
         ],
       },
       {
-        // Tenoch is from Tenochtitlan, "place of the prickly pear on a stone" —
-        // the Mexica city the modern capital was built directly on top of.
-        label: 'Tenoch City',
+        label: 'The Lake City',
         note: 'One of the largest cities on earth, sunk a little further into its old lakebed every year. Painted wall to wall, loud from before dawn, and fed entirely from the street.',
         species: [
           'grafaiai',

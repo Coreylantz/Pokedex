@@ -1,9 +1,8 @@
 import { useEffect, useId, useRef, useState, type CSSProperties } from 'react'
 import { dexNumber, idSafe, monName, spriteFor, titleCase } from '../lib/format'
 import { PixelIcon } from './PixelIcon'
-import { WhyPanel } from './WhyPanel'
 
-import type { Criterion, CriterionInfo, DexEntry, Pokemon, Rationale, Region } from '../lib/types'
+import type { DexEntry, Pokemon, Region } from '../lib/types'
 
 interface PokemonPageProps {
   entry: DexEntry
@@ -13,11 +12,6 @@ interface PokemonPageProps {
   /** The area label this entry is registered in, if known. */
   area: string | null
   shiny: boolean
-  explained: boolean
-  criteria: Record<Criterion, CriterionInfo>
-  /** The line's reasoning, and this form's note. Both load only on /explained. */
-  rationale?: Rationale | undefined
-  variantNote?: string | undefined
   onBack: () => void
   onStep: (delta: number) => void
 }
@@ -45,10 +39,6 @@ export function PokemonPage({
   region,
   area,
   shiny,
-  explained,
-  criteria,
-  rationale,
-  variantNote,
   onBack,
   onStep,
 }: PokemonPageProps) {
@@ -108,7 +98,6 @@ export function PokemonPage({
         </button>
         <p className="monpage__crumb">
           {region.name} Nº {dexNumber(entry.regionalNo)}
-          {explained && <span className="monpage__badge">Field Notes</span>}
         </p>
         <div className="monpage__step">
           <button type="button" className="btn btn--sm" onClick={() => onStep(-1)}>
@@ -171,25 +160,7 @@ export function PokemonPage({
         </div>
       </header>
 
-      {explained ? (
-        <div className="monpage__body">
-          <WhyPanel
-            entry={entry}
-            region={region}
-            criteria={criteria}
-            rationale={rationale}
-            variantNote={variantNote}
-          />
-
-          {area && (
-            <p className="monpage__area">
-              <span className="monpage__area-label">Area</span> {area}
-            </p>
-          )}
-
-          {mon?.flavourText && <p className="monpage__flavour">{mon.flavourText}</p>}
-        </div>
-      ) : mon ? (
+      {mon ? (
         <div className="monpage__body">
           {mon.flavourText && <p className="monpage__flavour">{mon.flavourText}</p>}
 

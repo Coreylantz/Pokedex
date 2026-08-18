@@ -7,7 +7,6 @@ const entry: DexEntry = {
   regionalNo: 1,
   nationalNo: 387,
   slug: 'turtwig',
-  lineHead: 'turtwig',
 }
 
 const turtwig: Pokemon = {
@@ -32,7 +31,7 @@ const turtwig: Pokemon = {
 const meta = {
   title: 'Components/DexCard',
   component: DexCard,
-  args: { entry, mon: turtwig, shiny: false, explained: false, onSelect: fn() },
+  args: { entry, mon: turtwig, shiny: false, onSelect: fn() },
   // A grid parent, because the card is `block-size: 100%` and looks wrong
   // measured on its own.
   decorators: [
@@ -60,19 +59,14 @@ export const Shiny: Story = {
 
 export const DualType: Story = {
   args: {
-    entry: { regionalNo: 3, nationalNo: 389, slug: 'torterra', lineHead: 'turtwig' },
+    entry: { regionalNo: 3, nationalNo: 389, slug: 'torterra' },
     mon: { ...turtwig, displayName: 'Torterra', types: ['grass', 'ground'] },
   },
 }
 
-/** On /explained the card offers a reason rather than an entry. */
-export const Explained: Story = {
-  args: { explained: true },
-}
-
 export const LongName: Story = {
   args: {
-    entry: { regionalNo: 88, nationalNo: 289, slug: 'crabominable', lineHead: 'crabrawler' },
+    entry: { regionalNo: 88, nationalNo: 289, slug: 'crabominable' },
     mon: { ...turtwig, displayName: 'Crabominable', types: ['fighting', 'ice'] },
   },
 }

@@ -15,7 +15,7 @@
  *
  * Most of these are simply PokeAPI's name for a species' only ordinary
  * version. `marowak-alola` is the real thing: a regional form picked over the
- * standard one, so it also carries a note in `scripts/rationales.ts`.
+ * standard one, and is the only one where that choice is load-bearing.
  */
 export const ALLOWED_VARIANTS = [
   'lycanroc-midday',

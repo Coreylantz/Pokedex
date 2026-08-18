@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { expect, fn, within } from 'storybook/test'
 import { PokemonPage } from './PokemonPage'
-import { criteria, regions } from '../lib/router'
+import { regions } from '../lib/router'
 import type { DexEntry, Pokemon } from '../lib/types'
 
 const region = regions[0]!
@@ -10,7 +10,6 @@ const entry: DexEntry = {
   regionalNo: 42,
   nationalNo: 399,
   slug: 'bidoof',
-  lineHead: 'bidoof',
 }
 
 const bidoof: Pokemon = {
@@ -44,10 +43,8 @@ const meta = {
     entry,
     mon: bidoof,
     region,
-    area: 'Karonto City & the Ravines',
+    area: 'Route 1 — First Steps',
     shiny: false,
-    explained: false,
-    criteria,
     onBack: fn(),
     onStep: fn(),
   },
@@ -68,24 +65,6 @@ export const Loading: Story = {
 
 export const WithACry: Story = {
   args: { mon: { ...bidoof, cry: 'https://example.invalid/cry.ogg' } },
-}
-
-/** The /explained view swaps the stat block for the reasoning. */
-export const Explained: Story = {
-  args: {
-    explained: true,
-    rationale: {
-      why: 'THE FLOODPLAIN. A beaver that dams rivers, the animal on the nickel and the reason half the country was mapped at all — the fur trade followed the beaver, and the beaver followed the water.',
-      tags: ['thematic', 'fauna'],
-    },
-  },
-}
-
-export const ExplainedWithVariantNote: Story = {
-  args: {
-    ...Explained.args,
-    variantNote: 'The Alolan form is the one carried here: bone-keeper, not desert lizard.',
-  },
 }
 
 /**

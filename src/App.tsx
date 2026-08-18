@@ -8,7 +8,6 @@ import {
   type MouseEvent,
 } from 'react'
 import { useDexData } from './lib/useDexData'
-import { useExplained } from './lib/useExplained'
 import { useOfflineCache } from './lib/useOfflineCache'
 import { useSettings } from './lib/useSettings'
 import { moveFocus, type Direction } from './lib/focusNav'
@@ -23,7 +22,7 @@ import { filterEntries, isFiltering } from './lib/filter'
 import { useDocumentTitle } from './lib/useDocumentTitle'
 import { useScreenKeys } from './lib/useScreenKeys'
 import { useAtBottom, useScrollRestoration } from './lib/useScrollBehaviour'
-import { criteria, pathFor, readUrl, regionById, regions } from './lib/router'
+import { pathFor, readUrl, regionById, regions } from './lib/router'
 import type { Route } from './lib/types'
 
 /** Half of the fade: out, swap, back in. Kept in step with the CSS duration. */
@@ -36,7 +35,7 @@ function prefersReducedMotion(): boolean {
 
 export default function App() {
   const [route, setRoute] = useState<Route>(readUrl)
-  const { regionId, mon: selected, page, area, explained } = route
+  const { regionId, mon: selected, page, area } = route
   const [query, setQuery] = useState('')
   const [activeTypes, setActiveTypes] = useState<string[]>([])
   const [shiny, setShiny] = useState(false)
@@ -55,7 +54,6 @@ export default function App() {
 
   const region = regionById(regionId)
   const offline = useOfflineCache({ lowBandwidth: settings.lowBandwidth })
-  const explainedData = useExplained(explained)
 
   const flatEntries = useMemo(() => entriesOf(region), [region])
   const slugs = useMemo(() => flatEntries.map((e) => e.slug), [flatEntries])
@@ -252,8 +250,6 @@ export default function App() {
       mon={selectedMon}
       failedSlugs={failedSlugs}
       area={selectedArea}
-      explainedData={explainedData}
-      criteria={criteria}
       visibleEntries={visibleEntries}
       byslug={byslug}
       availableTypes={availableTypes}

@@ -14,7 +14,6 @@ interface DexScreenProps {
   entries: readonly DexEntry[]
   byslug: ReadonlyMap<string, Pokemon>
   shiny: boolean
-  explained: boolean
   filtered: boolean
   filterOpen: boolean
   onToggleFilter: () => void
@@ -47,7 +46,6 @@ export function DexScreen({
   entries,
   byslug,
   shiny,
-  explained,
   filtered,
   filterOpen,
   onToggleFilter,
@@ -136,7 +134,6 @@ export function DexScreen({
             entry={entry}
             mon={byslug.get(entry.slug)}
             shiny={shiny}
-            explained={explained}
             onSelect={onSelect}
           />
         ))}

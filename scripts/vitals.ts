@@ -95,14 +95,6 @@ const ROUTES: [name: string, path: string, drive: (page: Page) => Promise<void>]
       await page.locator('.btn').first().click()
     },
   ],
-  [
-    'explained',
-    '/explained/kanata/pokemon',
-    async (page) => {
-      await page.locator('.dex-card__button').first().click()
-      await page.waitForTimeout(500)
-    },
-  ],
 ]
 
 async function waitForServer(url: string, timeoutMs = 30_000) {

@@ -28,7 +28,6 @@ const data = regionData as unknown as RegionData
 /** Which region the URL is asking for, without waiting for the router. */
 function regionFromPath(pathname: string) {
   const parts = pathname.split('/').filter(Boolean)
-  if (parts[0] === 'explained') parts.shift()
   return data.regions.find((r) => r.id === parts[0]) ?? data.regions[0]
 }
 

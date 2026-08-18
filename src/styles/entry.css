@@ -1,8 +1,8 @@
 /* @layer components
 
    The Pokemon detail page: header, artwork, flavour text, measurements.
-   Base stats are in stats.css and the /explained panel is in why.css, both
-   of which load after this file and depend on the layout it establishes. */
+   Base stats are in stats.css, which loads after this file and depends
+   on the layout it establishes. */
 
 @layer components {
 .monpage {

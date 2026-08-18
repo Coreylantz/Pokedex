@@ -31,7 +31,6 @@ pnpm dev
 - Search, type filters, shiny toggle, working D-pad and keyboard navigation
 - Chiptune sound effects and haptics, both off by default
 - Settings for typeface, text size, contrast, motion, device frame and data saver
-- An unlinked `/explained` route giving the reasoning behind each entry
 
 ## Notes
 

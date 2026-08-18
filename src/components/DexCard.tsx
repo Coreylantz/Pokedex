@@ -7,7 +7,6 @@ interface DexCardProps {
   /** Undefined until the species record arrives; the card renders a skeleton. */
   mon: Pokemon | undefined
   shiny: boolean
-  explained: boolean
   onSelect: (slug: string) => void
 }
 
@@ -21,12 +20,11 @@ export const DexCard = memo(function DexCard({
   entry,
   mon,
   shiny,
-  explained,
   onSelect,
 }: DexCardProps) {
   const name = monName(entry, mon)
   const sprite = spriteFor(mon, shiny)
-  const action = explained ? 'Explain why it is here.' : 'Open details.'
+  const action = 'Open details.'
 
   /**
    * The accessible name has to start with the text you can see on the card, in

@@ -197,7 +197,6 @@ test('every route sets its own document title', async ({ page }) => {
     ['/kanata/region/1', /— Kanata — Twin Dex$/],
     ['/kanata/settings', /^Settings — Twin Dex$/],
     ['/anahua', /^Anahua — Twin Dex$/],
-    ['/explained/kanata/pokemon', /Field Notes$/],
   ]
   for (const [url, pattern] of cases) {
     await page.goto(url)

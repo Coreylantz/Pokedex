@@ -1,7 +1,10 @@
 [
   {
     "name": "blocking first paint",
-    "path": ["dist/assets/index-*.js", "dist/assets/index-*.css"],
+    "path": [
+      "dist/assets/index-*.js",
+      "dist/assets/index-*.css"
+    ],
     "limit": "75 kB",
     "brotli": true
   },
@@ -26,12 +29,6 @@
       "dist/assets/DexToolbar-*.js"
     ],
     "limit": "6 kB",
-    "brotli": true
-  },
-  {
-    "name": "explained payload (only /explained)",
-    "path": "dist/assets/explained-*.js",
-    "limit": "14 kB",
     "brotli": true
   }
 ]
