@@ -12,3 +12,7 @@
 # ship prebuilt binaries as optional platform dependencies and need no script.
 allowBuilds:
   esbuild: true
+  # Installed by cloudflare/wrangler-action during deploy, not by this project.
+  # pnpm blocks unknown build scripts, so without this the deploy fails at
+  # install with ERR_PNPM_IGNORED_BUILDS before wrangler ever runs.
+  workerd: true
