@@ -13,8 +13,12 @@
  *   4. Early availability  — is the variety there before the endgame, or does
  *                            it all arrive at the top of the dex?
  *
- * Counting is per evolution LINE, not per species: three stages of one line is
- * one design decision, and counting stages would triple-weight long lines.
+ * Counting is per species. It used to be per evolution line — three stages of
+ * one line being one design decision — but the line grouping came from a
+ * `lineHead` field that went away with the /explained data, and the API's
+ * evolution chains are not fetched here. The consequence is real and worth
+ * knowing when reading the output: a three-stage line now counts three times,
+ * so long lines are over-weighted relative to single-stage species.
  *
  * Run with: npm run diagnose
  */
@@ -141,8 +145,8 @@ for (const name of CONTROLS) {
 for (const region of data.regions) {
   const entries = region.sections.flatMap((s) => s.entries)
 
-  // Collapse to one record per evolution line, keeping the FINAL stage's types
-  // (that is what a built team actually fields) and the line's dex position.
+  // One record per species. See the caveat at the top of this file: this was
+  // per-line until the line grouping was removed with the /explained data.
   interface Line { head: string; firstNo: number; finalTypes: string[]; finalSlug: string }
   const lines = new Map<string, Line>()
   for (const entry of entries) {

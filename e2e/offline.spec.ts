@@ -85,25 +85,41 @@ test('keeps species data and sprites in their own long-lived caches', async ({ p
   await serviceWorkerReady(page)
   // Let a few cards actually resolve, which is what populates the runtime routes.
   await expect(page.locator('.dex-card__sprite').first()).toBeVisible({ timeout: 30_000 })
-  await page.waitForTimeout(3000)
 
-  const stored = await page.evaluate(async () => {
-    const names = await window.caches.keys()
-    const counts: Record<string, number> = {}
-    for (const name of names) {
-      const cache = await window.caches.open(name)
-      counts[name] = (await cache.keys()).length
-    }
-    return counts
-  })
+  const cacheCounts = async () =>
+    page.evaluate(async () => {
+      const counts: Record<string, number> = {}
+      for (const name of await window.caches.keys()) {
+        counts[name] = (await window.caches.open(name).then((c) => c.keys())).length
+      }
+      return counts
+    })
 
-  const api = Object.entries(stored).find(([name]) => name.includes('pokeapi'))
-  const sprites = Object.entries(stored).find(([name]) => name.includes('poke-sprites'))
-
-  expect(api, `no pokeapi cache. caches: ${Object.keys(stored).join(', ')}`).toBeDefined()
-  expect(api?.[1]).toBeGreaterThan(0)
-  expect(sprites, `no sprite cache. caches: ${Object.keys(stored).join(', ')}`).toBeDefined()
-  expect(sprites?.[1]).toBeGreaterThan(0)
+  /*
+   * Polled, not measured once after a fixed wait.
+   *
+   * Species data and sprites arrive from two different hosts at their own pace,
+   * and a sprite is only written to its cache once the image request completes.
+   * A three-second sleep was long enough on a developer machine and not long
+   * enough on a loaded CI runner, which is a test that reports the runner's
+   * load rather than the app's behaviour.
+   */
+  await expect
+    .poll(
+      async () => {
+        const counts = await cacheCounts()
+        return Object.entries(counts)
+          .filter(([name]) => name.includes('pokeapi') || name.includes('poke-sprites'))
+          .filter(([, n]) => n > 0)
+          .map(([name]) => name.replace(/-v2$/, ''))
+          .sort()
+      },
+      {
+        timeout: 60_000,
+        message: 'species data and sprites never reached their runtime caches',
+      },
+    )
+    .toEqual(['poke-sprites', 'pokeapi'])
 })
 
 test('serves a cached entry with the network cut', async ({ page, context }) => {
