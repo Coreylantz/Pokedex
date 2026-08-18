@@ -1,0 +1,128 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# A second push to the same branch cancels the first. Nobody needs the results
+# of a commit that has already been replaced.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  # Playwright and Vitest both colour their output; Actions renders it fine.
+  FORCE_COLOR: 1
+
+jobs:
+  # Everything that needs no browser. Fast, and it fails on the mistakes that
+  # are cheapest to make, so it runs on every push.
+  static:
+    name: Lint, types, unit tests, size
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: pnpm
+
+      # --frozen-lockfile is the point of committing a lockfile: CI installs
+      # exactly what was resolved locally, or it fails rather than drifting.
+      - run: pnpm install --frozen-lockfile
+
+      - name: Lint (oxlint + Biome)
+        run: pnpm lint
+
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Unused files, exports and dependencies
+        run: pnpm knip
+
+      - name: Unit tests
+        run: pnpm test
+
+      - name: Build
+        run: pnpm build
+
+      - name: Bundle size budgets
+        run: pnpm size
+
+      # The built app, reused by the browser jobs below so they do not each
+      # rebuild it.
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist
+          retention-days: 3
+
+  # The browser suites. Slower, so they run on pull requests and on main, but
+  # not on every push to a side branch.
+  browser:
+    name: ${{ matrix.suite.name }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    needs: static
+    strategy:
+      fail-fast: false
+      matrix:
+        suite:
+          - name: Storybook stories
+            command: pnpm test:stories
+          - name: End-to-end
+            command: pnpm test:e2e
+    steps:
+      - uses: actions/checkout@v5
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+
+      # Only Chromium: every Playwright project in this repo and the Storybook
+      # browser runner target it, so installing the other engines would be two
+      # minutes spent on browsers nothing uses.
+      - name: Install Chromium
+        run: pnpm exec playwright install --with-deps chromium
+
+      - run: ${{ matrix.suite.command }}
+
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: ${{ matrix.suite.name == 'End-to-end' && 'playwright-report' || 'story-failures' }}
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7
+
+  # Advisory, deliberately. The vitals harness throttles the CPU 4x and
+  # emulates Slow 4G, so its thresholds assume a machine that is otherwise
+  # idle. A shared runner under load can miss them for reasons that have
+  # nothing to do with the change, and a gate that cries wolf gets ignored.
+  # It reports; it does not block.
+  vitals:
+    name: Core Web Vitals (advisory)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    needs: static
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v5
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm build
+      - run: pnpm vitals

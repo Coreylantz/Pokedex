@@ -1,0 +1,29 @@
+# Vite fingerprints these filenames, so the content behind a given URL can
+# never change. A year, and never revalidate.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# The service worker decides when every other cached thing expires, so it is
+# the one file that must never be served stale. A cached sw.js means a user
+# pinned to an old build with no way to escape it.
+/sw.js
+  Cache-Control: no-cache
+  Service-Worker-Allowed: /
+
+# Same reasoning: the shell names the hashed assets, so a stale copy points at
+# files that may no longer exist.
+/index.html
+  Cache-Control: no-cache
+
+/manifest.webmanifest
+  Cache-Control: no-cache
+
+# Applies to everything. This app has no login, no cookies and no user content,
+# so the headers below cost nothing and close off the obvious footguns.
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: DENY

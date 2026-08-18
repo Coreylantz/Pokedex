@@ -1,0 +1,10 @@
+# SPA fallback.
+#
+# Routes live in the path (/kanata/pokemon/bidoof), and none of those paths
+# exist as files. Cloudflare Pages serves a real file when one matches and
+# falls through to this rule otherwise, so assets are unaffected and a deep
+# link opened cold still boots the app.
+#
+# The service worker's navigateFallback does the same job once it is installed.
+# This is what covers the first visit, before there is a worker.
+/*  /index.html  200
