@@ -11,20 +11,47 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # Secrets cannot be read in a job-level `if`, so this reads them in a step
+  # and publishes the answer as an output the deploy job gates on.
+  check-secrets:
+    name: Cloudflare configured?
+    runs-on: ubuntu-latest
+    outputs:
+      configured: ${{ steps.check.outputs.configured }}
+    steps:
+      - id: check
+        env:
+          TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if [ -n "$TOKEN" ] && [ -n "$ACCOUNT" ]; then
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Cloudflare secrets not set — skipping deploy. Add CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID to enable it."
+          fi
+
   pages:
     name: Cloudflare Pages
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    needs: check-secrets
 
-    # Without the secrets configured this job would fail on every push and
-    # turn the whole repo red. Skipping is honest: nothing is deployed, and
-    # nothing pretends otherwise.
-    if: ${{ github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository }}
+    # Skipped rather than failed when Cloudflare is not configured yet. A job
+    # that fails on every push turns the repo permanently red and teaches
+    # everyone to ignore a red X, which is the opposite of what CI is for.
+    #
+    # Fork pull requests are excluded too: they cannot read secrets, so the
+    # deploy could only fail, and handing a fork a deploy token would be a
+    # mistake even if it worked.
+    if: >-
+      needs.check-secrets.outputs.configured == 'true' &&
+      (github.event_name != 'pull_request' ||
+       github.event.pull_request.head.repo.full_name == github.repository)
 
     permissions:
       contents: read
       deployments: write
-      # Lets the action leave the preview URL on the pull request.
       pull-requests: write
 
     steps:
