@@ -68,6 +68,18 @@ jobs:
       # network beyond the registry — the build is reproducible offline.
       - run: pnpm build
 
+      # wrangler will not create a Pages project non-interactively, and a project
+      # that does not exist yet fails the deploy with "Project not found". This
+      # creates it on the first run and harmlessly errors on every one after,
+      # which is why it is allowed to fail.
+      - name: Ensure the Pages project exists
+        continue-on-error: true
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages project create pokedex --production-branch=main
+
       - name: Publish to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
