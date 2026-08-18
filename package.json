@@ -1,7 +1,7 @@
 {
   "name": "pokedex",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.0-semantically-released",
   "type": "module",
   "packageManager": "pnpm@11.22.0",
   "sideEffects": [
@@ -33,7 +33,9 @@
     "diagnose": "node scripts/diagnose-types.ts",
     "verify": "pnpm lint && pnpm typecheck && pnpm test && pnpm build && pnpm size && pnpm test:stories && pnpm test:e2e && pnpm vitals",
     "lint:quality": "biome lint .",
-    "prepare": "husky"
+    "prepare": "husky",
+    "release": "semantic-release",
+    "release:dry": "semantic-release --dry-run --no-ci"
   },
   "dependencies": {
     "react": "^19.2.8",
@@ -66,6 +68,7 @@
     "lighthouse": "^13.4.1",
     "oxlint": "^1.75.0",
     "rollup-plugin-visualizer": "^7.1.1",
+    "semantic-release": "^25.0.9",
     "size-limit": "^13.0.3",
     "storybook": "^10.5.8",
     "subset-font": "^2.5.0",

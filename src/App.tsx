@@ -22,7 +22,7 @@ import { filterEntries, isFiltering } from './lib/filter'
 import { useDocumentTitle } from './lib/useDocumentTitle'
 import { useScreenKeys } from './lib/useScreenKeys'
 import { useAtBottom, useScrollRestoration } from './lib/useScrollBehaviour'
-import { pathFor, readUrl, regionById, regions } from './lib/router'
+import { hrefFor, pathFor, readUrl, regionById, regions } from './lib/router'
 import type { Route } from './lib/types'
 
 /** Half of the fade: out, swap, back in. Kept in step with the CSS duration. */
@@ -174,6 +174,18 @@ export default function App() {
     [visibleEntries, flatEntries, selected, route],
   )
 
+  /**
+   * Where Prev and Next actually go, so those controls can be links with a
+   * real destination rather than buttons that compute one on click. Wraps the
+   * same pool `step` walks, so the href and the handler always agree.
+   */
+  const stepHref = (delta: number) => {
+    const pool = visibleEntries.length ? visibleEntries : flatEntries
+    const index = pool.findIndex((e) => e.slug === selected)
+    const next = pool[(index + delta + pool.length) % pool.length]
+    return next ? hrefFor(route, { page: 'dex', mon: next.slug }) : hrefFor(route, { page: 'dex' })
+  }
+
   const atBottom = useAtBottom(screenRef, [page, selected, visibleEntries.length])
 
   function jumpToTop() {
@@ -271,6 +283,8 @@ export default function App() {
       }
       onBack={back}
       onStep={step}
+      prevHref={stepHref(-1)}
+      nextHref={stepHref(1)}
       onSelect={openMon}
       onQuery={setQuery}
       onToggleType={toggleType}

@@ -88,3 +88,7 @@ export function pathFor({ regionId, page, mon, area }: Route): string {
   }
   return `/${segments.join('/')}`
 }
+
+/** The URL a patch of the current route would produce, for a link's href. */
+export const hrefFor = (route: Route, patch: Partial<Route>): string =>
+  pathFor({ ...route, ...patch })

@@ -3,6 +3,7 @@ import { DexScreen } from './DexScreen'
 import { ErrorScreen } from './ErrorScreen'
 import { MenuScreen } from './MenuScreen'
 import { dexNumber, monName } from '../lib/format'
+import { hrefFor } from '../lib/router'
 import type { DexEntry, Page, Pokemon, Region, Route } from '../lib/types'
 
 /**
@@ -52,6 +53,8 @@ export interface ActiveScreenProps {
   onGo: (page: Page, area?: number) => void
   onBack: () => void
   onStep: (delta: number) => void
+  prevHref: string
+  nextHref: string
   onSelect: (slug: string) => void
   onQuery: (query: string) => void
   onToggleType: (type: string) => void
@@ -84,6 +87,22 @@ export function ActiveScreen(props: ActiveScreenProps) {
   const { route, region, entry, failedSlugs } = props
   const { page } = route
 
+  /*
+   * Real URLs for every navigating control, so each can be a link rather than
+   * a button. They are derived from the current route, which is what keeps a
+   * link's href and the click handler describing the same destination.
+   */
+  const href = {
+    menu: hrefFor(route, { page: 'menu', mon: null, area: null }),
+    dex: hrefFor(route, { page: 'dex', mon: null, area: null }),
+    region: hrefFor(route, { page: 'region', mon: null, area: null }),
+    settings: hrefFor(route, { page: 'settings', mon: null, area: null }),
+    entry: (slug: string) => hrefFor(route, { page: 'dex', mon: slug, area: null }),
+    area: (index: number) => hrefFor(route, { page: 'area', area: index, mon: null }),
+    page: (target: Page, index?: number) =>
+      hrefFor(route, { page: target, area: index ?? null, mon: null }),
+  }
+
   if (entry && failedSlugs.has(entry.slug)) {
     return (
       <ErrorScreen
@@ -103,6 +122,9 @@ export function ActiveScreen(props: ActiveScreenProps) {
         region={region}
         area={props.area}
         shiny={props.shiny}
+        backHref={href.dex}
+        prevHref={props.prevHref}
+        nextHref={props.nextHref}
         onBack={props.onBack}
         onStep={props.onStep}
       />
@@ -113,6 +135,8 @@ export function ActiveScreen(props: ActiveScreenProps) {
     return (
       <RegionInfo
         region={region}
+        menuHref={href.menu}
+        areaHref={href.area}
         onBack={() => props.onGo('menu')}
         onOpenArea={(index) => props.onGo('area', index)}
       />
@@ -123,7 +147,12 @@ export function ActiveScreen(props: ActiveScreenProps) {
     const section = route.area !== null ? region.sections[route.area] : undefined
     if (section) {
       return (
-        <AreaScreen region={region} section={section} onBack={() => props.onGo('region')} />
+        <AreaScreen
+          region={region}
+          section={section}
+          backHref={href.region}
+          onBack={() => props.onGo('region')}
+        />
       )
     }
   }
@@ -135,6 +164,7 @@ export function ActiveScreen(props: ActiveScreenProps) {
         onSet={props.onSet}
         onReset={props.onReset}
         onBack={() => props.onGo('menu')}
+        backHref={href.menu}
         offline={props.offline}
       />
     )
@@ -181,10 +211,18 @@ export function ActiveScreen(props: ActiveScreenProps) {
         atBottom={props.atBottom}
         onJumpToTop={props.onJumpToTop}
         onSelect={props.onSelect}
+        entryHref={href.entry}
+        menuHref={href.menu}
         onBack={() => props.onGo('menu')}
       />
     )
   }
 
-  return <MenuScreen region={region} onOpen={(next) => props.onGo(next)} />
+  return (
+    <MenuScreen
+      region={region}
+      hrefFor={(target) => href.page(target)}
+      onOpen={(next) => props.onGo(next)}
+    />
+  )
 }

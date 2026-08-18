@@ -3,7 +3,10 @@
 @layer components {
 /* ---------- buttons ---------- */
 
+/* Applied to both <button> and <a>: anything that navigates is a link, and
+   it should be indistinguishable from the buttons beside it. */
 .btn {
+  text-decoration: none;
   padding: 0.4rem 0.75rem;
   border: 3px solid var(--scr-ink);
   border-radius: 0.25rem;

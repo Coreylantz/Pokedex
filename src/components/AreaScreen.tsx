@@ -1,4 +1,5 @@
 import { dexNumber, dexRange } from '../lib/format'
+import { NavLink } from './NavLink'
 import type { Region, Section } from '../lib/types'
 
 /**
@@ -9,10 +10,12 @@ import type { Region, Section } from '../lib/types'
 export function AreaScreen({
   region,
   section,
+  backHref,
   onBack,
 }: {
   region: Region
   section: Section
+  backHref: string
   onBack: () => void
 }) {
   const { first, last } = dexRange(section)
@@ -20,9 +23,9 @@ export function AreaScreen({
   return (
     <div className="page">
       <div className="page__bar">
-        <button type="button" className="btn" onClick={onBack}>
+        <NavLink className="btn" href={backHref} onNavigate={onBack}>
           Region
-        </button>
+        </NavLink>
         <p className="page__crumb">{region.name} Area</p>
       </div>
 

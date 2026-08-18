@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react'
 import { DexCard } from './DexCard'
 import { PixelIcon } from './PixelIcon'
+import { NavLink } from './NavLink'
 import { dexNumber } from '../lib/format'
 import type { DexEntry, Pokemon, Region } from '../lib/types'
 
@@ -30,6 +31,8 @@ interface DexScreenProps {
   atBottom: boolean
   onJumpToTop: () => void
   onSelect: (slug: string) => void
+  entryHref: (slug: string) => string
+  menuHref: string
   onBack: () => void
 }
 
@@ -62,6 +65,8 @@ export function DexScreen({
   atBottom,
   onJumpToTop,
   onSelect,
+  entryHref,
+  menuHref,
   onBack,
 }: DexScreenProps) {
   const settled = loaded + failed >= total
@@ -69,9 +74,9 @@ export function DexScreen({
   return (
     <div className="page">
       <div className="page__bar">
-        <button type="button" className="btn" onClick={onBack}>
+        <NavLink className="btn" href={menuHref} onNavigate={onBack}>
           Menu
-        </button>
+        </NavLink>
         {/* The listing's own heading. Every other screen has an h1 under the
             bar; this one had only a breadcrumb, leaving the page with no
             level-one heading to navigate to. Styled as the crumb it already
@@ -80,7 +85,6 @@ export function DexScreen({
         <button
           type="button"
           className="btn btn--icon page__bar-end"
-          aria-label={filterOpen ? 'Close search and filter' : 'Search and filter'}
           aria-expanded={filterOpen}
           aria-controls="finder-panel"
           data-on={filtered}
@@ -89,6 +93,12 @@ export function DexScreen({
           {/* A funnel reads as a thin scratch at this size; a magnifier does
               not, and it is the same panel either way. */}
           <PixelIcon name={filterOpen ? 'close' : 'search'} />
+          {/* Real text rather than an aria-label. An aria-label replaces the
+              content, so a speech-control user has nothing written to say; a
+              visually hidden span gives the same name and stays in the DOM. */}
+          <span className="visually-hidden">
+            {filterOpen ? 'Close search and filter' : 'Search and filter'}
+          </span>
         </button>
       </div>
 
@@ -134,6 +144,7 @@ export function DexScreen({
             entry={entry}
             mon={byslug.get(entry.slug)}
             shiny={shiny}
+            href={entryHref(entry.slug)}
             onSelect={onSelect}
           />
         ))}

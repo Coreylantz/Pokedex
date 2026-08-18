@@ -1,4 +1,5 @@
 import { dexNumber, dexRange, pad2 } from '../lib/format'
+import { NavLink } from './NavLink'
 import type { Region } from '../lib/types'
 
 /**
@@ -7,19 +8,23 @@ import type { Region } from '../lib/types'
  */
 export function RegionInfo({
   region,
+  menuHref,
+  areaHref,
   onBack,
   onOpenArea,
 }: {
   region: Region
+  menuHref: string
+  areaHref: (index: number) => string
   onBack: () => void
   onOpenArea: (index: number) => void
 }) {
   return (
     <div className="page">
       <div className="page__bar">
-        <button type="button" className="btn" onClick={onBack}>
+        <NavLink className="btn" href={menuHref} onNavigate={onBack}>
           Menu
-        </button>
+        </NavLink>
         <p className="page__crumb">Region</p>
       </div>
 
@@ -46,11 +51,15 @@ export function RegionInfo({
       <ul className="area-list">
         {region.sections.map((section, index) => (
           <li className="area" key={section.label}>
-            <button type="button" className="area__button" onClick={() => onOpenArea(index)}>
+            <NavLink
+              className="area__button"
+              href={areaHref(index)}
+              onNavigate={() => onOpenArea(index)}
+            >
               <span className="area__no">{pad2(index + 1)}</span>
               <span className="area__name">{section.label}</span>
               <span className="area__range">{dexRange(section).label}</span>
-            </button>
+            </NavLink>
           </li>
         ))}
       </ul>

@@ -67,7 +67,8 @@ test('the dex lists every entry and opens one as a page', async ({ page }) => {
   await expect(cards.first()).toBeVisible()
   expect(await cards.count()).toBeGreaterThan(100)
 
-  await cards.first().locator('button').click()
+  // A link now, not a button: everything that navigates is one.
+  await cards.first().locator('a').click()
   await expect(page).toHaveURL(/\/kanata\/pokemon\/turtwig$/)
   await expect(page.locator('.monpage__title')).toBeVisible()
   // Focus lands on the heading, the way a navigation should leave it.

@@ -29,10 +29,23 @@
   contain-intrinsic-size: auto 11.5rem;
 }
 
+/* Named areas rather than source order.
+
+   The DOM is ordered for reading — name, number, types — because that is the
+   order a screen reader announces and the name is what you are looking for.
+   The number still sits on top visually, which is what the games do and what
+   makes a grid of 158 scannable. Grid areas are what let those two disagree
+   without a single absolute position. */
 .dex-card__button {
   inline-size: 100%;
   block-size: 100%;
   display: grid;
+  grid-template-areas:
+    'no'
+    'art'
+    'name'
+    'types';
+  grid-template-rows: auto 1fr auto auto;
   gap: 0.2rem;
   justify-items: center;
   padding: 0.5rem 0.4rem;
@@ -42,7 +55,14 @@
   color: var(--scr-ink);
   cursor: pointer;
   text-align: center;
+  /* It is a link now, so the underline and the visited colour have to go. */
+  text-decoration: none;
 }
+
+.dex-card__row { grid-area: no; }
+.dex-card__art { grid-area: art; }
+.dex-card__name { grid-area: name; }
+.dex-card__types { grid-area: types; }
 
 .dex-card__button:hover {
   background: var(--scr-dim);

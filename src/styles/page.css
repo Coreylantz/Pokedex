@@ -77,6 +77,7 @@
 }
 
 .area__button {
+  text-decoration: none;
   inline-size: 100%;
   display: grid;
   grid-template-columns: auto 1fr;

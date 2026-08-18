@@ -31,7 +31,7 @@ const turtwig: Pokemon = {
 const meta = {
   title: 'Components/DexCard',
   component: DexCard,
-  args: { entry, mon: turtwig, shiny: false, onSelect: fn() },
+  args: { entry, mon: turtwig, shiny: false, href: '/kanata/pokemon/turtwig', onSelect: fn() },
   // A grid parent, because the card is `block-size: 100%` and looks wrong
   // measured on its own.
   decorators: [
@@ -76,25 +76,38 @@ export const LongName: Story = {
  * control to reach the card by what is written on it. Asserted in a browser
  * because it depends on how the text actually renders.
  */
-export const AccessibleNameMatchesVisibleText: Story = {
+export const NameIsBuiltFromContentInReadingOrder: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
-    const button = canvas.getByRole('button')
-    const label = button.getAttribute('aria-label') ?? ''
+    const link = canvas.getByRole('link')
+    const spoken = (link.textContent ?? '').toLowerCase()
 
-    expect(label).toContain('001')
-    expect(label).toContain('Turtwig')
-    expect(label).toContain('Grass')
-    // Case is allowed to differ — the card uppercases in CSS, and WCAG 2.5.3
-    // compares case-insensitively.
-    expect(label.toLowerCase()).toContain('turtwig grass')
+    // No aria-label. It would replace this content rather than add to it, so a
+    // speech-control user saying what is written on the card would miss.
+    expect(link).not.toHaveAttribute('aria-label')
+
+    // Reading order is name, then number, then typing: the name is what you
+    // are looking for and the rest qualifies it. The visual order still puts
+    // the number on top — grid areas let the two differ.
+    expect(spoken.indexOf('turtwig')).toBeGreaterThanOrEqual(0)
+    expect(spoken.indexOf('turtwig')).toBeLessThan(spoken.indexOf('001'))
+    expect(spoken.indexOf('001')).toBeLessThan(spoken.indexOf('grass'))
+  },
+}
+
+/** Decorative sprite: the name is already in the link. */
+export const SpriteIsDecorative: Story = {
+  play: async ({ canvasElement }) => {
+    const img = canvasElement.querySelector('img')
+    expect(img).not.toBeNull()
+    expect(img).toHaveAttribute('alt', '')
   },
 }
 
 export const SelectingCallsBack: Story = {
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement)
-    await userEvent.click(canvas.getByRole('button'))
+    await userEvent.click(canvas.getByRole('link'))
     expect(args.onSelect).toHaveBeenCalledWith('turtwig')
   },
 }
@@ -108,7 +121,7 @@ export const SelectingCallsBack: Story = {
 export const FocusIsVisible: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
-    const button = canvas.getByRole('button')
+    const button = canvas.getByRole('link')
 
     const resting = getComputedStyle(button).backgroundColor
     button.focus()

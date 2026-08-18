@@ -139,7 +139,9 @@ describe('Twin Dex', () => {
 
     const sprites = container.querySelectorAll('.dex-card__sprite')
     expect(sprites).toHaveLength(kanata.count)
-    for (const img of sprites) expect(img.getAttribute('alt')).toMatch(/sprite$/)
+    // Decorative: the species name is right there in the same link, so an alt
+    // of "Turtwig sprite" would read the same thing twice on all 158 cards.
+    for (const img of sprites) expect(img.getAttribute('alt')).toBe('')
     expect(q(container, '.app').dataset.skin).toBe('gen1')
 
     // Switching regions swaps the hardware and returns to that region's menu.

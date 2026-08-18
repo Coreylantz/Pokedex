@@ -62,7 +62,9 @@
   color: var(--scr-bg);
 }
 
+/* Also applied to anchors now — the menu tiles are links. */
 .tile {
+  text-decoration: none;
   inline-size: 100%;
   block-size: 100%;
   display: grid;

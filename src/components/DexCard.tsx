@@ -1,5 +1,6 @@
 import { memo } from 'react'
 import { dexNumber, monName, spriteFor, titleCase } from '../lib/format'
+import { NavLink } from './NavLink'
 import type { DexEntry, Pokemon } from '../lib/types'
 
 interface DexCardProps {
@@ -7,6 +8,7 @@ interface DexCardProps {
   /** Undefined until the species record arrives; the card renders a skeleton. */
   mon: Pokemon | undefined
   shiny: boolean
+  href: string
   onSelect: (slug: string) => void
 }
 
@@ -20,62 +22,34 @@ export const DexCard = memo(function DexCard({
   entry,
   mon,
   shiny,
+  href,
   onSelect,
 }: DexCardProps) {
   const name = monName(entry, mon)
   const sprite = spriteFor(mon, shiny)
-  const action = 'Open details.'
-
-  /**
-   * The accessible name has to start with the text you can see on the card, in
-   * the order you see it — number, name, then types. Speech control users say
-   * what is written; a name that omitted the visible type pills meant "click
-   * Bidoof Normal" matched nothing. Everything past that point is the extra
-   * context a screen reader wants and the card cannot show.
-   *
-   * Lighthouse reports `label-content-name-mismatch` here and axe does not.
-   * Both are right: the card uppercases its text in CSS, so the rendered label
-   * reads "001 TURTWIG GRASS" while this name says "001 Turtwig Grass".
-   * Lighthouse compares case-sensitively; WCAG SC 2.5.3 "Label in Name"
-   * explicitly ignores case, which is what axe implements. Writing the name in
-   * capitals to satisfy the stricter check would make screen readers spell it
-   * out letter by letter, so the case difference stays.
-   */
-  const types = mon ? mon.types.map(titleCase).join(' ') : ''
-  const label = `${dexNumber(entry.regionalNo)} ${name}${types ? ` ${types}` : ''}, regional entry. ${action}`
 
   return (
     <li className="dex-card">
-      <button
-        type="button"
-        className="dex-card__button"
-        data-slug={entry.slug}
-        onClick={() => onSelect(entry.slug)}
-        aria-label={label}
-      >
+      {/*
+        The accessible name comes from the content, in this order: name, then
+        number, then types. No aria-label — an aria-label replaces the visible
+        text rather than adding to it, so a speech-control user saying what is
+        written on the card would miss, and any drift between the two is
+        invisible until someone hits it.
+
+        DOM order is what a screen reader reads, and the name is what you are
+        looking for; the number and typing are qualifiers. The visual layout
+        keeps the number on top and is arranged by grid areas in dex-list.css,
+        so reading order and visual order are free to differ.
+      */}
+      <NavLink className="dex-card__button" href={href} data-slug={entry.slug} onNavigate={() => onSelect(entry.slug)}>
+        <span className="dex-card__name">{name}</span>
+
         <span className="dex-card__row">
           {/* The caught marker the games print in front of a registered entry. */}
           <span className="dex-card__ball" aria-hidden="true" />
           <span className="dex-card__no">{dexNumber(entry.regionalNo)}</span>
         </span>
-
-        <span className="dex-card__art">
-          {sprite ? (
-            <img
-              className="sprite dex-card__sprite"
-              src={sprite}
-              alt={`${name} sprite`}
-              width="96"
-              height="96"
-              loading="lazy"
-              decoding="async"
-            />
-          ) : (
-            <span className="dex-card__skeleton" aria-hidden="true" />
-          )}
-        </span>
-
-        <span className="dex-card__name">{name}</span>
 
         <span className="dex-card__types">
           {mon
@@ -86,7 +60,29 @@ export const DexCard = memo(function DexCard({
               ))
             : null}
         </span>
-      </button>
+
+        <span className="dex-card__art">
+          {sprite ? (
+            /*
+              Decorative, so the alt is empty. The species name is right there
+              in the same link; "Turtwig sprite" after it is the same
+              information twice, and on a 158-card grid that doubles the
+              reading with nothing gained.
+            */
+            <img
+              className="sprite dex-card__sprite"
+              src={sprite}
+              alt=""
+              width="96"
+              height="96"
+              loading="lazy"
+              decoding="async"
+            />
+          ) : (
+            <span className="dex-card__skeleton" aria-hidden="true" />
+          )}
+        </span>
+      </NavLink>
     </li>
   )
 })

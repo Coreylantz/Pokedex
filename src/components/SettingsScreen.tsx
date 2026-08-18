@@ -1,4 +1,5 @@
 import { Choice, Toggle } from './SettingControls'
+import { NavLink } from './NavLink'
 import type { Settings } from '../lib/types'
 import type { useOfflineCache } from '../lib/useOfflineCache'
 
@@ -7,19 +8,20 @@ interface SettingsScreenProps {
   onSet: <K extends keyof Settings>(key: K, value: Settings[K]) => void
   onReset: () => void
   onBack: () => void
+  backHref: string
   offline: ReturnType<typeof useOfflineCache>
 }
 
 /** Every preference in one place: accessibility, feel, the hardware, offline. */
-export function SettingsScreen({ settings, onSet, onReset, onBack, offline }: SettingsScreenProps) {
+export function SettingsScreen({ settings, onSet, onReset, onBack, backHref, offline }: SettingsScreenProps) {
   const percent = offline.total ? Math.round((offline.done / offline.total) * 100) : 0
 
   return (
     <div className="page">
       <div className="page__bar">
-        <button type="button" className="btn" onClick={onBack}>
+        <NavLink className="btn" href={backHref} onNavigate={onBack}>
           Menu
-        </button>
+        </NavLink>
         <p className="page__crumb">Settings</p>
       </div>
 

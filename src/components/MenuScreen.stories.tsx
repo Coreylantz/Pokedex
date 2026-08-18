@@ -8,7 +8,7 @@ const [kanata, anahua] = regions
 const meta = {
   title: 'Screens/MenuScreen',
   component: MenuScreen,
-  args: { region: kanata!, onOpen: fn() },
+  args: { region: kanata!, hrefFor: (page) => `/kanata/${page === 'dex' ? 'pokemon' : page}`, onOpen: fn() },
 } satisfies Meta<typeof MenuScreen>
 
 export default meta
@@ -29,7 +29,7 @@ export const Structure: Story = {
     expect(canvas.getByRole('heading', { level: 1 })).toHaveTextContent('Kanata')
     expect(canvas.getByRole('navigation', { name: 'Main menu' })).toBeInTheDocument()
 
-    const items = canvas.getAllByRole('button')
+    const items = canvas.getAllByRole('link')
     expect(items).toHaveLength(3)
     expect(items.map((b) => b.textContent)).toEqual(['Pokémon', 'Region', 'Settings'])
   },
@@ -38,10 +38,10 @@ export const Structure: Story = {
 export const TilesOpenTheirPage: Story = {
   play: async ({ canvasElement, args }) => {
     const canvas = within(canvasElement)
-    await userEvent.click(canvas.getByRole('button', { name: 'Pokémon' }))
+    await userEvent.click(canvas.getByRole('link', { name: 'Pokémon' }))
     expect(args.onOpen).toHaveBeenCalledWith('dex')
 
-    await userEvent.click(canvas.getByRole('button', { name: 'Settings' }))
+    await userEvent.click(canvas.getByRole('link', { name: 'Settings' }))
     expect(args.onOpen).toHaveBeenCalledWith('settings')
   },
 }
@@ -53,7 +53,7 @@ export const TilesOpenTheirPage: Story = {
 export const KeyboardReachesEveryTile: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement)
-    const tiles = canvas.getAllByRole('button')
+    const tiles = canvas.getAllByRole('link')
 
     for (const tile of tiles) {
       await userEvent.tab()

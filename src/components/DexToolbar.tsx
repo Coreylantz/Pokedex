@@ -63,8 +63,9 @@ export function DexToolbar({
             autoComplete="off"
             spellCheck="false"
           />
-          <button type="submit" className="btn btn--icon btn--primary" aria-label="Search">
+          <button type="submit" className="btn btn--icon btn--primary">
             <PixelIcon name="search" />
+            <span className="visually-hidden">Search</span>
           </button>
         </div>
       </form>

@@ -1,6 +1,7 @@
 import { useEffect, useId, useRef, useState, type CSSProperties } from 'react'
 import { dexNumber, idSafe, monName, spriteFor, titleCase } from '../lib/format'
 import { PixelIcon } from './PixelIcon'
+import { NavLink } from './NavLink'
 
 import type { DexEntry, Pokemon, Region } from '../lib/types'
 
@@ -12,6 +13,9 @@ interface PokemonPageProps {
   /** The area label this entry is registered in, if known. */
   area: string | null
   shiny: boolean
+  backHref: string
+  prevHref: string
+  nextHref: string
   onBack: () => void
   onStep: (delta: number) => void
 }
@@ -39,6 +43,9 @@ export function PokemonPage({
   region,
   area,
   shiny,
+  backHref,
+  prevHref,
+  nextHref,
   onBack,
   onStep,
 }: PokemonPageProps) {
@@ -93,19 +100,19 @@ export function PokemonPage({
   return (
     <article className="monpage">
       <div className="monpage__bar">
-        <button type="button" className="btn" onClick={onBack}>
+        <NavLink className="btn" href={backHref} onNavigate={onBack}>
           Dex
-        </button>
+        </NavLink>
         <p className="monpage__crumb">
           {region.name} Nº {dexNumber(entry.regionalNo)}
         </p>
         <div className="monpage__step">
-          <button type="button" className="btn btn--sm" onClick={() => onStep(-1)}>
+          <NavLink className="btn btn--sm" href={prevHref} onNavigate={() => onStep(-1)}>
             Prev
-          </button>
-          <button type="button" className="btn btn--sm" onClick={() => onStep(1)}>
+          </NavLink>
+          <NavLink className="btn btn--sm" href={nextHref} onNavigate={() => onStep(1)}>
             Next
-          </button>
+          </NavLink>
         </div>
       </div>
 
