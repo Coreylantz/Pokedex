@@ -30,10 +30,10 @@ export const REGIONS: SourceRegion[] = [
     id: 'kanata',
     name: 'Kanata',
     tagline: 'The Region of the Long Winter',
-    // "Kanata" is the Iroquoian word for "village" that the name Canada
+    // "Kanata" is the St. Lawrence Iroquoian word for "village".
     // actually descends from.
     etymology:
-      'From kanata, the St. Lawrence Iroquoian word for "village" — the word that gave Canada its name.',
+      'From kanata, the St. Lawrence Iroquoian word for "village" — a small place that lent its name to somewhere very large.',
     blurb:
       'A vast northern region of boreal pine, shield rock and frozen coast. Trainers start among the maple groves of the south, climb the mining ranges, cross the cattle prairies, and finish their journey on the aurora-lit tundra where the ice legends nest.',
     professor: 'Professor Maple',
@@ -208,9 +208,9 @@ export const REGIONS: SourceRegion[] = [
     id: 'anahua',
     name: 'Anahua',
     tagline: 'The Region Where the Sun is Kept',
-    // From Anahuac, the Nahuatl name for the highland heart of Mexico.
+    // From Anahuac, the Nahuatl name for a highland valley ringed by mountains.
     etymology:
-      'From Anáhuac, the Nahuatl name — roughly "land ringed by water" — for the highland valley at the heart of Mexico.',
+      'From Anáhuac, the Nahuatl name — roughly "land ringed by water" — for the highland valley at the region’s heart.',
     blurb:
       'A sun-hammered region of cactus flats, live volcanoes and green cenote country. Trainers begin in the jungle lowlands, cross the desert, climb the smoking sierra, and end among the glyph-carved tombs where the sun legend still roosts.',
     professor: 'Professor Ceiba',

@@ -53,7 +53,7 @@ export const RATIONALES: Record<string, Rationale> = {
   },
   fennekin: {
     tags: ['stylistic', 'mechanics'],
-    why: 'The one slot with no Canadian animal available in any starter line, so it is justified by theme instead: this line is about tending a flame — Braixen carries a burning branch, Delphox reads its own fire. In a region where winter is the antagonist, the starter should be the hearth you keep lit through the dark half of the year. This is the weakest case in the region and it is not pretending otherwise.',
+    why: 'The one slot with no northern animal available in any starter line, so it is justified by theme instead: this line is about tending a flame — Braixen carries a burning branch, Delphox reads its own fire. In a region where winter is the antagonist, the starter should be the hearth you keep lit through the dark half of the year. This is the weakest case in the region and it is not pretending otherwise.',
   },
   piplup: {
     tags: ['fauna', 'thematic', 'mechanics'],
@@ -67,7 +67,7 @@ export const RATIONALES: Record<string, Rationale> = {
   },
   bidoof: {
     tags: ['fauna', 'thematic', 'mechanics'],
-    why: 'The beaver: the national animal, the animal on the nickel, and the animal whose pelt the entire country was chartered to trade. Bibarel dams rivers and builds lodges to live in, which is the single most Canadian behaviour available.',
+    why: 'The beaver: the national animal, the animal on the nickel, and the animal whose pelt the entire country was chartered to trade. Bibarel dams rivers and builds lodges to live in, which is the single most Kanatan behaviour available.',
   },
   sentret: {
     tags: ['fauna', 'mechanics'],
@@ -123,7 +123,7 @@ export const RATIONALES: Record<string, Rationale> = {
   },
   sudowoodo: {
     tags: ['thematic', 'stylistic'],
-    why: 'The Group of Seven. The lone wind-bent pine standing on bare Shield rock is the most reproduced image in Canadian art — Tom Thomson painted it, Lawren Harris and A.Y. Jackson built a national visual identity out of it, and Sudowoodo is a tree standing by itself on rock refusing to admit what it is.',
+    why: 'The Group of Seven. The lone wind-bent pine standing on bare Shield rock is the most reproduced image in the region’s art — Tom Thomson painted it, Lawren Harris and A.Y. Jackson built a national visual identity out of it, and Sudowoodo is a tree standing by itself on rock refusing to admit what it is.',
   },
   zorua: {
     tags: ['thematic', 'fauna'],
@@ -137,7 +137,7 @@ export const RATIONALES: Record<string, Rationale> = {
   // Shieldstone Range
   geodude: {
     tags: ['stylistic', 'mechanics'],
-    why: 'The Canadian Shield: four million square kilometres of scraped-bare Precambrian rock, some of the oldest exposed stone on the planet, and the physical foundation of half the country.',
+    why: 'The Shield: four million square kilometres of scraped-bare Precambrian rock, some of the oldest exposed stone on the planet, and the physical foundation of half the country.',
   },
   onix: {
     tags: ['thematic', 'stylistic'],
@@ -153,7 +153,7 @@ export const RATIONALES: Record<string, Rationale> = {
   },
   nosepass: {
     tags: ['stylistic', 'mechanics'],
-    why: 'Its nose points permanently at magnetic north — and magnetic north is here, wandering across the Canadian Arctic at about fifty kilometres a year. This is the one region where that trait is a navigational fact rather than a novelty.',
+    why: 'Its nose points permanently at magnetic north — and magnetic north is here, wandering across the high Arctic at about fifty kilometres a year. This is the one region where that trait is a navigational fact rather than a novelty.',
   },
   stonjourner: {
     tags: ['thematic', 'stylistic'],
@@ -175,7 +175,7 @@ export const RATIONALES: Record<string, Rationale> = {
   },
   ponyta: {
     tags: ['fauna', 'thematic'],
-    why: 'The Canadian Horse — le cheval canadien, descended from stock Louis XIV shipped to New France in the 1660s, bred small and hard enough through three centuries of winters to be nicknamed the little iron horse. It was named the national horse in 2002, having very nearly been lost entirely.',
+    why: 'The little iron horse — descended from stock Louis XIV shipped to New France in the 1660s, bred small and hard enough through three centuries of winters to earn the name. It was made the national horse in 2002, having very nearly been lost entirely.',
   },
   growlithe: {
     tags: ['thematic', 'fauna'],
@@ -223,7 +223,7 @@ export const RATIONALES: Record<string, Rationale> = {
   },
   ducklett: {
     tags: ['fauna', 'thematic'],
-    why: 'The Canada goose. Migratory, enormously loud, entirely unafraid, and it has chased every single person in this region across a parking lot at least once.',
+    why: 'The grey goose. Migratory, enormously loud, entirely unafraid, and it has chased every single person in this region across a parking lot at least once.',
   },
   marill: {
     tags: ['fauna', 'thematic'],
@@ -231,7 +231,7 @@ export const RATIONALES: Record<string, Rationale> = {
   },
   buizel: {
     tags: ['fauna', 'thematic'],
-    why: 'The river otter, complete with flotation collars — and the voyageur canoe routes it shares. The French-Canadian paddlers who moved the fur trade across this country covered impossible distances on these rivers, and left behind a body of song, a dialect and a folklore that is still the backbone of Francophone identity here.',
+    why: 'The river otter, complete with flotation collars — and the voyageur canoe routes it shares. The French-speaking paddlers who moved the fur trade across this country covered impossible distances on these rivers, and left behind a body of song, a dialect and a folklore that is still the backbone of Francophone identity here.',
   },
   feebas: {
     tags: ['thematic', 'stylistic'],
@@ -323,7 +323,7 @@ export const RATIONALES: Record<string, Rationale> = {
   // The Shale Beds — Fossils
   anorith: {
     tags: ['fauna', 'thematic', 'mechanics'],
-    why: 'Anomalocaris, out of the Burgess Shale in Yoho — the single most important fossil bed on earth for understanding the Cambrian, high in the Rockies, and Canadian. Armaldo is that animal having left the water.',
+    why: 'Anomalocaris, out of the Burgess Shale in Yoho — the single most important fossil bed on earth for understanding the Cambrian, high in the Rockies. Armaldo is that animal having left the water.',
   },
   omanyte: {
     tags: ['fauna', 'thematic', 'mechanics'],
