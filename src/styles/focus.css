@@ -1,0 +1,44 @@
+/* @layer base
+
+   Split from base.css only for length. Order within the layer is load-bearing:
+   the pad-nav :focus rule has to follow the :focus-visible rules it stands in for. */
+
+@layer base {
+:focus-visible {
+  outline: 3px solid var(--focus-shell, currentColor);
+  outline-offset: 2px;
+}
+
+.screen :focus-visible {
+  outline: 3px solid var(--focus-screen);
+  outline-offset: 2px;
+}
+
+/* The D-pad focuses programmatically after a mouse press, which
+   :focus-visible declines to match — so while the pad is driving, plain
+   :focus gets the ring too. */
+.app[data-pad-nav='true'] .screen :focus {
+  outline: 3px solid var(--focus-screen);
+  outline-offset: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  inset-block-start: 0.5rem;
+  inset-inline-start: 0.5rem;
+  z-index: 30;
+  padding: 0.6rem 1rem;
+  background: var(--scr-bg);
+  color: var(--scr-ink);
+  border: 3px solid var(--scr-ink);
+  border-radius: var(--radius);
+  font-family: var(--font-ui);
+  font-size: var(--ui-sm);
+  text-decoration: none;
+  translate: 0 -200%;
+}
+
+.skip-link:focus-visible {
+  translate: 0 0;
+}
+}

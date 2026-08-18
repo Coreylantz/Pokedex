@@ -1,0 +1,84 @@
+/* @layer components
+
+   The /explained route only. Unreferenced by every other page, but it shares
+   the entry page's layout so it has to load inside the same layer. */
+
+@layer components {
+/* ---------- /explained reasoning panel ---------- */
+
+.why {
+  padding: 0.85rem;
+  border: 3px solid var(--scr-ink);
+  border-radius: var(--radius);
+  background: var(--scr-dim);
+}
+
+.why__head {
+  font-family: var(--font-ui);
+  font-size: var(--ui-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--scr-accent);
+  margin-block-end: 0.5rem;
+}
+
+.why__text {
+  font-family: var(--font-prose);
+  font-size: var(--ui-md);
+  line-height: 1.65;
+}
+
+.why__score {
+  margin-block-start: 0.85rem;
+  padding-block-start: 0.75rem;
+  border-block-start: 2px dashed var(--scr-mid);
+}
+
+.why__score-head {
+  font-family: var(--font-ui);
+  font-size: var(--ui-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--scr-accent);
+  margin-block-end: 0.45rem;
+}
+
+.why__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  list-style: none;
+  padding: 0;
+}
+
+.why__tag {
+  display: inline-block;
+  padding: 0.18rem 0.5rem;
+  border: 2px solid var(--scr-ink);
+  border-radius: 0.25rem;
+  font-family: var(--font-ui);
+  font-size: var(--ui-xs);
+  text-transform: uppercase;
+  /* Never colour alone: the filled/hollow bullet carries it too. */
+  background: var(--scr-bg);
+  color: var(--scr-ink);
+}
+
+.why__tag[data-met='true'] {
+  background: var(--scr-ink);
+  color: var(--scr-bg);
+}
+
+.why__tag[data-met='false'] {
+  border-style: dashed;
+  opacity: 0.75;
+}
+
+.why__variant {
+  margin-block-start: 0.7rem;
+  padding-block-start: 0.7rem;
+  border-block-start: 2px dashed var(--scr-mid);
+  font-family: var(--font-prose);
+  font-size: var(--ui-sm);
+}
+}

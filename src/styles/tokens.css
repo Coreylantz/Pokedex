@@ -1,0 +1,68 @@
+/* @layer tokens */
+
+@layer tokens {
+:root {
+  color-scheme: light dark;
+
+  --font-pixel: 'Silkscreen', ui-monospace, 'Cascadia Mono', monospace;
+  --font-system: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  /* Everything on the screen is the digital face by default. The Readable
+     setting swaps prose — not labels — to the system stack. */
+  --font-ui: var(--font-pixel);
+  --font-prose: var(--font-pixel);
+
+  /* One scale for the whole screen, so "make it bigger" is one number. */
+  --ui-xs: 0.72rem;
+  --ui-sm: 0.82rem;
+  --ui-md: 0.95rem;
+  --ui-lg: 1.1rem;
+  --ui-xl: clamp(1.35rem, 1.1rem + 1.2vw, 1.8rem);
+
+  --room: light-dark(oklch(0.9 0.015 250), oklch(0.15 0.02 260));
+  --room-ink: light-dark(oklch(0.35 0.02 260), oklch(0.82 0.015 255));
+
+  --radius: 0.4rem;
+
+  --t-normal: #a8a77a;
+  --t-fire: #ee8130;
+  --t-water: #6390f0;
+  --t-electric: #e0bb2c;
+  --t-grass: #7ac74c;
+  --t-ice: #96d9d6;
+  --t-fighting: #c22e28;
+  --t-poison: #a33ea1;
+  --t-ground: #ddad51;
+  --t-flying: #a98ff3;
+  --t-psychic: #f95587;
+  --t-bug: #a6b91a;
+  --t-rock: #b6a136;
+  --t-ghost: #735797;
+  --t-dragon: #6f35fc;
+  --t-dark: #705746;
+  --t-steel: #b7b7ce;
+  --t-fairy: #d685ad;
+}
+
+.app[data-typeface='readable'] {
+  /* Labels, numbers and chrome stay pixel; long-form text becomes legible. */
+  --font-prose: var(--font-system);
+}
+
+/* One scale drives the whole screen, so text size keeps the proportions. */
+.app[data-text-size='large'] {
+  --ui-xs: 0.82rem;
+  --ui-sm: 0.95rem;
+  --ui-md: 1.1rem;
+  --ui-lg: 1.28rem;
+  --ui-xl: clamp(1.5rem, 1.2rem + 1.4vw, 2rem);
+}
+
+.app[data-text-size='largest'] {
+  --ui-xs: 0.95rem;
+  --ui-sm: 1.1rem;
+  --ui-md: 1.28rem;
+  --ui-lg: 1.5rem;
+  --ui-xl: clamp(1.7rem, 1.35rem + 1.6vw, 2.3rem);
+}
+}

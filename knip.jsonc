@@ -1,0 +1,27 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+
+  // Every real entry point. Without the test, e2e, story and script globs,
+  // knip reports most of the toolchain as unused.
+  "entry": [
+    "scripts/*.ts",
+    "e2e/**/*.spec.ts",
+    "src/**/*.test.{ts,tsx}",
+    ".storybook/*.{ts,tsx}",
+    "src/**/*.stories.tsx"
+  ],
+  "project": ["src/**/*.{ts,tsx}", "scripts/**/*.ts", "e2e/**/*.ts"],
+
+  "ignoreDependencies": [
+    // Read off disk by scripts/vitals.ts rather than imported: the library is
+    // injected into the page under test, not bundled into this project.
+    "web-vitals",
+
+    // Loaded at runtime by unplugin-icons to compile icons to JSX. Nothing
+    // imports them, so knip reports them unused — and removing them on that
+    // advice breaks the build with "Cannot find package '@svgr/core'".
+    // Verified the hard way; leave them listed.
+    "@svgr/core",
+    "@svgr/plugin-jsx"
+  ]
+}

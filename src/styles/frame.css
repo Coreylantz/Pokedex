@@ -1,0 +1,58 @@
+/* @layer device */
+
+@layer device {
+.app {
+  block-size: 100dvb;
+  display: grid;
+  /* A definite row, so the device's 100% has something real to resolve
+     against — an auto row would size to content and overflow instead. */
+  grid-template-rows: minmax(0, 1fr);
+  padding: clamp(0rem, 2vw, 1.5rem);
+  min-block-size: 0;
+}
+
+.device {
+  /* A handheld, not a website: narrow and tall on a desktop, and the whole
+     screen on a phone. */
+  inline-size: min(100%, 30rem);
+  margin-inline: auto;
+  /* 100% of the padded box, not of the viewport — subtracting a guessed
+     padding from 100dvb overflows the moment the guess is wrong. */
+  block-size: min(100%, 56rem);
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: clamp(0.5rem, 1.2vw, 0.8rem);
+  padding: clamp(0.6rem, 2vw, 1rem);
+  border-radius: clamp(0.9rem, 2vw, 1.4rem);
+  background: linear-gradient(160deg, var(--shell-lit), var(--shell) 28%, var(--shell-dim));
+  box-shadow:
+    inset 0 2px 0 rgb(255 255 255 / 0.35),
+    inset 0 -4px 0 var(--shell-deep),
+    0 18px 40px rgb(0 0 0 / 0.35);
+}
+
+/* On a phone the device is the whole device. */
+@media (width < 34rem) {
+  .app {
+    padding: 0;
+  }
+
+  .device {
+    inline-size: 100%;
+    block-size: 100%;
+    border-radius: 0;
+    padding: 0.5rem;
+  }
+}
+
+@media (height < 34rem) and (orientation: portrait) {
+  .app {
+    block-size: auto;
+  }
+
+  .device {
+    block-size: auto;
+    min-block-size: 100dvb;
+  }
+}
+}

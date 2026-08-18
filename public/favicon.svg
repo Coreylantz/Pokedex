@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Twin Dex">
+  <title>Twin Dex</title>
+  <!-- The device itself: red shell, blue lens, three lamps, dark screen.
+       Kept to large shapes so it still reads at 16px in a browser tab. -->
+  <rect x="4" y="3" width="56" height="58" rx="7" fill="#c62828" />
+  <rect x="4" y="3" width="56" height="58" rx="7" fill="none" stroke="#5c1010" stroke-width="3" />
+
+  <circle cx="18" cy="17" r="8" fill="#2f7fd4" stroke="#f7efe9" stroke-width="3" />
+  <circle cx="15" cy="14" r="2.5" fill="#bfe6fb" />
+
+  <circle cx="33" cy="13" r="3" fill="#f0524a" />
+  <circle cx="42" cy="13" r="3" fill="#f2d045" />
+  <circle cx="51" cy="13" r="3" fill="#4fd07f" />
+
+  <rect x="10" y="29" width="44" height="24" rx="3" fill="#37373f" />
+  <rect x="14" y="33" width="36" height="16" rx="1" fill="#d8dcc8" />
+  <rect x="17" y="36" width="17" height="3" fill="#3d3d42" />
+  <rect x="17" y="41" width="24" height="3" fill="#3d3d42" />
+</svg>

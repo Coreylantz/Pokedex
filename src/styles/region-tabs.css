@@ -1,0 +1,60 @@
+/* @layer components */
+
+@layer components {
+/* ---------- region tabs (on the shell) ---------- */
+
+/* An opaque plate rather than a black wash over the shell gradient. The
+   wash left gen2's tab label at 2.4:1 against the darkest stop, and a
+   translucent background over a gradient is also something contrast
+   checkers cannot resolve, so it hid as "needs review" rather than failing. */
+.region-tabs {
+  display: flex;
+  gap: 0.25rem;
+  padding: 0.2rem;
+  border-radius: 0.4rem;
+  background: var(--tab-plate);
+}
+
+.region-tab {
+  display: grid;
+  padding: 0.3rem 0.6rem;
+  border: 0;
+  border-radius: 0.3rem;
+  background: transparent;
+  color: var(--tab-ink);
+  font-family: var(--font-ui);
+  cursor: pointer;
+  text-align: center;
+}
+
+.region-tab__name {
+  font-size: var(--ui-xs);
+  text-transform: uppercase;
+}
+
+.region-tab__count {
+  display: none;
+}
+
+.region-tab:hover {
+  background: rgb(255 255 255 / 0.16);
+}
+
+.region-tab[aria-selected='true'] {
+  background: var(--scr-bg);
+  color: var(--scr-ink);
+  box-shadow: inset 0 0 0 2px var(--scr-ink);
+}
+
+/* With the shell hidden the tabs sit on the screen, not on the body, so they
+   take the screen's palette. These must live here rather than with the other
+   shell-off rules in @layer device: a later layer wins over specificity, so
+   a copy there would never apply. */
+.app[data-shell='false'] .region-tabs {
+  background: var(--scr-dim);
+}
+
+.app[data-shell='false'] .region-tab {
+  color: var(--scr-ink);
+}
+}

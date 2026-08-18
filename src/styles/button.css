@@ -1,0 +1,63 @@
+/* @layer components */
+
+@layer components {
+/* ---------- buttons ---------- */
+
+.btn {
+  padding: 0.4rem 0.75rem;
+  border: 3px solid var(--scr-ink);
+  border-radius: 0.25rem;
+  background: var(--scr-bg);
+  color: var(--scr-ink);
+  font-family: var(--font-ui);
+  font-size: var(--ui-sm);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+/* `:not(:disabled)` costs a specificity point, which would otherwise let
+   hover beat every inverted modifier below — a playing cry, an active
+   filter and the primary button all reverted on hover. */
+.btn:hover:not(:disabled):not(.btn--primary):not([data-on='true']):not([data-playing='true']) {
+  background: var(--scr-dim);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn--sm {
+  font-size: var(--ui-xs);
+  padding: 0.3rem 0.55rem;
+}
+
+.btn--primary {
+  background: var(--scr-ink);
+  color: var(--scr-bg);
+}
+
+/* A square button holding an icon and nothing else. This has to come after
+   `.btn`: same specificity, so source order decides, and `.btn`'s wider
+   padding would otherwise win and crush the icon into an 8px content box.
+   `flex: none` matters too — beside the search field it would be squashed. */
+.btn--icon {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  padding: 0.35rem;
+  inline-size: 2.4rem;
+  block-size: 2.4rem;
+}
+
+.btn--icon .pixel-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* Filters active: invert so it is obvious at a glance. */
+.btn--icon[data-on='true'] {
+  background: var(--scr-ink);
+  color: var(--scr-bg);
+}
+}

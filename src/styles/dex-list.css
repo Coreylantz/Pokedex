@@ -1,0 +1,138 @@
+/* @layer components
+
+   :focus-visible follows :hover here. Both are (0,2,0) once the pad-nav
+   variants are counted, so the later one wins — swapping them un-styles focus
+   on a hovered card. The same rule also carries .tile:focus-visible, which is
+   why it lives here rather than in menu.css. */
+
+@layer components {
+/* ---------- dex list ---------- */
+
+.dex-grid {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+  gap: 0.5rem;
+}
+
+/* A regional dex is 158 cards and the screen shows about six. `auto` lets the
+   browser skip layout, style and paint for the ones scrolled out of view,
+   which is most of them for most of the time.
+
+   `contain-intrinsic-size` is not optional here: without a placeholder size,
+   skipped cards collapse to nothing, the scroll height changes as they enter
+   and leave, and the scrollbar jumps under your thumb. The value is the card's
+   real rendered height, so the estimate is exact and nothing shifts. */
+.dex-card {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 11.5rem;
+}
+
+.dex-card__button {
+  inline-size: 100%;
+  block-size: 100%;
+  display: grid;
+  gap: 0.2rem;
+  justify-items: center;
+  padding: 0.5rem 0.4rem;
+  border: 3px solid var(--scr-ink);
+  border-radius: var(--radius);
+  background: var(--scr-bg);
+  color: var(--scr-ink);
+  cursor: pointer;
+  text-align: center;
+}
+
+.dex-card__button:hover {
+  background: var(--scr-dim);
+}
+
+/* Tiles and cards invert on focus instead of taking a ring, which reads
+   better on a grid. This has to sit in the same layer as the hover rules and
+   after them, or the later layer simply wins.
+   A flat inversion, edge to edge — an inset band leaves a light gap that
+   reads as the fill failing to reach the border. Icons follow `color`
+   through `fill: currentColor`, so they must not also be inverted or they
+   invert twice and vanish into the dark. The transparent outline is there
+   for forced-colours modes, which repaint outline colours. */
+.dex-card__button:focus-visible,
+.app[data-pad-nav='true'] .dex-card__button:focus,
+.tile:focus-visible,
+.app[data-pad-nav='true'] .tile:focus {
+  background: var(--scr-ink);
+  color: var(--scr-bg);
+  border-color: var(--scr-ink);
+  outline: 3px solid transparent;
+  outline-offset: 2px;
+}
+
+.dex-card__row {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  justify-self: start;
+}
+
+.dex-card__ball {
+  inline-size: 0.6rem;
+  block-size: 0.6rem;
+  border: 2px solid var(--scr-ink);
+  border-radius: 50%;
+  background: linear-gradient(
+    180deg,
+    var(--scr-ink) 0 42%,
+    var(--scr-bg) 42% 58%,
+    var(--scr-ink) 58%
+  );
+}
+
+.dex-card__no {
+  font-family: var(--font-ui);
+  font-size: var(--ui-sm);
+}
+
+.dex-card__art {
+  display: grid;
+  place-items: center;
+  inline-size: 6.5rem;
+  block-size: 6.5rem;
+}
+
+.sprite {
+  /* Pixel art must never be smoothed, and nearest-neighbour is only even at
+     whole multiples: the sources are 96px, so 96 or 192 and nothing between. */
+  image-rendering: pixelated;
+  inline-size: 96px;
+  block-size: 96px;
+}
+
+.dex-card__skeleton {
+  inline-size: 3.5rem;
+  block-size: 3.5rem;
+  border: 2px dashed var(--scr-mid);
+  border-radius: 50%;
+  animation: pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.dex-card__name {
+  font-family: var(--font-ui);
+  font-size: var(--ui-sm);
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+.dex-card__types {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.2rem;
+  min-block-size: 1rem;
+}
+}

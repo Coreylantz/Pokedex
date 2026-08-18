@@ -1,0 +1,71 @@
+/* @layer device
+
+   Last in the device layer on purpose: it re-lays-out the frame for short
+   landscape viewports and has to beat everything above it. */
+
+@layer device {
+/* ---- landscape: the unit turns on its side ----
+   Rather than squashing a tall device into a short viewport, the chrome
+   moves to the edges: lens and lamps down the left, controls down the
+   right, screen filling everything between. */
+/* Only when the height is genuinely too short for the upright handheld — a
+   1280x720 desktop window is landscape but has ample room, and stretching
+   the device across it looks nothing like a handheld. */
+@media (orientation: landscape) and (height < 34rem) {
+  .app {
+    padding: clamp(0rem, 1.5vh, 0.75rem);
+  }
+
+  .device {
+    inline-size: 100%;
+    max-inline-size: 52rem;
+    block-size: 100%;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-rows: minmax(0, 1fr);
+    gap: 0.6rem;
+    align-items: stretch;
+  }
+
+  .device__top {
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0.5rem;
+  }
+
+  .device__brand {
+    margin-inline-start: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+
+  .device__name {
+    display: none;
+  }
+
+  .region-tabs {
+    flex-direction: column;
+  }
+
+  .device__controls {
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.75rem;
+    padding-inline: 0;
+  }
+
+  .device__seam,
+  .grille {
+    display: none;
+  }
+
+  .pads {
+    flex-direction: column;
+  }
+
+  .dpad {
+    inline-size: 3rem;
+    block-size: 3rem;
+  }
+}
+}

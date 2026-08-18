@@ -1,0 +1,62 @@
+/* @layer components
+
+   Loads between entry.css and why.css: the stat rows sit inside the entry
+   page and inherit its typography. */
+
+@layer components {
+.stats {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.stats__row {
+  display: grid;
+  grid-template-columns: 6rem 1fr;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.stats__name {
+  font-family: var(--font-ui);
+  font-size: var(--ui-xs);
+  text-transform: uppercase;
+}
+
+/* The number and its meter share the `dd`, so the row still reads as three
+   columns while staying a valid two-part definition-list pair. */
+.stats__value {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 2.4rem 1fr;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.stats__number {
+  font-family: var(--font-ui);
+  font-size: var(--ui-sm);
+  text-align: end;
+}
+
+.stats__bar {
+  margin: 0;
+  block-size: 0.6rem;
+  border: 2px solid var(--scr-ink);
+  background: var(--scr-dim);
+  overflow: hidden;
+}
+
+.stats__bar::after {
+  content: '';
+  display: block;
+  block-size: 100%;
+  inline-size: var(--fill);
+  background: var(--scr-ink);
+}
+
+.monpage__loading {
+  padding-block: 2rem;
+  text-align: center;
+  font-family: var(--font-ui);
+}
+}

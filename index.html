@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Twin Dex — Kanata &amp; Anahua Pokédex</title>
+    <meta
+      name="description"
+      content="An offline-capable regional Pokedex for the fan-made Kanata and Anahua regions, presented on first- and second-generation Pokedex hardware, using PokeAPI."
+    />
+    <meta name="theme-color" content="#e2e6ee" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1b1f2b" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" href="/icons/icon-192.png" sizes="192x192" type="image/png" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Twin Dex" />
+    <!--
+      The cascade layer order, declared before any stylesheet loads.
+
+      src/styles/index.css declares the same order, but the CSS minifier strips
+      a standalone `@layer a, b, c;` statement from the bundle. Order then falls
+      back to first-appearance, which happens to match — until someone reorders
+      an import and silently reorders the cascade with it. Declaring it here
+      makes it explicit again and impossible to minify away, because the first
+      declaration wins and this one is always first.
+    -->
+    <style>
+      @layer reset, fonts, tokens, base, device, screen, components, utilities;
+    </style>
+    <!-- Sprite and species requests start the moment the parser sees this. -->
+    <link rel="preconnect" href="https://pokeapi.co" crossorigin />
+    <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin />
+    <!--
+      The regular weight carries almost every glyph on screen, and it is
+      `font-display: swap`, so without this the browser only discovers it after
+      the stylesheet parses and the first paint is in the fallback face.
+      Preloading it shortens the flash. The bold weight is not preloaded: it is
+      headings only, and a second blocking request would cost more than it saves.
+    -->
+    <link
+      rel="preload"
+      href="/fonts/silkscreen-400.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>
+      <p style="padding: 2rem; font-family: system-ui">
+        Twin Dex needs JavaScript to read the Pokédex data. Please enable it and reload.
+      </p>
+    </noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,98 @@
+/* @layer components
+
+   Also holds the .cry button, which sits between the menu grid and the tiles
+   in the source order and cannot move without changing the cascade. */
+
+@layer components {
+/* ---------- menu ---------- */
+
+.menu {
+  display: grid;
+  gap: 1.25rem;
+  align-content: start;
+}
+
+.menu__head {
+  padding-block-end: 0.75rem;
+  border-block-end: 3px solid var(--scr-ink);
+}
+
+.menu__eyebrow,
+.page__crumb,
+.menu__count {
+  font-family: var(--font-ui);
+  font-size: var(--ui-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--scr-accent);
+}
+
+.menu__title {
+  font-family: var(--font-ui);
+  font-size: var(--ui-xl);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-block: 0.25rem;
+}
+
+.menu__grid {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  /* Two across, always — a handheld menu, not a responsive card wall. */
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.6rem;
+}
+
+.cry {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.cry .pixel-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Inverted while sounding, so the state reads at a glance and not only from
+   the icon swap. The label changes too, for anyone who cannot see either. */
+.cry[data-playing='true'] {
+  background: var(--scr-ink);
+  color: var(--scr-bg);
+}
+
+.tile {
+  inline-size: 100%;
+  block-size: 100%;
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 0.6rem;
+  padding: 1.1rem 0.6rem;
+  border: 3px solid var(--scr-ink);
+  border-radius: var(--radius);
+  background: var(--scr-bg);
+  color: var(--scr-ink);
+  cursor: pointer;
+}
+
+.tile:hover {
+  background: var(--scr-dim);
+}
+
+/* Physical width/height, not the logical pair: an inline SVG carries
+   width/height presentation attributes, and inline-size does not override
+   them — the icon silently keeps its 1.2em default instead. */
+.pixel-icon {
+  width: 2.6rem;
+  height: 2.6rem;
+  fill: currentColor;
+}
+
+.tile__label {
+  font-family: var(--font-ui);
+  font-size: var(--ui-md);
+  text-transform: uppercase;
+}
+}

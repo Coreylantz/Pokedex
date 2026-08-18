@@ -1,0 +1,46 @@
+/* @layer device
+
+   The "hide the shell" setting. Every rule here overrides frame.css, so this
+   file must stay after it. */
+
+@layer device {
+/* Shell off: the screen alone, edge to edge, so the thing you are holding is
+   the Pokedex. The D-pad goes with the shell; the arrow keys do not. */
+.app[data-shell='false'] {
+  padding: 0;
+}
+
+.app[data-shell='false'] .device {
+  inline-size: 100%;
+  max-inline-size: none;
+  block-size: 100%;
+  padding: 0;
+  gap: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  /* Columns as well as rows: the landscape layout sets three columns, and
+     with the chrome hidden the lone screen would sit in the first `auto`
+     track instead of filling the width. */
+  grid-template-rows: minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.app[data-shell='false'] .device__top,
+.app[data-shell='false'] .device__controls,
+.app[data-shell='false'] .bezel__lamp,
+.app[data-shell='false'] .bezel__slots {
+  display: none;
+}
+
+.app[data-shell='false'] .device__bezel {
+  padding: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+
+.app[data-shell='false'] .screen {
+  border-radius: 0;
+}
+}

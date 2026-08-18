@@ -1,0 +1,37 @@
+[
+  {
+    "name": "blocking first paint",
+    "path": ["dist/assets/index-*.js", "dist/assets/index-*.css"],
+    "limit": "75 kB",
+    "brotli": true
+  },
+  {
+    "name": "first visit (adds webfonts)",
+    "path": [
+      "dist/assets/index-*.js",
+      "dist/assets/index-*.css",
+      "dist/fonts/silkscreen-400.woff2",
+      "dist/fonts/silkscreen-700.woff2"
+    ],
+    "limit": "86 kB",
+    "brotli": true
+  },
+  {
+    "name": "lazy route chunks",
+    "path": [
+      "dist/assets/PokemonPage-*.js",
+      "dist/assets/SettingsScreen-*.js",
+      "dist/assets/RegionInfo-*.js",
+      "dist/assets/AreaScreen-*.js",
+      "dist/assets/DexToolbar-*.js"
+    ],
+    "limit": "6 kB",
+    "brotli": true
+  },
+  {
+    "name": "explained payload (only /explained)",
+    "path": "dist/assets/explained-*.js",
+    "limit": "14 kB",
+    "brotli": true
+  }
+]

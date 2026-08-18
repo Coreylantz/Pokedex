@@ -1,0 +1,48 @@
+/* @layer components
+
+   Small shared states: loading, empty results, and the offline indicator. */
+
+@layer components {
+.loading-note {
+  font-family: var(--font-ui);
+  font-size: var(--ui-xs);
+  text-transform: uppercase;
+}
+
+.empty {
+  padding: 2rem 1rem;
+  text-align: center;
+  font-family: var(--font-ui);
+  font-size: var(--ui-md);
+  border: 3px dashed var(--scr-mid);
+  border-radius: var(--radius);
+}
+
+/* ---------- offline status (in Settings) ---------- */
+
+.setting__status {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-ui);
+  font-size: var(--ui-sm);
+  text-transform: uppercase;
+}
+
+.setting__dot {
+  inline-size: 0.6rem;
+  block-size: 0.6rem;
+  background: var(--scr-bg);
+  box-shadow: 0 0 0 3px var(--scr-ink);
+}
+
+.setting__status[data-online='true'] .setting__dot {
+  background: var(--scr-ink);
+}
+
+.setting progress {
+  inline-size: 100%;
+  block-size: 0.9rem;
+  accent-color: var(--scr-ink);
+}
+}

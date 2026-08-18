@@ -1,0 +1,17 @@
+/* @layer utilities */
+
+@layer utilities {
+/* Only the genuinely muted text belongs here. Prose already inherits
+   --scr-ink from .screen, so listing it achieved nothing; these five are the
+   ones actually set to --scr-accent or dimmed with opacity. */
+@media (prefers-contrast: more) {
+  .page__tagline,
+  .page__subhead,
+  .area__range,
+  .monpage__national,
+  .monpage__metric {
+    color: var(--scr-ink);
+    opacity: 1;
+  }
+}
+}

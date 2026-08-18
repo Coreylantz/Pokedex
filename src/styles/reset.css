@@ -1,0 +1,33 @@
+/* @layer reset */
+
+@layer reset {
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+img,
+picture,
+svg {
+  display: block;
+  max-inline-size: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+fieldset {
+  border: 0;
+  padding: 0;
+}
+}

@@ -1,0 +1,39 @@
+/* Every rule in the app, in one place, in cascade order.
+
+   The layer order is declared once here, before any import, so each file can
+   reopen its layer without caring when it loads. Within a layer, though,
+   source order still decides ties — so the import order below is deliberate
+   and is not safe to sort alphabetically. Each file's own header says what it
+   has to sit after, and styles.test.js checks that every file is imported
+   exactly once and opens only a declared layer. */
+
+@layer reset, fonts, tokens, base, device, screen, components, utilities;
+
+@import './reset.css';
+@import './fonts.css';
+@import './tokens.css';
+@import './skins.css';
+@import './base.css';
+@import './focus.css';
+@import './frame.css';
+@import './shell-off.css';
+@import './chrome.css';
+@import './controls.css';
+@import './landscape.css';
+@import './screen.css';
+@import './scrollbar.css';
+@import './region-tabs.css';
+@import './menu.css';
+@import './page.css';
+@import './settings.css';
+@import './finder.css';
+@import './dex-list.css';
+@import './types.css';
+@import './status.css';
+@import './error.css';
+@import './entry.css';
+@import './stats.css';
+@import './why.css';
+@import './button.css';
+@import './a11y.css';
+@import './utilities.css';

@@ -1,0 +1,66 @@
+/* @layer components */
+
+@layer components {
+.type-pill {
+  padding: 0.08rem 0.4rem;
+  border-radius: 0.2rem;
+  font-family: var(--font-ui);
+  font-size: var(--ui-xs);
+  text-transform: uppercase;
+  color: #10121a;
+  background: var(--t-normal);
+}
+
+.type-pill--lg {
+  font-size: var(--ui-sm);
+  padding: 0.15rem 0.5rem;
+}
+
+[data-type='normal'] { background: var(--t-normal); }
+
+[data-type='fire'] { background: var(--t-fire); }
+
+[data-type='water'] { background: var(--t-water); }
+
+[data-type='electric'] { background: var(--t-electric); }
+
+[data-type='grass'] { background: var(--t-grass); }
+
+[data-type='ice'] { background: var(--t-ice); }
+
+[data-type='fighting'] { background: var(--t-fighting); color: #fff; }
+
+[data-type='poison'] { background: var(--t-poison); color: #fff; }
+
+[data-type='ground'] { background: var(--t-ground); }
+
+[data-type='flying'] { background: var(--t-flying); }
+
+[data-type='psychic'] { background: var(--t-psychic); }
+
+[data-type='bug'] { background: var(--t-bug); }
+
+[data-type='rock'] { background: var(--t-rock); }
+
+[data-type='ghost'] { background: var(--t-ghost); color: #fff; }
+
+[data-type='dragon'] { background: var(--t-dragon); color: #fff; }
+
+[data-type='dark'] { background: var(--t-dark); color: #fff; }
+
+[data-type='steel'] { background: var(--t-steel); }
+
+[data-type='fairy'] { background: var(--t-fairy); }
+
+/* A first-generation screen had no colour to spend on badges. */
+.app[data-skin='gen1'] .type-pill {
+  background: var(--scr-bg);
+  color: var(--scr-ink);
+  border: 2px solid var(--scr-ink);
+}
+
+.type-chip[aria-pressed='false'] {
+  background: var(--scr-bg);
+  color: var(--scr-ink);
+}
+}

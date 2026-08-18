@@ -1,0 +1,2544 @@
+{
+  "regions": [
+    {
+      "id": "kanata",
+      "name": "Kanata",
+      "tagline": "The Region of the Long Winter",
+      "etymology": "From kanata, the St. Lawrence Iroquoian word for \"village\" — the word that gave Canada its name.",
+      "blurb": "A vast northern region of boreal pine, shield rock and frozen coast. Trainers start among the maple groves of the south, climb the mining ranges, cross the cattle prairies, and finish their journey on the aurora-lit tundra where the ice legends nest.",
+      "professor": "Professor Maple",
+      "skin": "gen1",
+      "sections": [
+        {
+          "label": "Maplewood Grove — Starters",
+          "note": "Professor Maple hands out one of three: a sapling, a lit branch, or a fledgling emperor.",
+          "entries": [
+            {
+              "regionalNo": 1,
+              "nationalNo": 387,
+              "slug": "turtwig",
+              "lineHead": "turtwig"
+            },
+            {
+              "regionalNo": 2,
+              "nationalNo": 388,
+              "slug": "grotle",
+              "lineHead": "turtwig"
+            },
+            {
+              "regionalNo": 3,
+              "nationalNo": 389,
+              "slug": "torterra",
+              "lineHead": "turtwig"
+            },
+            {
+              "regionalNo": 4,
+              "nationalNo": 653,
+              "slug": "fennekin",
+              "lineHead": "fennekin"
+            },
+            {
+              "regionalNo": 5,
+              "nationalNo": 654,
+              "slug": "braixen",
+              "lineHead": "fennekin"
+            },
+            {
+              "regionalNo": 6,
+              "nationalNo": 655,
+              "slug": "delphox",
+              "lineHead": "fennekin"
+            },
+            {
+              "regionalNo": 7,
+              "nationalNo": 393,
+              "slug": "piplup",
+              "lineHead": "piplup"
+            },
+            {
+              "regionalNo": 8,
+              "nationalNo": 394,
+              "slug": "prinplup",
+              "lineHead": "piplup"
+            },
+            {
+              "regionalNo": 9,
+              "nationalNo": 395,
+              "slug": "empoleon",
+              "lineHead": "piplup"
+            }
+          ]
+        },
+        {
+          "label": "Route 1 — First Steps",
+          "note": "The bird, the beaver and the bugs every Kanatan trainer meets first.",
+          "entries": [
+            {
+              "regionalNo": 10,
+              "nationalNo": 396,
+              "slug": "starly",
+              "lineHead": "starly"
+            },
+            {
+              "regionalNo": 11,
+              "nationalNo": 397,
+              "slug": "staravia",
+              "lineHead": "starly"
+            },
+            {
+              "regionalNo": 12,
+              "nationalNo": 398,
+              "slug": "staraptor",
+              "lineHead": "starly"
+            },
+            {
+              "regionalNo": 13,
+              "nationalNo": 399,
+              "slug": "bidoof",
+              "lineHead": "bidoof"
+            },
+            {
+              "regionalNo": 14,
+              "nationalNo": 400,
+              "slug": "bibarel",
+              "lineHead": "bidoof"
+            },
+            {
+              "regionalNo": 15,
+              "nationalNo": 161,
+              "slug": "sentret",
+              "lineHead": "sentret"
+            },
+            {
+              "regionalNo": 16,
+              "nationalNo": 162,
+              "slug": "furret",
+              "lineHead": "sentret"
+            },
+            {
+              "regionalNo": 17,
+              "nationalNo": 401,
+              "slug": "kricketot",
+              "lineHead": "kricketot"
+            },
+            {
+              "regionalNo": 18,
+              "nationalNo": 402,
+              "slug": "kricketune",
+              "lineHead": "kricketot"
+            },
+            {
+              "regionalNo": 19,
+              "nationalNo": 165,
+              "slug": "ledyba",
+              "lineHead": "ledyba"
+            },
+            {
+              "regionalNo": 20,
+              "nationalNo": 166,
+              "slug": "ledian",
+              "lineHead": "ledyba"
+            }
+          ]
+        },
+        {
+          "label": "Aurora Flats",
+          "note": "Static crackles off the northern lights here, drawing anything that holds a charge.",
+          "entries": [
+            {
+              "regionalNo": 21,
+              "nationalNo": 417,
+              "slug": "pachirisu",
+              "lineHead": "pachirisu"
+            },
+            {
+              "regionalNo": 22,
+              "nationalNo": 239,
+              "slug": "elekid",
+              "lineHead": "elekid"
+            },
+            {
+              "regionalNo": 23,
+              "nationalNo": 125,
+              "slug": "electabuzz",
+              "lineHead": "elekid"
+            },
+            {
+              "regionalNo": 24,
+              "nationalNo": 466,
+              "slug": "electivire",
+              "lineHead": "elekid"
+            }
+          ]
+        },
+        {
+          "label": "The Boreal Belt",
+          "note": "Endless black spruce and pine. Owls above, something much larger in the snow between the trunks.",
+          "entries": [
+            {
+              "regionalNo": 25,
+              "nationalNo": 163,
+              "slug": "hoothoot",
+              "lineHead": "hoothoot"
+            },
+            {
+              "regionalNo": 26,
+              "nationalNo": 164,
+              "slug": "noctowl",
+              "lineHead": "hoothoot"
+            },
+            {
+              "regionalNo": 27,
+              "nationalNo": 198,
+              "slug": "murkrow",
+              "lineHead": "murkrow"
+            },
+            {
+              "regionalNo": 28,
+              "nationalNo": 430,
+              "slug": "honchkrow",
+              "lineHead": "murkrow"
+            },
+            {
+              "regionalNo": 29,
+              "nationalNo": 821,
+              "slug": "rookidee",
+              "lineHead": "rookidee"
+            },
+            {
+              "regionalNo": 30,
+              "nationalNo": 822,
+              "slug": "corvisquire",
+              "lineHead": "rookidee"
+            },
+            {
+              "regionalNo": 31,
+              "nationalNo": 823,
+              "slug": "corviknight",
+              "lineHead": "rookidee"
+            },
+            {
+              "regionalNo": 32,
+              "nationalNo": 459,
+              "slug": "snover",
+              "lineHead": "snover"
+            },
+            {
+              "regionalNo": 33,
+              "nationalNo": 460,
+              "slug": "abomasnow",
+              "lineHead": "snover"
+            },
+            {
+              "regionalNo": 34,
+              "nationalNo": 708,
+              "slug": "phantump",
+              "lineHead": "phantump"
+            },
+            {
+              "regionalNo": 35,
+              "nationalNo": 709,
+              "slug": "trevenant",
+              "lineHead": "phantump"
+            },
+            {
+              "regionalNo": 36,
+              "nationalNo": 204,
+              "slug": "pineco",
+              "lineHead": "pineco"
+            },
+            {
+              "regionalNo": 37,
+              "nationalNo": 205,
+              "slug": "forretress",
+              "lineHead": "pineco"
+            },
+            {
+              "regionalNo": 38,
+              "nationalNo": 285,
+              "slug": "shroomish",
+              "lineHead": "shroomish"
+            },
+            {
+              "regionalNo": 39,
+              "nationalNo": 286,
+              "slug": "breloom",
+              "lineHead": "shroomish"
+            },
+            {
+              "regionalNo": 40,
+              "nationalNo": 185,
+              "slug": "sudowoodo",
+              "lineHead": "sudowoodo"
+            },
+            {
+              "regionalNo": 41,
+              "nationalNo": 570,
+              "slug": "zorua",
+              "lineHead": "zorua"
+            },
+            {
+              "regionalNo": 42,
+              "nationalNo": 571,
+              "slug": "zoroark",
+              "lineHead": "zorua"
+            },
+            {
+              "regionalNo": 43,
+              "nationalNo": 585,
+              "slug": "deerling",
+              "lineHead": "deerling"
+            },
+            {
+              "regionalNo": 44,
+              "nationalNo": 586,
+              "slug": "sawsbuck",
+              "lineHead": "deerling"
+            }
+          ]
+        },
+        {
+          "label": "Shieldstone Range",
+          "note": "Old grey rock and older mine shafts. The compass needles here point at the Pokemon, not the pole.",
+          "entries": [
+            {
+              "regionalNo": 45,
+              "nationalNo": 74,
+              "slug": "geodude",
+              "lineHead": "geodude"
+            },
+            {
+              "regionalNo": 46,
+              "nationalNo": 75,
+              "slug": "graveler",
+              "lineHead": "geodude"
+            },
+            {
+              "regionalNo": 47,
+              "nationalNo": 76,
+              "slug": "golem",
+              "lineHead": "geodude"
+            },
+            {
+              "regionalNo": 48,
+              "nationalNo": 95,
+              "slug": "onix",
+              "lineHead": "onix"
+            },
+            {
+              "regionalNo": 49,
+              "nationalNo": 208,
+              "slug": "steelix",
+              "lineHead": "onix"
+            },
+            {
+              "regionalNo": 50,
+              "nationalNo": 932,
+              "slug": "nacli",
+              "lineHead": "nacli"
+            },
+            {
+              "regionalNo": 51,
+              "nationalNo": 933,
+              "slug": "naclstack",
+              "lineHead": "nacli"
+            },
+            {
+              "regionalNo": 52,
+              "nationalNo": 934,
+              "slug": "garganacl",
+              "lineHead": "nacli"
+            },
+            {
+              "regionalNo": 53,
+              "nationalNo": 837,
+              "slug": "rolycoly",
+              "lineHead": "rolycoly"
+            },
+            {
+              "regionalNo": 54,
+              "nationalNo": 838,
+              "slug": "carkol",
+              "lineHead": "rolycoly"
+            },
+            {
+              "regionalNo": 55,
+              "nationalNo": 839,
+              "slug": "coalossal",
+              "lineHead": "rolycoly"
+            },
+            {
+              "regionalNo": 56,
+              "nationalNo": 299,
+              "slug": "nosepass",
+              "lineHead": "nosepass"
+            },
+            {
+              "regionalNo": 57,
+              "nationalNo": 476,
+              "slug": "probopass",
+              "lineHead": "nosepass"
+            },
+            {
+              "regionalNo": 58,
+              "nationalNo": 874,
+              "slug": "stonjourner",
+              "lineHead": "stonjourner"
+            }
+          ]
+        },
+        {
+          "label": "The Long Prairie",
+          "note": "Wheat, wool and a horizon that does not interrupt itself for anything.",
+          "entries": [
+            {
+              "regionalNo": 59,
+              "nationalNo": 187,
+              "slug": "hoppip",
+              "lineHead": "hoppip"
+            },
+            {
+              "regionalNo": 60,
+              "nationalNo": 188,
+              "slug": "skiploom",
+              "lineHead": "hoppip"
+            },
+            {
+              "regionalNo": 61,
+              "nationalNo": 189,
+              "slug": "jumpluff",
+              "lineHead": "hoppip"
+            },
+            {
+              "regionalNo": 62,
+              "nationalNo": 179,
+              "slug": "mareep",
+              "lineHead": "mareep"
+            },
+            {
+              "regionalNo": 63,
+              "nationalNo": 180,
+              "slug": "flaaffy",
+              "lineHead": "mareep"
+            },
+            {
+              "regionalNo": 64,
+              "nationalNo": 181,
+              "slug": "ampharos",
+              "lineHead": "mareep"
+            },
+            {
+              "regionalNo": 65,
+              "nationalNo": 241,
+              "slug": "miltank",
+              "lineHead": "miltank"
+            },
+            {
+              "regionalNo": 66,
+              "nationalNo": 77,
+              "slug": "ponyta",
+              "lineHead": "ponyta"
+            },
+            {
+              "regionalNo": 67,
+              "nationalNo": 78,
+              "slug": "rapidash",
+              "lineHead": "ponyta"
+            },
+            {
+              "regionalNo": 68,
+              "nationalNo": 58,
+              "slug": "growlithe",
+              "lineHead": "growlithe"
+            },
+            {
+              "regionalNo": 69,
+              "nationalNo": 59,
+              "slug": "arcanine",
+              "lineHead": "growlithe"
+            },
+            {
+              "regionalNo": 70,
+              "nationalNo": 626,
+              "slug": "bouffalant",
+              "lineHead": "bouffalant"
+            }
+          ]
+        },
+        {
+          "label": "Karonto City & the Ravines",
+          "note": "The region's largest city: a lakefront, a needle you can see from an hour away, more construction cranes than anywhere on the continent, and a ravine system nobody ever managed to build over. Everything here has learned to live off people, and most of it is winning.",
+          "entries": [
+            {
+              "regionalNo": 71,
+              "nationalNo": 263,
+              "slug": "zigzagoon",
+              "lineHead": "zigzagoon"
+            },
+            {
+              "regionalNo": 72,
+              "nationalNo": 264,
+              "slug": "linoone",
+              "lineHead": "zigzagoon"
+            },
+            {
+              "regionalNo": 73,
+              "nationalNo": 819,
+              "slug": "skwovet",
+              "lineHead": "skwovet"
+            },
+            {
+              "regionalNo": 74,
+              "nationalNo": 820,
+              "slug": "greedent",
+              "lineHead": "skwovet"
+            },
+            {
+              "regionalNo": 75,
+              "nationalNo": 434,
+              "slug": "stunky",
+              "lineHead": "stunky"
+            },
+            {
+              "regionalNo": 76,
+              "nationalNo": 435,
+              "slug": "skuntank",
+              "lineHead": "stunky"
+            },
+            {
+              "regionalNo": 77,
+              "nationalNo": 568,
+              "slug": "trubbish",
+              "lineHead": "trubbish"
+            },
+            {
+              "regionalNo": 78,
+              "nationalNo": 569,
+              "slug": "garbodor",
+              "lineHead": "trubbish"
+            },
+            {
+              "regionalNo": 79,
+              "nationalNo": 532,
+              "slug": "timburr",
+              "lineHead": "timburr"
+            },
+            {
+              "regionalNo": 80,
+              "nationalNo": 533,
+              "slug": "gurdurr",
+              "lineHead": "timburr"
+            },
+            {
+              "regionalNo": 81,
+              "nationalNo": 534,
+              "slug": "conkeldurr",
+              "lineHead": "timburr"
+            },
+            {
+              "regionalNo": 82,
+              "nationalNo": 81,
+              "slug": "magnemite",
+              "lineHead": "magnemite"
+            },
+            {
+              "regionalNo": 83,
+              "nationalNo": 82,
+              "slug": "magneton",
+              "lineHead": "magnemite"
+            },
+            {
+              "regionalNo": 84,
+              "nationalNo": 462,
+              "slug": "magnezone",
+              "lineHead": "magnemite"
+            },
+            {
+              "regionalNo": 85,
+              "nationalNo": 353,
+              "slug": "shuppet",
+              "lineHead": "shuppet"
+            },
+            {
+              "regionalNo": 86,
+              "nationalNo": 354,
+              "slug": "banette",
+              "lineHead": "shuppet"
+            }
+          ]
+        },
+        {
+          "label": "The Great Lakes",
+          "note": "Freshwater inland seas, muskeg bogs, and the rivers the salmon climb every autumn.",
+          "entries": [
+            {
+              "regionalNo": 87,
+              "nationalNo": 54,
+              "slug": "psyduck",
+              "lineHead": "psyduck"
+            },
+            {
+              "regionalNo": 88,
+              "nationalNo": 55,
+              "slug": "golduck",
+              "lineHead": "psyduck"
+            },
+            {
+              "regionalNo": 89,
+              "nationalNo": 580,
+              "slug": "ducklett",
+              "lineHead": "ducklett"
+            },
+            {
+              "regionalNo": 90,
+              "nationalNo": 581,
+              "slug": "swanna",
+              "lineHead": "ducklett"
+            },
+            {
+              "regionalNo": 91,
+              "nationalNo": 183,
+              "slug": "marill",
+              "lineHead": "marill"
+            },
+            {
+              "regionalNo": 92,
+              "nationalNo": 184,
+              "slug": "azumarill",
+              "lineHead": "marill"
+            },
+            {
+              "regionalNo": 93,
+              "nationalNo": 418,
+              "slug": "buizel",
+              "lineHead": "buizel"
+            },
+            {
+              "regionalNo": 94,
+              "nationalNo": 419,
+              "slug": "floatzel",
+              "lineHead": "buizel"
+            },
+            {
+              "regionalNo": 95,
+              "nationalNo": 349,
+              "slug": "feebas",
+              "lineHead": "feebas"
+            },
+            {
+              "regionalNo": 96,
+              "nationalNo": 350,
+              "slug": "milotic",
+              "lineHead": "feebas"
+            },
+            {
+              "regionalNo": 97,
+              "nationalNo": 550,
+              "slug": "basculin-red-striped",
+              "lineHead": "basculin-red-striped"
+            },
+            {
+              "regionalNo": 98,
+              "nationalNo": 902,
+              "slug": "basculegion-male",
+              "lineHead": "basculin-red-striped"
+            },
+            {
+              "regionalNo": 99,
+              "nationalNo": 131,
+              "slug": "lapras",
+              "lineHead": "lapras"
+            }
+          ]
+        },
+        {
+          "label": "The Cold Atlantic",
+          "note": "Lobster traps, fog banks, and a lighthouse that has never once been switched off.",
+          "entries": [
+            {
+              "regionalNo": 100,
+              "nationalNo": 278,
+              "slug": "wingull",
+              "lineHead": "wingull"
+            },
+            {
+              "regionalNo": 101,
+              "nationalNo": 279,
+              "slug": "pelipper",
+              "lineHead": "wingull"
+            },
+            {
+              "regionalNo": 102,
+              "nationalNo": 98,
+              "slug": "krabby",
+              "lineHead": "krabby"
+            },
+            {
+              "regionalNo": 103,
+              "nationalNo": 99,
+              "slug": "kingler",
+              "lineHead": "krabby"
+            },
+            {
+              "regionalNo": 104,
+              "nationalNo": 90,
+              "slug": "shellder",
+              "lineHead": "shellder"
+            },
+            {
+              "regionalNo": 105,
+              "nationalNo": 91,
+              "slug": "cloyster",
+              "lineHead": "shellder"
+            },
+            {
+              "regionalNo": 106,
+              "nationalNo": 170,
+              "slug": "chinchou",
+              "lineHead": "chinchou"
+            },
+            {
+              "regionalNo": 107,
+              "nationalNo": 171,
+              "slug": "lanturn",
+              "lineHead": "chinchou"
+            },
+            {
+              "regionalNo": 108,
+              "nationalNo": 211,
+              "slug": "qwilfish",
+              "lineHead": "qwilfish"
+            },
+            {
+              "regionalNo": 109,
+              "nationalNo": 223,
+              "slug": "remoraid",
+              "lineHead": "remoraid"
+            },
+            {
+              "regionalNo": 110,
+              "nationalNo": 224,
+              "slug": "octillery",
+              "lineHead": "remoraid"
+            },
+            {
+              "regionalNo": 111,
+              "nationalNo": 320,
+              "slug": "wailmer",
+              "lineHead": "wailmer"
+            },
+            {
+              "regionalNo": 112,
+              "nationalNo": 321,
+              "slug": "wailord",
+              "lineHead": "wailmer"
+            }
+          ]
+        },
+        {
+          "label": "The Treeline Tundra",
+          "note": "Past the last tree. Bears, caribou herds, pack ice, and the region's signature cold-dwellers.",
+          "entries": [
+            {
+              "regionalNo": 113,
+              "nationalNo": 234,
+              "slug": "stantler",
+              "lineHead": "stantler"
+            },
+            {
+              "regionalNo": 114,
+              "nationalNo": 899,
+              "slug": "wyrdeer",
+              "lineHead": "stantler"
+            },
+            {
+              "regionalNo": 115,
+              "nationalNo": 216,
+              "slug": "teddiursa",
+              "lineHead": "teddiursa"
+            },
+            {
+              "regionalNo": 116,
+              "nationalNo": 217,
+              "slug": "ursaring",
+              "lineHead": "teddiursa"
+            },
+            {
+              "regionalNo": 117,
+              "nationalNo": 901,
+              "slug": "ursaluna",
+              "lineHead": "teddiursa"
+            },
+            {
+              "regionalNo": 118,
+              "nationalNo": 613,
+              "slug": "cubchoo",
+              "lineHead": "cubchoo"
+            },
+            {
+              "regionalNo": 119,
+              "nationalNo": 614,
+              "slug": "beartic",
+              "lineHead": "cubchoo"
+            },
+            {
+              "regionalNo": 120,
+              "nationalNo": 215,
+              "slug": "sneasel",
+              "lineHead": "sneasel"
+            },
+            {
+              "regionalNo": 121,
+              "nationalNo": 461,
+              "slug": "weavile",
+              "lineHead": "sneasel"
+            },
+            {
+              "regionalNo": 122,
+              "nationalNo": 220,
+              "slug": "swinub",
+              "lineHead": "swinub"
+            },
+            {
+              "regionalNo": 123,
+              "nationalNo": 221,
+              "slug": "piloswine",
+              "lineHead": "swinub"
+            },
+            {
+              "regionalNo": 124,
+              "nationalNo": 473,
+              "slug": "mamoswine",
+              "lineHead": "swinub"
+            },
+            {
+              "regionalNo": 125,
+              "nationalNo": 86,
+              "slug": "seel",
+              "lineHead": "seel"
+            },
+            {
+              "regionalNo": 126,
+              "nationalNo": 87,
+              "slug": "dewgong",
+              "lineHead": "seel"
+            },
+            {
+              "regionalNo": 127,
+              "nationalNo": 363,
+              "slug": "spheal",
+              "lineHead": "spheal"
+            },
+            {
+              "regionalNo": 128,
+              "nationalNo": 364,
+              "slug": "sealeo",
+              "lineHead": "spheal"
+            },
+            {
+              "regionalNo": 129,
+              "nationalNo": 365,
+              "slug": "walrein",
+              "lineHead": "spheal"
+            },
+            {
+              "regionalNo": 130,
+              "nationalNo": 712,
+              "slug": "bergmite",
+              "lineHead": "bergmite"
+            },
+            {
+              "regionalNo": 131,
+              "nationalNo": 713,
+              "slug": "avalugg",
+              "lineHead": "bergmite"
+            },
+            {
+              "regionalNo": 132,
+              "nationalNo": 225,
+              "slug": "delibird",
+              "lineHead": "delibird"
+            }
+          ]
+        },
+        {
+          "label": "Northern Lights Sanctuary",
+          "note": "A single Eevee is gifted here. What the aurora makes of it is up to the aurora.",
+          "entries": [
+            {
+              "regionalNo": 133,
+              "nationalNo": 133,
+              "slug": "eevee",
+              "lineHead": "eevee"
+            },
+            {
+              "regionalNo": 134,
+              "nationalNo": 134,
+              "slug": "vaporeon",
+              "lineHead": "eevee"
+            },
+            {
+              "regionalNo": 135,
+              "nationalNo": 135,
+              "slug": "jolteon",
+              "lineHead": "eevee"
+            },
+            {
+              "regionalNo": 136,
+              "nationalNo": 136,
+              "slug": "flareon",
+              "lineHead": "eevee"
+            },
+            {
+              "regionalNo": 137,
+              "nationalNo": 196,
+              "slug": "espeon",
+              "lineHead": "eevee"
+            },
+            {
+              "regionalNo": 138,
+              "nationalNo": 197,
+              "slug": "umbreon",
+              "lineHead": "eevee"
+            },
+            {
+              "regionalNo": 139,
+              "nationalNo": 470,
+              "slug": "leafeon",
+              "lineHead": "eevee"
+            },
+            {
+              "regionalNo": 140,
+              "nationalNo": 471,
+              "slug": "glaceon",
+              "lineHead": "eevee"
+            },
+            {
+              "regionalNo": 141,
+              "nationalNo": 700,
+              "slug": "sylveon",
+              "lineHead": "eevee"
+            }
+          ]
+        },
+        {
+          "label": "The Shale Beds — Fossils",
+          "note": "A cliff of impossibly old sea creatures, and a badland of much newer, much larger ones.",
+          "entries": [
+            {
+              "regionalNo": 142,
+              "nationalNo": 347,
+              "slug": "anorith",
+              "lineHead": "anorith"
+            },
+            {
+              "regionalNo": 143,
+              "nationalNo": 348,
+              "slug": "armaldo",
+              "lineHead": "anorith"
+            },
+            {
+              "regionalNo": 144,
+              "nationalNo": 138,
+              "slug": "omanyte",
+              "lineHead": "omanyte"
+            },
+            {
+              "regionalNo": 145,
+              "nationalNo": 139,
+              "slug": "omastar",
+              "lineHead": "omanyte"
+            },
+            {
+              "regionalNo": 146,
+              "nationalNo": 408,
+              "slug": "cranidos",
+              "lineHead": "cranidos"
+            },
+            {
+              "regionalNo": 147,
+              "nationalNo": 409,
+              "slug": "rampardos",
+              "lineHead": "cranidos"
+            },
+            {
+              "regionalNo": 148,
+              "nationalNo": 696,
+              "slug": "tyrunt",
+              "lineHead": "tyrunt"
+            },
+            {
+              "regionalNo": 149,
+              "nationalNo": 697,
+              "slug": "tyrantrum",
+              "lineHead": "tyrunt"
+            },
+            {
+              "regionalNo": 150,
+              "nationalNo": 698,
+              "slug": "amaura",
+              "lineHead": "amaura"
+            },
+            {
+              "regionalNo": 151,
+              "nationalNo": 699,
+              "slug": "aurorus",
+              "lineHead": "amaura"
+            }
+          ]
+        },
+        {
+          "label": "Summit Trial",
+          "note": "The region's pseudo-legendary, raised on the highest and coldest peaks.",
+          "entries": [
+            {
+              "regionalNo": 152,
+              "nationalNo": 996,
+              "slug": "frigibax",
+              "lineHead": "frigibax"
+            },
+            {
+              "regionalNo": 153,
+              "nationalNo": 997,
+              "slug": "arctibax",
+              "lineHead": "frigibax"
+            },
+            {
+              "regionalNo": 154,
+              "nationalNo": 998,
+              "slug": "baxcalibur",
+              "lineHead": "frigibax"
+            }
+          ]
+        },
+        {
+          "label": "Legends of Kanata",
+          "note": "Three powers and a witness: the one above, the one in the cold, the one below the ice — and the forest that was here before all of them and expects to outlast them.",
+          "entries": [
+            {
+              "regionalNo": 155,
+              "nationalNo": 145,
+              "slug": "zapdos",
+              "lineHead": "zapdos"
+            },
+            {
+              "regionalNo": 156,
+              "nationalNo": 646,
+              "slug": "kyurem",
+              "lineHead": "kyurem"
+            },
+            {
+              "regionalNo": 157,
+              "nationalNo": 249,
+              "slug": "lugia",
+              "lineHead": "lugia"
+            },
+            {
+              "regionalNo": 158,
+              "nationalNo": 251,
+              "slug": "celebi",
+              "lineHead": "celebi"
+            }
+          ]
+        }
+      ],
+      "count": 158
+    },
+    {
+      "id": "anahua",
+      "name": "Anahua",
+      "tagline": "The Region Where the Sun is Kept",
+      "etymology": "From Anáhuac, the Nahuatl name — roughly \"land ringed by water\" — for the highland valley at the heart of Mexico.",
+      "blurb": "A sun-hammered region of cactus flats, live volcanoes and green cenote country. Trainers begin in the jungle lowlands, cross the desert, climb the smoking sierra, and end among the glyph-carved tombs where the sun legend still roosts.",
+      "professor": "Professor Ceiba",
+      "skin": "gen2",
+      "sections": [
+        {
+          "label": "Ceiba Village — Starters",
+          "note": "Professor Ceiba offers a vine, a singer, or a river-jaw.",
+          "entries": [
+            {
+              "regionalNo": 1,
+              "nationalNo": 252,
+              "slug": "treecko",
+              "lineHead": "treecko"
+            },
+            {
+              "regionalNo": 2,
+              "nationalNo": 253,
+              "slug": "grovyle",
+              "lineHead": "treecko"
+            },
+            {
+              "regionalNo": 3,
+              "nationalNo": 254,
+              "slug": "sceptile",
+              "lineHead": "treecko"
+            },
+            {
+              "regionalNo": 4,
+              "nationalNo": 909,
+              "slug": "fuecoco",
+              "lineHead": "fuecoco"
+            },
+            {
+              "regionalNo": 5,
+              "nationalNo": 910,
+              "slug": "crocalor",
+              "lineHead": "fuecoco"
+            },
+            {
+              "regionalNo": 6,
+              "nationalNo": 911,
+              "slug": "skeledirge",
+              "lineHead": "fuecoco"
+            },
+            {
+              "regionalNo": 7,
+              "nationalNo": 258,
+              "slug": "mudkip",
+              "lineHead": "mudkip"
+            },
+            {
+              "regionalNo": 8,
+              "nationalNo": 259,
+              "slug": "marshtomp",
+              "lineHead": "mudkip"
+            },
+            {
+              "regionalNo": 9,
+              "nationalNo": 260,
+              "slug": "swampert",
+              "lineHead": "mudkip"
+            }
+          ]
+        },
+        {
+          "label": "Route 1 — The Dry Wash",
+          "note": "The bird, the rodent and the bugs every Anahuan trainer meets first — including the ones that migrate here in their millions.",
+          "entries": [
+            {
+              "regionalNo": 10,
+              "nationalNo": 661,
+              "slug": "fletchling",
+              "lineHead": "fletchling"
+            },
+            {
+              "regionalNo": 11,
+              "nationalNo": 662,
+              "slug": "fletchinder",
+              "lineHead": "fletchling"
+            },
+            {
+              "regionalNo": 12,
+              "nationalNo": 663,
+              "slug": "talonflame",
+              "lineHead": "fletchling"
+            },
+            {
+              "regionalNo": 13,
+              "nationalNo": 84,
+              "slug": "doduo",
+              "lineHead": "doduo"
+            },
+            {
+              "regionalNo": 14,
+              "nationalNo": 85,
+              "slug": "dodrio",
+              "lineHead": "doduo"
+            },
+            {
+              "regionalNo": 15,
+              "nationalNo": 504,
+              "slug": "patrat",
+              "lineHead": "patrat"
+            },
+            {
+              "regionalNo": 16,
+              "nationalNo": 505,
+              "slug": "watchog",
+              "lineHead": "patrat"
+            },
+            {
+              "regionalNo": 17,
+              "nationalNo": 167,
+              "slug": "spinarak",
+              "lineHead": "spinarak"
+            },
+            {
+              "regionalNo": 18,
+              "nationalNo": 168,
+              "slug": "ariados",
+              "lineHead": "spinarak"
+            },
+            {
+              "regionalNo": 19,
+              "nationalNo": 664,
+              "slug": "scatterbug",
+              "lineHead": "scatterbug"
+            },
+            {
+              "regionalNo": 20,
+              "nationalNo": 665,
+              "slug": "spewpa",
+              "lineHead": "scatterbug"
+            },
+            {
+              "regionalNo": 21,
+              "nationalNo": 666,
+              "slug": "vivillon",
+              "lineHead": "scatterbug"
+            }
+          ]
+        },
+        {
+          "label": "Thunderhead Mesa",
+          "note": "The rain god's storms break over this mesa every afternoon in the wet season.",
+          "entries": [
+            {
+              "regionalNo": 22,
+              "nationalNo": 172,
+              "slug": "pichu",
+              "lineHead": "pichu"
+            },
+            {
+              "regionalNo": 23,
+              "nationalNo": 25,
+              "slug": "pikachu",
+              "lineHead": "pichu"
+            },
+            {
+              "regionalNo": 24,
+              "nationalNo": 26,
+              "slug": "raichu",
+              "lineHead": "pichu"
+            }
+          ]
+        },
+        {
+          "label": "The Cenote Caves",
+          "note": "Flooded limestone shafts, and the colonies that boil out of them at dusk.",
+          "entries": [
+            {
+              "regionalNo": 25,
+              "nationalNo": 41,
+              "slug": "zubat",
+              "lineHead": "zubat"
+            },
+            {
+              "regionalNo": 26,
+              "nationalNo": 42,
+              "slug": "golbat",
+              "lineHead": "zubat"
+            },
+            {
+              "regionalNo": 27,
+              "nationalNo": 169,
+              "slug": "crobat",
+              "lineHead": "zubat"
+            },
+            {
+              "regionalNo": 28,
+              "nationalNo": 703,
+              "slug": "carbink",
+              "lineHead": "carbink"
+            }
+          ]
+        },
+        {
+          "label": "Obsidian Desert",
+          "note": "Burrows, serpents, cactus and bleached bone under a very large sky.",
+          "entries": [
+            {
+              "regionalNo": 29,
+              "nationalNo": 27,
+              "slug": "sandshrew",
+              "lineHead": "sandshrew"
+            },
+            {
+              "regionalNo": 30,
+              "nationalNo": 28,
+              "slug": "sandslash",
+              "lineHead": "sandshrew"
+            },
+            {
+              "regionalNo": 31,
+              "nationalNo": 551,
+              "slug": "sandile",
+              "lineHead": "sandile"
+            },
+            {
+              "regionalNo": 32,
+              "nationalNo": 552,
+              "slug": "krokorok",
+              "lineHead": "sandile"
+            },
+            {
+              "regionalNo": 33,
+              "nationalNo": 553,
+              "slug": "krookodile",
+              "lineHead": "sandile"
+            },
+            {
+              "regionalNo": 34,
+              "nationalNo": 328,
+              "slug": "trapinch",
+              "lineHead": "trapinch"
+            },
+            {
+              "regionalNo": 35,
+              "nationalNo": 329,
+              "slug": "vibrava",
+              "lineHead": "trapinch"
+            },
+            {
+              "regionalNo": 36,
+              "nationalNo": 330,
+              "slug": "flygon",
+              "lineHead": "trapinch"
+            },
+            {
+              "regionalNo": 37,
+              "nationalNo": 331,
+              "slug": "cacnea",
+              "lineHead": "cacnea"
+            },
+            {
+              "regionalNo": 38,
+              "nationalNo": 332,
+              "slug": "cacturne",
+              "lineHead": "cacnea"
+            },
+            {
+              "regionalNo": 39,
+              "nationalNo": 556,
+              "slug": "maractus",
+              "lineHead": "maractus"
+            },
+            {
+              "regionalNo": 40,
+              "nationalNo": 843,
+              "slug": "silicobra",
+              "lineHead": "silicobra"
+            },
+            {
+              "regionalNo": 41,
+              "nationalNo": 844,
+              "slug": "sandaconda",
+              "lineHead": "silicobra"
+            },
+            {
+              "regionalNo": 42,
+              "nationalNo": 23,
+              "slug": "ekans",
+              "lineHead": "ekans"
+            },
+            {
+              "regionalNo": 43,
+              "nationalNo": 24,
+              "slug": "arbok",
+              "lineHead": "ekans"
+            },
+            {
+              "regionalNo": 44,
+              "nationalNo": 207,
+              "slug": "gligar",
+              "lineHead": "gligar"
+            },
+            {
+              "regionalNo": 45,
+              "nationalNo": 472,
+              "slug": "gliscor",
+              "lineHead": "gligar"
+            },
+            {
+              "regionalNo": 46,
+              "nationalNo": 104,
+              "slug": "cubone",
+              "lineHead": "cubone"
+            },
+            {
+              "regionalNo": 47,
+              "nationalNo": 105,
+              "slug": "marowak-alola",
+              "lineHead": "cubone"
+            },
+            {
+              "regionalNo": 48,
+              "nationalNo": 769,
+              "slug": "sandygast",
+              "lineHead": "sandygast"
+            },
+            {
+              "regionalNo": 49,
+              "nationalNo": 770,
+              "slug": "palossand",
+              "lineHead": "sandygast"
+            },
+            {
+              "regionalNo": 50,
+              "nationalNo": 744,
+              "slug": "rockruff",
+              "lineHead": "rockruff"
+            },
+            {
+              "regionalNo": 51,
+              "nationalNo": 745,
+              "slug": "lycanroc-midday",
+              "lineHead": "rockruff"
+            }
+          ]
+        },
+        {
+          "label": "Sunstone Flats",
+          "note": "Everything here turns to follow the sun, and two things here answer to the sky itself.",
+          "entries": [
+            {
+              "regionalNo": 52,
+              "nationalNo": 191,
+              "slug": "sunkern",
+              "lineHead": "sunkern"
+            },
+            {
+              "regionalNo": 53,
+              "nationalNo": 192,
+              "slug": "sunflora",
+              "lineHead": "sunkern"
+            },
+            {
+              "regionalNo": 54,
+              "nationalNo": 694,
+              "slug": "helioptile",
+              "lineHead": "helioptile"
+            },
+            {
+              "regionalNo": 55,
+              "nationalNo": 695,
+              "slug": "heliolisk",
+              "lineHead": "helioptile"
+            },
+            {
+              "regionalNo": 56,
+              "nationalNo": 338,
+              "slug": "solrock",
+              "lineHead": "solrock"
+            },
+            {
+              "regionalNo": 57,
+              "nationalNo": 337,
+              "slug": "lunatone",
+              "lineHead": "lunatone"
+            }
+          ]
+        },
+        {
+          "label": "The Smoking Sierra",
+          "note": "Three active cones, a lava flow, and air you can taste from the next valley over.",
+          "entries": [
+            {
+              "regionalNo": 58,
+              "nationalNo": 322,
+              "slug": "numel",
+              "lineHead": "numel"
+            },
+            {
+              "regionalNo": 59,
+              "nationalNo": 323,
+              "slug": "camerupt",
+              "lineHead": "numel"
+            },
+            {
+              "regionalNo": 60,
+              "nationalNo": 218,
+              "slug": "slugma",
+              "lineHead": "slugma"
+            },
+            {
+              "regionalNo": 61,
+              "nationalNo": 219,
+              "slug": "magcargo",
+              "lineHead": "slugma"
+            },
+            {
+              "regionalNo": 62,
+              "nationalNo": 240,
+              "slug": "magby",
+              "lineHead": "magby"
+            },
+            {
+              "regionalNo": 63,
+              "nationalNo": 126,
+              "slug": "magmar",
+              "lineHead": "magby"
+            },
+            {
+              "regionalNo": 64,
+              "nationalNo": 467,
+              "slug": "magmortar",
+              "lineHead": "magby"
+            },
+            {
+              "regionalNo": 65,
+              "nationalNo": 757,
+              "slug": "salandit",
+              "lineHead": "salandit"
+            },
+            {
+              "regionalNo": 66,
+              "nationalNo": 758,
+              "slug": "salazzle",
+              "lineHead": "salandit"
+            }
+          ]
+        },
+        {
+          "label": "Yucatl Jungle",
+          "note": "Canopy so thick the floor never dries. Watch the branches, not the path.",
+          "entries": [
+            {
+              "regionalNo": 67,
+              "nationalNo": 69,
+              "slug": "bellsprout",
+              "lineHead": "bellsprout"
+            },
+            {
+              "regionalNo": 68,
+              "nationalNo": 70,
+              "slug": "weepinbell",
+              "lineHead": "bellsprout"
+            },
+            {
+              "regionalNo": 69,
+              "nationalNo": 71,
+              "slug": "victreebel",
+              "lineHead": "bellsprout"
+            },
+            {
+              "regionalNo": 70,
+              "nationalNo": 114,
+              "slug": "tangela",
+              "lineHead": "tangela"
+            },
+            {
+              "regionalNo": 71,
+              "nationalNo": 465,
+              "slug": "tangrowth",
+              "lineHead": "tangela"
+            },
+            {
+              "regionalNo": 72,
+              "nationalNo": 102,
+              "slug": "exeggcute",
+              "lineHead": "exeggcute"
+            },
+            {
+              "regionalNo": 73,
+              "nationalNo": 103,
+              "slug": "exeggutor",
+              "lineHead": "exeggcute"
+            },
+            {
+              "regionalNo": 74,
+              "nationalNo": 357,
+              "slug": "tropius",
+              "lineHead": "tropius"
+            },
+            {
+              "regionalNo": 75,
+              "nationalNo": 731,
+              "slug": "pikipek",
+              "lineHead": "pikipek"
+            },
+            {
+              "regionalNo": 76,
+              "nationalNo": 732,
+              "slug": "trumbeak",
+              "lineHead": "pikipek"
+            },
+            {
+              "regionalNo": 77,
+              "nationalNo": 733,
+              "slug": "toucannon",
+              "lineHead": "pikipek"
+            },
+            {
+              "regionalNo": 78,
+              "nationalNo": 56,
+              "slug": "mankey",
+              "lineHead": "mankey"
+            },
+            {
+              "regionalNo": 79,
+              "nationalNo": 57,
+              "slug": "primeape",
+              "lineHead": "mankey"
+            },
+            {
+              "regionalNo": 80,
+              "nationalNo": 979,
+              "slug": "annihilape",
+              "lineHead": "mankey"
+            },
+            {
+              "regionalNo": 81,
+              "nationalNo": 52,
+              "slug": "meowth",
+              "lineHead": "meowth"
+            },
+            {
+              "regionalNo": 82,
+              "nationalNo": 53,
+              "slug": "persian",
+              "lineHead": "meowth"
+            },
+            {
+              "regionalNo": 83,
+              "nationalNo": 214,
+              "slug": "heracross",
+              "lineHead": "heracross"
+            }
+          ]
+        },
+        {
+          "label": "The Floating Gardens",
+          "note": "Reed islands on a shallow lake. One resident is found nowhere else on earth; another never stops dancing.",
+          "entries": [
+            {
+              "regionalNo": 84,
+              "nationalNo": 194,
+              "slug": "wooper",
+              "lineHead": "wooper"
+            },
+            {
+              "regionalNo": 85,
+              "nationalNo": 195,
+              "slug": "quagsire",
+              "lineHead": "wooper"
+            },
+            {
+              "regionalNo": 86,
+              "nationalNo": 938,
+              "slug": "tadbulb",
+              "lineHead": "tadbulb"
+            },
+            {
+              "regionalNo": 87,
+              "nationalNo": 939,
+              "slug": "bellibolt",
+              "lineHead": "tadbulb"
+            },
+            {
+              "regionalNo": 88,
+              "nationalNo": 270,
+              "slug": "lotad",
+              "lineHead": "lotad"
+            },
+            {
+              "regionalNo": 89,
+              "nationalNo": 271,
+              "slug": "lombre",
+              "lineHead": "lotad"
+            },
+            {
+              "regionalNo": 90,
+              "nationalNo": 272,
+              "slug": "ludicolo",
+              "lineHead": "lotad"
+            }
+          ]
+        },
+        {
+          "label": "Tenoch City",
+          "note": "One of the largest cities on earth, sunk a little further into its old lakebed every year. Painted wall to wall, loud from before dawn, and fed entirely from the street.",
+          "entries": [
+            {
+              "regionalNo": 91,
+              "nationalNo": 945,
+              "slug": "grafaiai",
+              "lineHead": "grafaiai"
+            },
+            {
+              "regionalNo": 92,
+              "nationalNo": 926,
+              "slug": "fidough",
+              "lineHead": "fidough"
+            },
+            {
+              "regionalNo": 93,
+              "nationalNo": 927,
+              "slug": "dachsbun",
+              "lineHead": "fidough"
+            },
+            {
+              "regionalNo": 94,
+              "nationalNo": 951,
+              "slug": "capsakid",
+              "lineHead": "capsakid"
+            },
+            {
+              "regionalNo": 95,
+              "nationalNo": 952,
+              "slug": "scovillain",
+              "lineHead": "capsakid"
+            },
+            {
+              "regionalNo": 96,
+              "nationalNo": 761,
+              "slug": "bounsweet",
+              "lineHead": "bounsweet"
+            },
+            {
+              "regionalNo": 97,
+              "nationalNo": 762,
+              "slug": "steenee",
+              "lineHead": "bounsweet"
+            },
+            {
+              "regionalNo": 98,
+              "nationalNo": 763,
+              "slug": "tsareena",
+              "lineHead": "bounsweet"
+            },
+            {
+              "regionalNo": 99,
+              "nationalNo": 741,
+              "slug": "oricorio-baile",
+              "lineHead": "oricorio-baile"
+            },
+            {
+              "regionalNo": 100,
+              "nationalNo": 848,
+              "slug": "toxel",
+              "lineHead": "toxel"
+            },
+            {
+              "regionalNo": 101,
+              "nationalNo": 849,
+              "slug": "toxtricity-amped",
+              "lineHead": "toxel"
+            },
+            {
+              "regionalNo": 102,
+              "nationalNo": 436,
+              "slug": "bronzor",
+              "lineHead": "bronzor"
+            },
+            {
+              "regionalNo": 103,
+              "nationalNo": 437,
+              "slug": "bronzong",
+              "lineHead": "bronzor"
+            },
+            {
+              "regionalNo": 104,
+              "nationalNo": 878,
+              "slug": "cufant",
+              "lineHead": "cufant"
+            },
+            {
+              "regionalNo": 105,
+              "nationalNo": 879,
+              "slug": "copperajah",
+              "lineHead": "cufant"
+            },
+            {
+              "regionalNo": 106,
+              "nationalNo": 446,
+              "slug": "munchlax",
+              "lineHead": "munchlax"
+            },
+            {
+              "regionalNo": 107,
+              "nationalNo": 143,
+              "slug": "snorlax",
+              "lineHead": "munchlax"
+            }
+          ]
+        },
+        {
+          "label": "City of the Dead",
+          "note": "One night a year the marigold road opens, the candles are lit, and the residents come out to visit.",
+          "entries": [
+            {
+              "regionalNo": 108,
+              "nationalNo": 92,
+              "slug": "gastly",
+              "lineHead": "gastly"
+            },
+            {
+              "regionalNo": 109,
+              "nationalNo": 93,
+              "slug": "haunter",
+              "lineHead": "gastly"
+            },
+            {
+              "regionalNo": 110,
+              "nationalNo": 94,
+              "slug": "gengar",
+              "lineHead": "gastly"
+            },
+            {
+              "regionalNo": 111,
+              "nationalNo": 200,
+              "slug": "misdreavus",
+              "lineHead": "misdreavus"
+            },
+            {
+              "regionalNo": 112,
+              "nationalNo": 429,
+              "slug": "mismagius",
+              "lineHead": "misdreavus"
+            },
+            {
+              "regionalNo": 113,
+              "nationalNo": 355,
+              "slug": "duskull",
+              "lineHead": "duskull"
+            },
+            {
+              "regionalNo": 114,
+              "nationalNo": 356,
+              "slug": "dusclops",
+              "lineHead": "duskull"
+            },
+            {
+              "regionalNo": 115,
+              "nationalNo": 477,
+              "slug": "dusknoir",
+              "lineHead": "duskull"
+            },
+            {
+              "regionalNo": 116,
+              "nationalNo": 971,
+              "slug": "greavard",
+              "lineHead": "greavard"
+            },
+            {
+              "regionalNo": 117,
+              "nationalNo": 972,
+              "slug": "houndstone",
+              "lineHead": "greavard"
+            },
+            {
+              "regionalNo": 118,
+              "nationalNo": 607,
+              "slug": "litwick",
+              "lineHead": "litwick"
+            },
+            {
+              "regionalNo": 119,
+              "nationalNo": 608,
+              "slug": "lampent",
+              "lineHead": "litwick"
+            },
+            {
+              "regionalNo": 120,
+              "nationalNo": 609,
+              "slug": "chandelure",
+              "lineHead": "litwick"
+            },
+            {
+              "regionalNo": 121,
+              "nationalNo": 764,
+              "slug": "comfey",
+              "lineHead": "comfey"
+            },
+            {
+              "regionalNo": 122,
+              "nationalNo": 710,
+              "slug": "pumpkaboo-average",
+              "lineHead": "pumpkaboo-average"
+            },
+            {
+              "regionalNo": 123,
+              "nationalNo": 711,
+              "slug": "gourgeist-average",
+              "lineHead": "pumpkaboo-average"
+            },
+            {
+              "regionalNo": 124,
+              "nationalNo": 425,
+              "slug": "drifloon",
+              "lineHead": "drifloon"
+            },
+            {
+              "regionalNo": 125,
+              "nationalNo": 426,
+              "slug": "drifblim",
+              "lineHead": "drifloon"
+            },
+            {
+              "regionalNo": 126,
+              "nationalNo": 778,
+              "slug": "mimikyu-disguised",
+              "lineHead": "mimikyu-disguised"
+            }
+          ]
+        },
+        {
+          "label": "The Glyph Temples",
+          "note": "Step pyramids covered in a script that will not hold still long enough to be read.",
+          "entries": [
+            {
+              "regionalNo": 127,
+              "nationalNo": 63,
+              "slug": "abra",
+              "lineHead": "abra"
+            },
+            {
+              "regionalNo": 128,
+              "nationalNo": 64,
+              "slug": "kadabra",
+              "lineHead": "abra"
+            },
+            {
+              "regionalNo": 129,
+              "nationalNo": 65,
+              "slug": "alakazam",
+              "lineHead": "abra"
+            },
+            {
+              "regionalNo": 130,
+              "nationalNo": 177,
+              "slug": "natu",
+              "lineHead": "natu"
+            },
+            {
+              "regionalNo": 131,
+              "nationalNo": 178,
+              "slug": "xatu",
+              "lineHead": "natu"
+            },
+            {
+              "regionalNo": 132,
+              "nationalNo": 201,
+              "slug": "unown",
+              "lineHead": "unown"
+            },
+            {
+              "regionalNo": 133,
+              "nationalNo": 343,
+              "slug": "baltoy",
+              "lineHead": "baltoy"
+            },
+            {
+              "regionalNo": 134,
+              "nationalNo": 344,
+              "slug": "claydol",
+              "lineHead": "baltoy"
+            },
+            {
+              "regionalNo": 135,
+              "nationalNo": 561,
+              "slug": "sigilyph",
+              "lineHead": "sigilyph"
+            },
+            {
+              "regionalNo": 136,
+              "nationalNo": 622,
+              "slug": "golett",
+              "lineHead": "golett"
+            },
+            {
+              "regionalNo": 137,
+              "nationalNo": 623,
+              "slug": "golurk",
+              "lineHead": "golett"
+            },
+            {
+              "regionalNo": 138,
+              "nationalNo": 173,
+              "slug": "cleffa",
+              "lineHead": "cleffa"
+            },
+            {
+              "regionalNo": 139,
+              "nationalNo": 35,
+              "slug": "clefairy",
+              "lineHead": "cleffa"
+            },
+            {
+              "regionalNo": 140,
+              "nationalNo": 36,
+              "slug": "clefable",
+              "lineHead": "cleffa"
+            }
+          ]
+        },
+        {
+          "label": "The Great Arena",
+          "note": "Masks, ropes, and a crowd that can be heard three streets away — and next door, a stadium that holds a hundred thousand and has decided two World Cups. The region's two proudest traditions share a car park.",
+          "entries": [
+            {
+              "regionalNo": 141,
+              "nationalNo": 701,
+              "slug": "hawlucha",
+              "lineHead": "hawlucha"
+            },
+            {
+              "regionalNo": 142,
+              "nationalNo": 766,
+              "slug": "passimian",
+              "lineHead": "passimian"
+            },
+            {
+              "regionalNo": 143,
+              "nationalNo": 559,
+              "slug": "scraggy",
+              "lineHead": "scraggy"
+            },
+            {
+              "regionalNo": 144,
+              "nationalNo": 560,
+              "slug": "scrafty",
+              "lineHead": "scraggy"
+            },
+            {
+              "regionalNo": 145,
+              "nationalNo": 236,
+              "slug": "tyrogue",
+              "lineHead": "tyrogue"
+            },
+            {
+              "regionalNo": 146,
+              "nationalNo": 106,
+              "slug": "hitmonlee",
+              "lineHead": "tyrogue"
+            },
+            {
+              "regionalNo": 147,
+              "nationalNo": 107,
+              "slug": "hitmonchan",
+              "lineHead": "tyrogue"
+            },
+            {
+              "regionalNo": 148,
+              "nationalNo": 237,
+              "slug": "hitmontop",
+              "lineHead": "tyrogue"
+            },
+            {
+              "regionalNo": 149,
+              "nationalNo": 66,
+              "slug": "machop",
+              "lineHead": "machop"
+            },
+            {
+              "regionalNo": 150,
+              "nationalNo": 67,
+              "slug": "machoke",
+              "lineHead": "machop"
+            },
+            {
+              "regionalNo": 151,
+              "nationalNo": 68,
+              "slug": "machamp",
+              "lineHead": "machop"
+            },
+            {
+              "regionalNo": 152,
+              "nationalNo": 128,
+              "slug": "tauros",
+              "lineHead": "tauros"
+            }
+          ]
+        },
+        {
+          "label": "The Turquoise Reef",
+          "note": "Warm shallows and a coral shelf that runs the length of the eastern coast.",
+          "entries": [
+            {
+              "regionalNo": 153,
+              "nationalNo": 116,
+              "slug": "horsea",
+              "lineHead": "horsea"
+            },
+            {
+              "regionalNo": 154,
+              "nationalNo": 117,
+              "slug": "seadra",
+              "lineHead": "horsea"
+            },
+            {
+              "regionalNo": 155,
+              "nationalNo": 230,
+              "slug": "kingdra",
+              "lineHead": "horsea"
+            },
+            {
+              "regionalNo": 156,
+              "nationalNo": 120,
+              "slug": "staryu",
+              "lineHead": "staryu"
+            },
+            {
+              "regionalNo": 157,
+              "nationalNo": 121,
+              "slug": "starmie",
+              "lineHead": "staryu"
+            },
+            {
+              "regionalNo": 158,
+              "nationalNo": 222,
+              "slug": "corsola",
+              "lineHead": "corsola"
+            },
+            {
+              "regionalNo": 159,
+              "nationalNo": 458,
+              "slug": "mantyke",
+              "lineHead": "mantyke"
+            },
+            {
+              "regionalNo": 160,
+              "nationalNo": 226,
+              "slug": "mantine",
+              "lineHead": "mantyke"
+            },
+            {
+              "regionalNo": 161,
+              "nationalNo": 318,
+              "slug": "carvanha",
+              "lineHead": "carvanha"
+            },
+            {
+              "regionalNo": 162,
+              "nationalNo": 319,
+              "slug": "sharpedo",
+              "lineHead": "carvanha"
+            }
+          ]
+        },
+        {
+          "label": "The Impact Crater — Fossils",
+          "note": "A ring of cenotes marks where something enormous once fell out of the sky and ended a world.",
+          "entries": [
+            {
+              "regionalNo": 163,
+              "nationalNo": 345,
+              "slug": "lileep",
+              "lineHead": "lileep"
+            },
+            {
+              "regionalNo": 164,
+              "nationalNo": 346,
+              "slug": "cradily",
+              "lineHead": "lileep"
+            },
+            {
+              "regionalNo": 165,
+              "nationalNo": 142,
+              "slug": "aerodactyl",
+              "lineHead": "aerodactyl"
+            }
+          ]
+        },
+        {
+          "label": "Feathered Serpent Trial",
+          "note": "The region's pseudo-legendary, and the shape its oldest god is carved in.",
+          "entries": [
+            {
+              "regionalNo": 166,
+              "nationalNo": 443,
+              "slug": "gible",
+              "lineHead": "gible"
+            },
+            {
+              "regionalNo": 167,
+              "nationalNo": 444,
+              "slug": "gabite",
+              "lineHead": "gible"
+            },
+            {
+              "regionalNo": 168,
+              "nationalNo": 445,
+              "slug": "garchomp",
+              "lineHead": "gible"
+            }
+          ]
+        },
+        {
+          "label": "Legends of Anahua",
+          "note": "Three powers and a witness: the sun that dies and comes back, the serpent that rules the sky, the land that withholds the rain — and the small thing in the jungle that everything else descends from.",
+          "entries": [
+            {
+              "regionalNo": 169,
+              "nationalNo": 250,
+              "slug": "ho-oh",
+              "lineHead": "ho-oh"
+            },
+            {
+              "regionalNo": 170,
+              "nationalNo": 384,
+              "slug": "rayquaza",
+              "lineHead": "rayquaza"
+            },
+            {
+              "regionalNo": 171,
+              "nationalNo": 383,
+              "slug": "groudon",
+              "lineHead": "groudon"
+            },
+            {
+              "regionalNo": 172,
+              "nationalNo": 151,
+              "slug": "mew",
+              "lineHead": "mew"
+            }
+          ]
+        }
+      ],
+      "count": 172
+    }
+  ],
+  "allSlugs": [
+    "abomasnow",
+    "abra",
+    "aerodactyl",
+    "alakazam",
+    "amaura",
+    "ampharos",
+    "annihilape",
+    "anorith",
+    "arbok",
+    "arcanine",
+    "arctibax",
+    "ariados",
+    "armaldo",
+    "aurorus",
+    "avalugg",
+    "azumarill",
+    "baltoy",
+    "banette",
+    "basculegion-male",
+    "basculin-red-striped",
+    "baxcalibur",
+    "beartic",
+    "bellibolt",
+    "bellsprout",
+    "bergmite",
+    "bibarel",
+    "bidoof",
+    "bouffalant",
+    "bounsweet",
+    "braixen",
+    "breloom",
+    "bronzong",
+    "bronzor",
+    "buizel",
+    "cacnea",
+    "cacturne",
+    "camerupt",
+    "capsakid",
+    "carbink",
+    "carkol",
+    "carvanha",
+    "celebi",
+    "chandelure",
+    "chinchou",
+    "claydol",
+    "clefable",
+    "clefairy",
+    "cleffa",
+    "cloyster",
+    "coalossal",
+    "comfey",
+    "conkeldurr",
+    "copperajah",
+    "corsola",
+    "corviknight",
+    "corvisquire",
+    "cradily",
+    "cranidos",
+    "crobat",
+    "crocalor",
+    "cubchoo",
+    "cubone",
+    "cufant",
+    "dachsbun",
+    "deerling",
+    "delibird",
+    "delphox",
+    "dewgong",
+    "dodrio",
+    "doduo",
+    "drifblim",
+    "drifloon",
+    "ducklett",
+    "dusclops",
+    "dusknoir",
+    "duskull",
+    "eevee",
+    "ekans",
+    "electabuzz",
+    "electivire",
+    "elekid",
+    "empoleon",
+    "espeon",
+    "exeggcute",
+    "exeggutor",
+    "feebas",
+    "fennekin",
+    "fidough",
+    "flaaffy",
+    "flareon",
+    "fletchinder",
+    "fletchling",
+    "floatzel",
+    "flygon",
+    "forretress",
+    "frigibax",
+    "fuecoco",
+    "furret",
+    "gabite",
+    "garbodor",
+    "garchomp",
+    "garganacl",
+    "gastly",
+    "gengar",
+    "geodude",
+    "gible",
+    "glaceon",
+    "gligar",
+    "gliscor",
+    "golbat",
+    "golduck",
+    "golem",
+    "golett",
+    "golurk",
+    "gourgeist-average",
+    "grafaiai",
+    "graveler",
+    "greavard",
+    "greedent",
+    "grotle",
+    "groudon",
+    "grovyle",
+    "growlithe",
+    "gurdurr",
+    "haunter",
+    "hawlucha",
+    "heliolisk",
+    "helioptile",
+    "heracross",
+    "hitmonchan",
+    "hitmonlee",
+    "hitmontop",
+    "ho-oh",
+    "honchkrow",
+    "hoothoot",
+    "hoppip",
+    "horsea",
+    "houndstone",
+    "jolteon",
+    "jumpluff",
+    "kadabra",
+    "kingdra",
+    "kingler",
+    "krabby",
+    "kricketot",
+    "kricketune",
+    "krokorok",
+    "krookodile",
+    "kyurem",
+    "lampent",
+    "lanturn",
+    "lapras",
+    "leafeon",
+    "ledian",
+    "ledyba",
+    "lileep",
+    "linoone",
+    "litwick",
+    "lombre",
+    "lotad",
+    "ludicolo",
+    "lugia",
+    "lunatone",
+    "lycanroc-midday",
+    "machamp",
+    "machoke",
+    "machop",
+    "magby",
+    "magcargo",
+    "magmar",
+    "magmortar",
+    "magnemite",
+    "magneton",
+    "magnezone",
+    "mamoswine",
+    "mankey",
+    "mantine",
+    "mantyke",
+    "maractus",
+    "mareep",
+    "marill",
+    "marowak-alola",
+    "marshtomp",
+    "meowth",
+    "mew",
+    "milotic",
+    "miltank",
+    "mimikyu-disguised",
+    "misdreavus",
+    "mismagius",
+    "mudkip",
+    "munchlax",
+    "murkrow",
+    "nacli",
+    "naclstack",
+    "natu",
+    "noctowl",
+    "nosepass",
+    "numel",
+    "octillery",
+    "omanyte",
+    "omastar",
+    "onix",
+    "oricorio-baile",
+    "pachirisu",
+    "palossand",
+    "passimian",
+    "patrat",
+    "pelipper",
+    "persian",
+    "phantump",
+    "pichu",
+    "pikachu",
+    "pikipek",
+    "piloswine",
+    "pineco",
+    "piplup",
+    "ponyta",
+    "primeape",
+    "prinplup",
+    "probopass",
+    "psyduck",
+    "pumpkaboo-average",
+    "quagsire",
+    "qwilfish",
+    "raichu",
+    "rampardos",
+    "rapidash",
+    "rayquaza",
+    "remoraid",
+    "rockruff",
+    "rolycoly",
+    "rookidee",
+    "salandit",
+    "salazzle",
+    "sandaconda",
+    "sandile",
+    "sandshrew",
+    "sandslash",
+    "sandygast",
+    "sawsbuck",
+    "scatterbug",
+    "sceptile",
+    "scovillain",
+    "scrafty",
+    "scraggy",
+    "seadra",
+    "sealeo",
+    "seel",
+    "sentret",
+    "sharpedo",
+    "shellder",
+    "shroomish",
+    "shuppet",
+    "sigilyph",
+    "silicobra",
+    "skeledirge",
+    "skiploom",
+    "skuntank",
+    "skwovet",
+    "slugma",
+    "sneasel",
+    "snorlax",
+    "snover",
+    "solrock",
+    "spewpa",
+    "spheal",
+    "spinarak",
+    "stantler",
+    "staraptor",
+    "staravia",
+    "starly",
+    "starmie",
+    "staryu",
+    "steelix",
+    "steenee",
+    "stonjourner",
+    "stunky",
+    "sudowoodo",
+    "sunflora",
+    "sunkern",
+    "swampert",
+    "swanna",
+    "swinub",
+    "sylveon",
+    "tadbulb",
+    "talonflame",
+    "tangela",
+    "tangrowth",
+    "tauros",
+    "teddiursa",
+    "timburr",
+    "torterra",
+    "toucannon",
+    "toxel",
+    "toxtricity-amped",
+    "trapinch",
+    "treecko",
+    "trevenant",
+    "tropius",
+    "trubbish",
+    "trumbeak",
+    "tsareena",
+    "turtwig",
+    "tyrantrum",
+    "tyrogue",
+    "tyrunt",
+    "umbreon",
+    "unown",
+    "ursaluna",
+    "ursaring",
+    "vaporeon",
+    "vibrava",
+    "victreebel",
+    "vivillon",
+    "wailmer",
+    "wailord",
+    "walrein",
+    "watchog",
+    "weavile",
+    "weepinbell",
+    "wingull",
+    "wooper",
+    "wyrdeer",
+    "xatu",
+    "zapdos",
+    "zigzagoon",
+    "zoroark",
+    "zorua",
+    "zubat"
+  ],
+  "criteria": {
+    "thematic": {
+      "label": "Thematic",
+      "blurb": "Built on the region's real-world cultures, myths, stories, industries or institutions."
+    },
+    "fauna": {
+      "label": "Animal / Fauna",
+      "blurb": "Based on an animal or plant genuinely tied to the region."
+    },
+    "stylistic": {
+      "label": "Stylistic",
+      "blurb": "Matches the region's design aesthetic — its landscape, palette and mood."
+    },
+    "mechanics": {
+      "label": "Mechanics",
+      "blurb": "Fills a slot a Pokémon region needs: a starter, a route staple, type coverage, a fossil, a pseudo-legendary, a legendary."
+    }
+  }
+}

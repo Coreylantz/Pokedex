@@ -1,0 +1,84 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.5.8/schema.json",
+
+  "files": {
+    "includes": [
+      "src/**/*.{ts,tsx}",
+      "scripts/**/*.ts",
+      "e2e/**/*.ts",
+      ".storybook/**/*.{ts,tsx}",
+      "*.config.{js,ts}"
+    ]
+  },
+
+  "formatter": { "enabled": false },
+  "assist": { "enabled": false },
+
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": false,
+
+      "complexity": {
+        "noExcessiveCognitiveComplexity": {
+          "level": "error",
+          "options": { "maxAllowedComplexity": 15 }
+        },
+        "noExcessiveNestedTestSuites": "error",
+        "noUselessTernary": "error",
+        "noForEach": "off"
+      },
+
+      "security": {
+        "noDangerouslySetInnerHtml": "error",
+        "noDangerouslySetInnerHtmlWithChildren": "error",
+        "noGlobalEval": "error",
+        "noBlankTarget": "error"
+      },
+
+      "suspicious": {
+        "noApproximativeNumericConstant": "error",
+        "noAssignInExpressions": "error",
+        "noConsole": { "level": "off" },
+        "noDocumentCookie": "error",
+        "noEmptyBlockStatements": "error",
+        "noFallthroughSwitchClause": "error",
+        "noGlobalAssign": "error",
+        "noImplicitAnyLet": "error",
+        "noMisleadingCharacterClass": "error",
+        "noPrototypeBuiltins": "error",
+        "noShadowRestrictedNames": "error"
+      },
+
+      "correctness": {
+        "noConstantMathMinMaxClamp": "error",
+        "noUnusedFunctionParameters": "off",
+        "useValidTypeof": "error"
+      }
+    }
+  },
+
+  "overrides": [
+    {
+      "includes": ["scripts/**/*.ts", "e2e/**/*.ts", "*.config.{js,ts}"],
+      "linter": {
+        "rules": {
+          "suspicious": { "noEmptyBlockStatements": "off" }
+        }
+      }
+    },
+    {
+      "includes": ["src/components/ActiveScreen.tsx", "src/components/PokemonPage.tsx"],
+      "linter": {
+        "rules": {
+          "complexity": {
+            "noExcessiveCognitiveComplexity": {
+              "level": "error",
+              "options": { "maxAllowedComplexity": 20 }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

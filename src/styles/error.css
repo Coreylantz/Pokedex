@@ -1,0 +1,69 @@
+/* @layer components
+
+   The failure screen. Takes the whole display rather than floating over it,
+   so it inherits the screen palette and reads as the device reporting a fault
+   rather than a notification sitting on top of the app. */
+
+@layer components {
+.errscreen {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 0.6rem;
+  min-block-size: 100%;
+  padding: 1.5rem 1.25rem;
+  text-align: center;
+}
+
+/* Boxed like the screen's own warning glyph, not tinted red: the gen 1 screen
+   is four shades of grey and has no red to spend. */
+.errscreen__mark {
+  display: grid;
+  place-items: center;
+  inline-size: 3rem;
+  block-size: 3rem;
+  border: 3px solid var(--scr-ink);
+  border-radius: var(--radius);
+  background: var(--scr-dim);
+  margin-block-end: 0.3rem;
+}
+
+.errscreen__mark .pixel-icon {
+  inline-size: 1.6rem;
+  block-size: 1.6rem;
+}
+
+.errscreen__title {
+  font-family: var(--font-ui);
+  font-size: var(--ui-lg);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.errscreen__detail {
+  font-family: var(--font-prose);
+  font-size: var(--ui-md);
+  line-height: 1.6;
+  max-inline-size: 32ch;
+}
+
+/* Monospaced and quiet: it is for copying into a bug report, not for reading. */
+.errscreen__code {
+  font-family: var(--font-ui);
+  font-size: var(--ui-xs);
+  color: var(--scr-mid);
+  overflow-wrap: anywhere;
+  max-inline-size: 34ch;
+  padding: 0.35rem 0.5rem;
+  border: 2px dashed var(--scr-mid);
+  border-radius: var(--radius);
+}
+
+.errscreen__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-block-start: 0.4rem;
+}
+}

@@ -1,0 +1,132 @@
+/* @layer device */
+
+@layer device {
+.screen__tabs {
+  display: flex;
+  justify-content: center;
+  padding-block-end: 0.6rem;
+  border-block-end: 3px solid var(--scr-ink);
+}
+
+/* The shell-off restyling of the region tabs lives with the tabs themselves,
+   in @layer components — a later layer beats specificity, so a copy here
+   would never apply. */
+
+.device__top {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.lens {
+  position: relative;
+  inline-size: 2.4rem;
+  block-size: 2.4rem;
+  flex: none;
+  border-radius: 50%;
+  background: radial-gradient(circle at 34% 30%, var(--lens-lit), var(--lens) 55%, #10233d);
+  box-shadow:
+    0 0 0 0.22rem var(--shell-ink),
+    0 0 0 0.34rem var(--shell-dim),
+    inset 0 2px 6px rgb(0 0 0 / 0.5);
+}
+
+.lens__glint {
+  position: absolute;
+  inset-block-start: 18%;
+  inset-inline-start: 20%;
+  inline-size: 26%;
+  block-size: 26%;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 0.85);
+}
+
+.app[data-skin='gen2'] .lens {
+  inline-size: 1.8rem;
+  block-size: 1.8rem;
+  border-radius: 0.4rem;
+}
+
+.lamps {
+  display: flex;
+  gap: 0.3rem;
+  flex: none;
+}
+
+.lamp {
+  inline-size: 0.6rem;
+  block-size: 0.6rem;
+  border-radius: 50%;
+  box-shadow:
+    inset 0 -2px 3px rgb(0 0 0 / 0.4),
+    inset 0 2px 2px rgb(255 255 255 / 0.5);
+}
+
+.lamp--a { background: var(--lamp-a); }
+
+.lamp--b { background: var(--lamp-b); }
+
+.lamp--c { background: var(--lamp-c); }
+
+.app[data-skin='gen2'] .lamp--c {
+  display: none;
+}
+
+.device__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-inline-start: auto;
+  color: var(--shell-ink);
+}
+
+.device__name {
+  font-family: var(--font-ui);
+  font-size: var(--ui-sm);
+  letter-spacing: 0.04em;
+  text-shadow: 0 2px 0 var(--shell-deep);
+}
+
+.device__bezel {
+  position: relative;
+  min-block-size: 0;
+  padding: 0.7rem;
+  padding-block-start: 1.4rem;
+  border-radius: 0.7rem;
+  background: linear-gradient(180deg, var(--bezel-lit), var(--bezel));
+  box-shadow:
+    inset 0 2px 0 rgb(255 255 255 / 0.25),
+    inset 0 -3px 6px rgb(0 0 0 / 0.4);
+  display: grid;
+  /* Without an explicit constrained row the implicit row is `auto`, so a tall
+     page grows the screen past the bezel and the whole document scrolls
+     instead of the display. */
+  grid-template-rows: minmax(0, 1fr);
+}
+
+.bezel__lamp {
+  position: absolute;
+  inset-block-start: 0.45rem;
+  inset-inline-start: 0.7rem;
+  inline-size: 0.5rem;
+  block-size: 0.5rem;
+  border-radius: 50%;
+  background: var(--lamp-a);
+  box-shadow: 0 0 6px var(--lamp-a);
+}
+
+.bezel__slots {
+  position: absolute;
+  inset-block-start: 0.55rem;
+  inset-inline-end: 0.7rem;
+  inline-size: 3rem;
+  block-size: 0.3rem;
+  border-radius: 999px;
+  background: repeating-linear-gradient(
+    90deg,
+    rgb(0 0 0 / 0.35) 0 0.2rem,
+    transparent 0.2rem 0.45rem
+  );
+}
+}

@@ -1,0 +1,60 @@
+/* @layer screen */
+
+@layer screen {
+.screen {
+  min-block-size: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0.75rem;
+  border-radius: 0.25rem;
+  background: var(--scr-bg);
+  color: var(--scr-ink);
+  font-family: var(--font-ui);
+  font-size: var(--ui-md);
+  box-shadow: inset 0 0 0 2px rgb(0 0 0 / 0.35);
+  display: grid;
+  gap: 0.9rem;
+  align-content: start;
+}
+
+.app[data-glow='true'] .screen {
+  box-shadow:
+    inset 0 0 0 2px rgb(0 0 0 / 0.35),
+    inset 0 0 22px rgb(255 255 255 / 0.5);
+}
+
+.app[data-scanlines='true'] .screen {
+  background-image: repeating-linear-gradient(
+    180deg,
+    rgb(0 0 0 / 0.05) 0 1px,
+    transparent 1px 3px
+  );
+}
+
+@media (prefers-contrast: more) {
+  .app[data-scanlines='true'] .screen {
+    background-image: none;
+  }
+}
+
+.app[data-contrast='true'] .screen {
+  background-image: none;
+}
+
+.screen:focus {
+  outline: none;
+}
+
+/* ---------- screen transitions ----------
+   The display fades to blank and back: opacity only, no movement and no
+   scale, on an element inside the display so nothing can escape the frame.
+   The route is swapped while it is blank, which is what gives a real blank
+   frame between the two halves rather than a crossfade. */
+.app[data-transitions='true'] .screen__page {
+  transition: opacity 110ms linear;
+}
+
+.app[data-transitions='true'][data-fading='true'] .screen__page {
+  opacity: 0;
+}
+}

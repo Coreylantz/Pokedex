@@ -1,0 +1,55 @@
+/* @layer base */
+
+@layer base {
+body {
+  block-size: 100dvb;
+  margin: 0;
+  background: var(--room);
+  color: var(--room-ink);
+  font-family: var(--font-system);
+  line-height: 1.55;
+  /* The screen is the only thing that scrolls. Without this a tall settings
+     page grows the document and puts a second scrollbar on the window. */
+  overflow: hidden;
+}
+
+/* ...except when the device is too tall to fit, where the page has to. */
+@media (height < 34rem) and (orientation: portrait) {
+  body {
+    block-size: auto;
+    min-block-size: 100dvb;
+    overflow: auto;
+  }
+}
+
+/* The system preference is honoured by default; the Settings toggle forces
+   it on for anyone whose system does not expose one. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.app[data-reduce-motion='true'] *,
+.app[data-reduce-motion='true'] *::before,
+.app[data-reduce-motion='true'] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+}

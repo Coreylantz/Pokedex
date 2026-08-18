@@ -1,0 +1,166 @@
+/* @layer components
+
+   The Pokemon detail page: header, artwork, flavour text, measurements.
+   Base stats are in stats.css and the /explained panel is in why.css, both
+   of which load after this file and depend on the layout it establishes. */
+
+@layer components {
+.monpage {
+  display: grid;
+  gap: 0.9rem;
+  align-content: start;
+}
+
+.monpage__bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-block-end: 0.6rem;
+  border-block-end: 3px solid var(--scr-ink);
+}
+
+.monpage__crumb {
+  font-family: var(--font-ui);
+  font-size: var(--ui-xs);
+  text-transform: uppercase;
+  color: var(--scr-accent);
+}
+
+.monpage__badge {
+  margin-inline-start: 0.4rem;
+  padding: 0.1rem 0.4rem;
+  background: var(--scr-ink);
+  color: var(--scr-bg);
+  border-radius: 0.2rem;
+}
+
+.monpage__step {
+  display: flex;
+  gap: 0.35rem;
+  margin-inline-start: auto;
+}
+
+.monpage__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.monpage__art {
+  flex: none;
+  display: grid;
+  place-items: center;
+  inline-size: 7rem;
+  block-size: 7rem;
+  border: 3px solid var(--scr-ink);
+  border-radius: var(--radius);
+  background: var(--scr-dim);
+}
+
+.monpage__id {
+  display: grid;
+  gap: 0.25rem;
+  min-inline-size: 9rem;
+  flex: 1;
+}
+
+.monpage__title {
+  font-family: var(--font-ui);
+  font-size: var(--ui-xl);
+  text-transform: uppercase;
+}
+
+.monpage__title:focus {
+  outline: none;
+}
+
+.monpage__genus {
+  font-family: var(--font-prose);
+  font-size: var(--ui-md);
+}
+
+.monpage__national {
+  font-family: var(--font-ui);
+  font-size: var(--ui-xs);
+  color: var(--scr-accent);
+}
+
+.monpage__types {
+  display: flex;
+  gap: 0.3rem;
+  list-style: none;
+  padding: 0;
+  margin-block-start: 0.2rem;
+}
+
+.monpage__body {
+  display: grid;
+  gap: 0.9rem;
+  align-content: start;
+}
+
+.monpage__flavour {
+  font-family: var(--font-prose);
+  font-size: var(--ui-md);
+  line-height: 1.6;
+  padding: 0.75rem 0.85rem;
+  border: 3px solid var(--scr-ink);
+  border-radius: var(--radius);
+  background: var(--scr-dim);
+}
+
+.monpage__measures {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  padding: 0.6rem 0.75rem;
+  border: 3px solid var(--scr-ink);
+  border-radius: var(--radius);
+}
+
+.monpage__measures dt {
+  font-family: var(--font-ui);
+  font-size: var(--ui-xs);
+  text-transform: uppercase;
+  color: var(--scr-accent);
+}
+
+.monpage__measures dd {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: var(--ui-md);
+}
+
+.monpage__metric {
+  font-family: var(--font-prose);
+  font-size: var(--ui-sm);
+  opacity: 0.78;
+}
+
+.monpage__area {
+  font-family: var(--font-prose);
+  font-size: var(--ui-md);
+}
+
+.monpage__area-label,
+.why__variant-label {
+  font-family: var(--font-ui);
+  font-size: var(--ui-xs);
+  text-transform: uppercase;
+  padding: 0.12rem 0.45rem;
+  margin-inline-end: 0.4rem;
+  background: var(--scr-ink);
+  color: var(--scr-bg);
+  border-radius: 0.2rem;
+}
+
+.monpage__subhead {
+  font-family: var(--font-ui);
+  font-size: var(--ui-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--scr-accent);
+  margin-block-end: 0.4rem;
+}
+}

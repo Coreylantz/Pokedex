@@ -1,0 +1,116 @@
+/* @layer components */
+
+@layer components {
+/* ---------- generic page ---------- */
+
+.page {
+  display: grid;
+  gap: 0.9rem;
+  align-content: start;
+}
+
+.page__bar {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding-block-end: 0.6rem;
+  border-block-end: 3px solid var(--scr-ink);
+}
+
+.page__title {
+  font-family: var(--font-ui);
+  font-size: var(--ui-xl);
+  text-transform: uppercase;
+}
+
+.page__tagline {
+  font-family: var(--font-ui);
+  font-size: var(--ui-sm);
+  color: var(--scr-accent);
+}
+
+.page__blurb,
+.area__note,
+.setting__hint {
+  font-family: var(--font-prose);
+  font-size: var(--ui-md);
+  line-height: 1.6;
+}
+
+.page__subhead {
+  font-family: var(--font-ui);
+  font-size: var(--ui-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--scr-accent);
+  padding-block-start: 0.5rem;
+  border-block-start: 2px dashed var(--scr-mid);
+}
+
+.factlist {
+  display: grid;
+  gap: 0.7rem;
+  padding: 0.8rem;
+  border: 3px solid var(--scr-ink);
+  border-radius: var(--radius);
+}
+
+.factlist dt {
+  font-family: var(--font-ui);
+  font-size: var(--ui-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--scr-accent);
+}
+
+.factlist dd {
+  margin: 0;
+  font-family: var(--font-prose);
+  font-size: var(--ui-md);
+}
+
+.area-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.area__button {
+  inline-size: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.15rem 0.7rem;
+  align-items: center;
+  padding: 0.7rem 0.8rem;
+  border: 3px solid var(--scr-ink);
+  border-radius: var(--radius);
+  background: var(--scr-bg);
+  color: var(--scr-ink);
+  cursor: pointer;
+  text-align: start;
+}
+
+.area__button:hover {
+  background: var(--scr-dim);
+}
+
+.area__no {
+  grid-row: span 2;
+  font-family: var(--font-ui);
+  font-size: var(--ui-lg);
+  color: var(--scr-accent);
+}
+
+.area__name {
+  font-family: var(--font-ui);
+  font-size: var(--ui-md);
+  text-transform: uppercase;
+}
+
+.area__range {
+  font-family: var(--font-ui);
+  font-size: var(--ui-xs);
+  color: var(--scr-accent);
+}
+}

@@ -1,0 +1,14 @@
+# pnpm 11 reads install settings from here rather than from package.json.
+#
+# Build scripts are blocked by default — a postinstall is arbitrary code from a
+# transitive dependency, so opting in per package is the right default. Only
+# one package in this tree actually needs one.
+#
+# esbuild's postinstall resolves and links its platform binary. Without it,
+# anything that shells out to esbuild — Storybook's builder among them — fails
+# at run time rather than at install, which is a much worse place to find out.
+#
+# The other native packages here (Rolldown, TypeScript, oxlint, lightningcss)
+# ship prebuilt binaries as optional platform dependencies and need no script.
+allowBuilds:
+  esbuild: true

@@ -1,0 +1,10 @@
+# Store everything with LF in the repository and let Git hand out the platform's
+# native endings on checkout. Without this, committing from Windows bakes CRLF
+# into the objects and every diff from a Mac or CI box shows whole files as
+# changed.
+* text=auto eol=lf
+
+# Binary: never touch these.
+*.png binary
+*.woff2 binary
+*.ico binary

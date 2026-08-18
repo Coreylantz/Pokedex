@@ -1,0 +1,74 @@
+/* @layer tokens
+
+   Loaded after tokens.css: these override the defaults declared there.
+   [data-contrast] comes last so it wins over both skins. */
+
+@layer tokens {
+/* ---- Generation I shell: red body, blue lens, grey LCD ---- */
+.app[data-skin='gen1'] {
+  --shell-lit: #e0453f;
+  --shell: #c62828;
+  --shell-dim: #9c1f1f;
+  --shell-deep: #6f1414;
+  --bezel: #37373f;
+  --bezel-lit: #4a4a54;
+  --lens: #2f7fd4;
+  --lens-lit: #8fd4f7;
+  --lamp-a: #f0524a;
+  --lamp-b: #f2d045;
+  --lamp-c: #4fd07f;
+  --shell-ink: #ffe9e6;
+  --tab-ink: #ffe9e6;
+  /* 10.1:1 against --tab-ink. */
+  --tab-plate: #6f1414;
+
+  --scr-bg: #ecece4;
+  --scr-dim: #d6d6ce;
+  --scr-mid: #5a5a56;
+  --scr-ink: #16161a;
+  --scr-accent: #3d3d42;
+  --focus-screen: #16161a;
+  --focus-shell: #ffffff;
+}
+
+/* ---- Generation II shell: gold body, silver trim, colour screen ---- */
+.app[data-skin='gen2'] {
+  --shell-lit: #e8c76a;
+  --shell: #cba43c;
+  --shell-dim: #a37f22;
+  --shell-deep: #6f5512;
+  --bezel: #9ea3ad;
+  --bezel-lit: #c6cbd4;
+  --lens: #2f9d63;
+  --lens-lit: #9ce8bd;
+  --lamp-a: #e04a4a;
+  --lamp-b: #4a7fe0;
+  --lamp-c: #f2d045;
+  --shell-ink: #3a2c06;
+  /* The tabs sit on their own plate, not on the shell face, so they need their
+     own ink: gen2's --shell-ink is dark for the gold body and would be dark
+     on dark here. */
+  --tab-ink: #fbf3dd;
+  /* Its own token rather than reusing --shell-deep, which also draws the
+     grille, the seam and three shadows. On the gold shell that value is
+     #6f5512, which puts this label at 6.36:1 — fine for AA, just under AAA's
+     7:1. Darkened here only, so the shadows keep their tuning. Now 7.45:1. */
+  --tab-plate: #634b10;
+
+  --scr-bg: #f8f2dc;
+  --scr-dim: #e3dabb;
+  --scr-mid: #6d7794;
+  --scr-ink: #1d2540;
+  --scr-accent: #1b4f9c;
+  --focus-screen: #1b4f9c;
+  --focus-shell: #2a2005;
+}
+
+/* Must come after both skins. `data-skin` is always present, so these have
+   identical specificity and source order alone decides — placed any earlier
+   the skin wins and high contrast silently does nothing. */
+.app[data-contrast='true'] {
+  --scr-accent: var(--scr-ink);
+  --scr-mid: var(--scr-ink);
+}
+}

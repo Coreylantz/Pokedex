@@ -1,0 +1,85 @@
+/* @layer components */
+
+@layer components {
+/* ---------- settings ---------- */
+
+.settings-group {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.setting {
+  display: grid;
+  gap: 0.35rem;
+  padding: 0.8rem;
+  border: 3px solid var(--scr-ink);
+  border-radius: var(--radius);
+}
+
+.setting__label {
+  font-family: var(--font-ui);
+  font-size: var(--ui-md);
+  text-transform: uppercase;
+}
+
+.setting__select,
+.finder__input {
+  inline-size: 100%;
+  padding: 0.5rem 0.6rem;
+  border: 3px solid var(--scr-ink);
+  border-radius: 0.25rem;
+  background: var(--scr-dim);
+  color: var(--scr-ink);
+  font-family: var(--font-ui);
+  font-size: var(--ui-md);
+}
+
+.setting__foot {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-size: var(--ui-sm);
+  text-transform: uppercase;
+}
+
+.switch input {
+  position: absolute;
+  opacity: 0;
+  inline-size: 1px;
+  block-size: 1px;
+}
+
+.switch__track {
+  inline-size: 2.4rem;
+  block-size: 1.3rem;
+  border: 3px solid var(--scr-ink);
+  background: var(--scr-dim);
+  position: relative;
+}
+
+.switch__track::after {
+  content: '';
+  position: absolute;
+  inset-block: 0.1rem;
+  inset-inline-start: 0.1rem;
+  inline-size: 0.8rem;
+  background: var(--scr-ink);
+  transition: translate 140ms ease;
+}
+
+.switch:has(input:checked) .switch__track::after {
+  translate: 0.9rem 0;
+}
+
+.switch:has(input:focus-visible) .switch__track {
+  outline: 3px solid var(--focus-screen);
+  outline-offset: 2px;
+}
+}
