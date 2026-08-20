@@ -1,14 +1,8 @@
 /**
- * Measures dropped frames and main-thread work while scrolling the dex.
- *
- * Scroll smoothness is one of the few things no static budget catches: the
- * bundle can be small, LCP fast and INP green while dragging a long list still
- * feels like sandpaper, because the cost is per-frame rather than per-load.
- *
- * Reports the three things that actually explain a stutter:
- *   - long tasks (>50ms) blocking the main thread during the scroll
- *   - forced synchronous layouts, i.e. layout thrashing in a scroll handler
- *   - frame intervals, to see how many frames missed the 60fps budget
+ * Scroll smoothness is per-frame, not per-load, so no static budget catches it:
+ * the bundle can be small and INP green while dragging still feels like
+ * sandpaper. Reports long tasks, forced synchronous layouts, and frame
+ * intervals against the 60fps budget.
  *
  * Run with: npm run jank
  */
@@ -53,8 +47,7 @@ try {
   const page = await context.newPage()
 
   const cdp = await context.newCDPSession(page)
-  // 4x is a mid-range phone. Jank that only appears under throttling is still
-  // jank — it is what most readers will actually get.
+  // 4x is a mid-range phone, which is what most readers actually get.
   await cdp.send('Emulation.setCPUThrottlingRate', { rate: 4 })
 
   await page.addInitScript(() => {
@@ -82,7 +75,7 @@ try {
   })
 
   const drag = async () => {
-    // A real drag rather than scrollTo, which skips the compositor path.
+    // A real drag: scrollTo skips the compositor path.
     const box = await page.locator('.screen').boundingBox()
     if (!box) throw new Error('no screen')
     for (let i = 0; i < 8; i++) {
@@ -120,15 +113,9 @@ try {
     }
   }
 
-  /*
-   * Two phases, because they are different problems.
-   *
-   * "while loading" is what a reader actually meets: 158 species streaming in
-   * one at a time while they are already dragging. "settled" is the same list
-   * once every card has its data. A list that scrolls perfectly when idle can
-   * still stutter badly during the load, and only the first number explains a
-   * complaint about the dex feeling rough.
-   */
+  // Two phases: a list that scrolls perfectly when settled can still stutter
+  // badly while 158 species stream in, and only that first number explains a
+  // complaint about the dex feeling rough.
   await page.goto(`${ORIGIN}/kanata/pokemon`, { waitUntil: 'commit' })
   await page.evaluate(() => (window as unknown as { __watch: () => void }).__watch())
   await page.locator('.dex-card').first().waitFor({ timeout: 30_000 })

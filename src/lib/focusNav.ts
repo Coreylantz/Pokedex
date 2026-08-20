@@ -1,35 +1,23 @@
-/**
- * Directional focus movement for the screen.
- *
- * Both the keyboard arrows and the on-device D-pad route through here, so the
- * plastic buttons do exactly what the real keys do rather than being a second,
- * subtly different implementation.
- */
+/** Both the keyboard arrows and the on-device D-pad route through here. */
 export type Direction = 'up' | 'down' | 'left' | 'right'
 
 const FOCUSABLE =
   'a[href], button:not(:disabled), input:not(:disabled), select, textarea, [tabindex]:not([tabindex="-1"])'
 
 function focusableIn(root: Element): HTMLElement[] {
-  // Collapsed panels are unmounted rather than hidden, so presence in the DOM
-  // is enough — and unlike offsetParent this does not depend on layout, which
-  // keeps it testable.
+  // Collapsed panels are unmounted, so presence in the DOM is enough — and
+  // unlike offsetParent this does not depend on layout, which keeps it testable.
   return [...root.querySelectorAll<HTMLElement>(FOCUSABLE)].filter(
     (el) => !el.closest('[hidden], [aria-hidden="true"]'),
   )
 }
 
-/**
- * How many items sit on one row of the dex grid, read off the resolved
- * template rather than guessed, so it stays correct at every breakpoint.
- */
 function gridColumns(el: Element | undefined): number {
   const grid = el?.closest('.dex-grid')
   if (!grid) return 1
   return getComputedStyle(grid).gridTemplateColumns.split(' ').filter(Boolean).length
 }
 
-/** Moves focus within `root`. Returns true if it handled the movement. */
 export function moveFocus(root: Element | null, direction: Direction): boolean {
   if (!root) return false
   const items = focusableIn(root)
@@ -52,7 +40,7 @@ export function moveFocus(root: Element | null, direction: Direction): boolean {
   const target = items[next]
   if (!target) return false
   target.focus()
-  // Not implemented in every environment, and a nicety rather than a necessity.
+  // Not implemented everywhere, and a nicety rather than a necessity.
   target.scrollIntoView?.({ block: 'nearest' })
   return true
 }

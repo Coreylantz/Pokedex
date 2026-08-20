@@ -7,14 +7,9 @@ import { hrefFor } from '../lib/router'
 import type { DexEntry, Page, Pokemon, Region, Route } from '../lib/types'
 
 /**
- * Everything past the menu and the list is loaded on demand.
- *
- * The menu is the landing screen and the dex grid is one tap away, so both
- * stay in the entry chunk. The entry page, region write-up, area page and
- * settings are all somewhere you choose to go, and each is dead weight on a
- * first paint that only ever shows three tiles. The service worker precaches
- * every chunk, so this costs nothing offline and one cheap request on a first
- * visit.
+ * The menu and grid stay in the entry chunk; everything you choose to navigate
+ * to is dead weight on a first paint of three tiles. The SW precaches every
+ * chunk, so this costs nothing offline.
  */
 const PokemonPage = lazy(() => import('./PokemonPage').then((m) => ({ default: m.PokemonPage })))
 const RegionInfo = lazy(() => import('./RegionInfo').then((m) => ({ default: m.RegionInfo })))
@@ -72,26 +67,19 @@ type ActiveScreenSetter = <K extends keyof import('../lib/types').Settings>(
 ) => void
 
 /**
- * Picks the screen for the current route.
+ * Its own component rather than a ladder inside App, which scored 26 on
+ * cognitive complexity against a limit of 15 — every branch is charged again
+ * for its enclosing component.
  *
- * Its own component rather than a chain inside App: as an inline if/else ladder
- * it was most of why App scored 26 on cognitive complexity against a limit of
- * 15, because every branch is charged again for the component enclosing it.
- * Out here the chain is flat and reads as what it is — a routing table.
- *
- * Order matters. The two failure cases come first, because an entry that could
- * not be read and a dex that could not be reached both have to win over the
- * screens that would otherwise render empty and claim everything is fine.
+ * Order matters: the failure cases come first, or the screens below render
+ * empty and claim everything is fine.
  */
 export function ActiveScreen(props: ActiveScreenProps) {
   const { route, region, entry, failedSlugs } = props
   const { page } = route
 
-  /*
-   * Real URLs for every navigating control, so each can be a link rather than
-   * a button. They are derived from the current route, which is what keeps a
-   * link's href and the click handler describing the same destination.
-   */
+  // Derived from the current route, which is what keeps each href and its
+  // click handler describing the same destination.
   const href = {
     menu: hrefFor(route, { page: 'menu', mon: null, area: null }),
     dex: hrefFor(route, { page: 'dex', mon: null, area: null }),
@@ -171,8 +159,8 @@ export function ActiveScreen(props: ActiveScreenProps) {
   }
 
   if (page === 'dex' && props.dexUnreachable) {
-    // Nothing arrived at all. Showing an empty grid with a small note would
-    // read as "this region has no Pokemon", which is a worse lie than an error.
+    // An empty grid would read as "this region has no Pokemon" — a worse lie
+    // than an error.
     return (
       <ErrorScreen
         title={props.online ? 'No answer' : 'Offline'}

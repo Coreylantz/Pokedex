@@ -1,9 +1,6 @@
 /**
- * Build-time generator for the two regional dexes.
- *
- * Reads the hand-authored species lists in `scripts/region-lists.ts`, resolves
- * every slug against PokeAPI (so national dex numbers are never hand-typed and
- * therefore never wrong), and emits `src/data/regions.json`.
+ * Emits `src/data/regions.json` from the lists in `scripts/region-lists.ts`,
+ * resolving every slug against PokeAPI so dex numbers are never hand-typed.
  *
  * Run with: npm run build:dex
  */
@@ -14,15 +11,9 @@ import { REGIONS } from './region-lists.ts'
 import { ALLOWED_VARIANTS as VARIANT_LIST } from '../src/lib/variants.ts'
 import type { DraftEntry, Resolved } from './build-types.ts'
 
-// A Set here, an array there: the app derives a suffix regex from the order,
-// this file only ever asks whether a slug is in it.
+// A Set here, an array in the app, which derives a suffix regex from the order.
 const ALLOWED_VARIANTS: ReadonlySet<string> = new Set<string>(VARIANT_LIST)
 
-/**
- * Resolves a slug to its species name and national number by asking the API
- * rather than by pattern-matching the suffix — the only reliable way once
- * regional forms are in play.
- */
 async function resolveSpecies(slug: string): Promise<Resolved> {
   const mon = await fetch(`https://pokeapi.co/api/v2/pokemon/${slug}`)
   if (!mon.ok) throw new Error(`pokemon fetch failed for ${slug}: ${mon.status}`)
@@ -36,14 +27,12 @@ async function resolveSpecies(slug: string): Promise<Resolved> {
   }
   return {
     name: payload.name,
-    // A regional form keeps its species' national number: Alolan Marowak is
-    // still #105, not #10115.
+    // Alolan Marowak is still #105, not #10115.
     nationalNo: payload.id,
     chain: payload.evolution_chain.url,
   }
 }
 
-/** Runs `worker` over `items` a few at a time. */
 async function pooled<T, R>(
   items: T[],
   worker: (item: T) => Promise<R>,
@@ -104,7 +93,6 @@ const regions = REGIONS.map((region) => {
 
 const allSlugs = regions.flatMap((r) => r.sections.flatMap((s) => s.entries.map((e) => e.slug)))
 
-// Report every bad slug at once rather than dying on the first one.
 if (problems.length) {
   console.error(problems.join('\n'))
   process.exit(1)
@@ -112,7 +100,7 @@ if (problems.length) {
 
 const resolved = await pooled([...new Set(allSlugs)], resolveSpecies)
 
-/** Every slug was resolved above, so a miss here is a bug, not a data case. */
+/** A miss here is a bug: every slug was resolved above. */
 function speciesFor(slug: string) {
   const record = resolved.get(slug)
   if (!record) throw new Error(`no species record resolved for "${slug}"`)
@@ -127,14 +115,12 @@ for (const region of regions) {
   }
 }
 
-// Every line that is a starter in some generation. A starter is handed to you
-// by a professor, so it must not also be catchable on a route.
+// A starter is handed to you by a professor, so it must not also be catchable.
 const STARTER_LINES = await fetch('https://pokeapi.co/api/v2/pokemon-species?limit=100000')
   .then((r) => r.json())
   .then(({ results }: { results: { name: string }[] }) => {
-    // PokeAPI exposes no "is a starter" flag, so the trios are the hardcoded
-    // national-dex ranges below; the species list is fetched only to turn those
-    // ids into slugs. The same table is asserted in src/App.test.tsx.
+    // PokeAPI exposes no "is a starter" flag, so the trios are hardcoded below
+    // and the fetch only turns ids into slugs. Asserted in src/App.test.tsx.
     const ids: [from: number, to: number][] = [
       [1, 9], [152, 160], [252, 260], [387, 395], [495, 503],
       [650, 658], [722, 730], [810, 818], [906, 914],
@@ -157,10 +143,8 @@ for (const region of regions) {
 }
 
 /**
- * Kanata is a naturalistic northern region built on real cold-climate wildlife,
- * so it excludes the kaiju lineage — the Pokemon designed as rubber-suit
- * monsters rather than as animals. The set is explicit because nothing in the
- * API records design ancestry.
+ * Kanata is built on real cold-climate wildlife, so it excludes the kaiju
+ * lineage. Explicit because nothing in the API records design ancestry.
  */
 const KAIJU = new Set([
   'nidoran-f', 'nidorina', 'nidoqueen',
@@ -172,11 +156,7 @@ const KAIJU = new Set([
   'groudon', 'kyogre', 'regigigas', 'guzzlord', 'eternatus',
 ])
 
-/**
- * Kanata is boreal and arctic, and there are no primates north of the treeline,
- * so no monkey- or ape-based species may appear in it. Explicit for the same
- * reason: "is a monkey" cannot be derived from the API.
- */
+/** No primates north of the treeline, and "is a monkey" is not in the API. */
 const PRIMATES = new Set([
   'mankey', 'primeape', 'annihilape',
   'aipom', 'ambipom',
@@ -216,7 +196,7 @@ if (problems.length) {
   process.exit(1)
 }
 
-// Every species either dex references, so the offline prefetch knows its work list.
+// The offline prefetch's work list.
 const uniqueSlugs = [...new Set(allSlugs)].sort()
 
 await mkdir(dirname(outFile), { recursive: true })

@@ -13,13 +13,9 @@ const CONCURRENCY = 12
 const data = regionData as unknown as RegionData
 
 /**
- * Warms the service worker caches with every species in both dexes so the app
- * is genuinely usable offline — not just the pages you happened to visit.
- *
- * This is by far the most expensive thing the app does: 330 species over two
- * endpoints each, plus up to two sprites apiece. On a capped connection that
- * is the whole story, and the 130 kB of app around it is a rounding error — so
- * `lowBandwidth` gates it rather than trimming anything in the bundle.
+ * By far the most expensive thing the app does: 330 species over two endpoints
+ * each plus up to two sprites apiece, which dwarfs the 130 kB bundle. That is
+ * why `lowBandwidth` gates this rather than trimming anything shipped.
  */
 export function useOfflineCache({ lowBandwidth = false } = {}) {
   const [status, setStatus] = useState<PrimeStatus>(() =>
@@ -48,8 +44,7 @@ export function useOfflineCache({ lowBandwidth = false } = {}) {
     setStatus('priming')
 
     try {
-      // Nothing is durably cached until the worker controlling this page is
-      // active, so wait for it before spending requests.
+      // Nothing is durably cached until the controlling worker is active.
       if ('serviceWorker' in navigator) {
         await Promise.race([
           navigator.serviceWorker.ready,
@@ -57,18 +52,12 @@ export function useOfflineCache({ lowBandwidth = false } = {}) {
         ])
       }
 
-      // A single failed species must not abandon the download; the runtime
-      // cache picks it up next time it is viewed online.
       const failures = await pooled(
         data.allSlugs,
         async (slug) => {
           const mon = await loadPokemon(slug)
-          // Pull the sprites through the SW too. The shiny is the one sprite a
-          // reader may never look at — it needs the Shiny toggle turned on — so
-          // a data-saving download skips it. Worth doing, but keep it in
-          // proportion: sprites are only ~14% of the total, and the shiny half
-          // of that. The JSON is the expensive part and cannot be trimmed,
-          // because PokeAPI has no way to ask for fewer fields.
+          // The shiny needs a toggle turned on to ever be seen, so a
+          // data-saving download skips it.
           const wanted = lowBandwidth ? [mon.sprite] : [mon.sprite, mon.spriteShiny]
           const sprites = await Promise.all(
             wanted
@@ -78,15 +67,13 @@ export function useOfflineCache({ lowBandwidth = false } = {}) {
           if (sprites.some((res) => !res.ok)) throw new Error(`sprite fetch failed for ${slug}`)
         },
         {
-          // Fewer lanes on a metered connection: the point is to stay out of
-          // the way of whatever else the device is doing.
+          // Stay out of the way of whatever else a metered device is doing.
           limit: lowBandwidth ? 4 : CONCURRENCY,
           onSettled: () => setDone((n) => n + 1),
         },
       )
 
-      // Only claim the dex is offline-ready when every species actually landed;
-      // a partial download must not be remembered as complete.
+      // A partial download must not be remembered as complete.
       if (failures > 0) {
         setStatus('error')
         return
@@ -101,21 +88,11 @@ export function useOfflineCache({ lowBandwidth = false } = {}) {
   }, [lowBandwidth])
 
   /*
-   * There is deliberately no automatic prime.
-   *
-   * This used to download the whole dex on the first online visit. Measured,
-   * that is ~4 MB across ~1,320 requests — thirty times the app itself — spent
-   * before the reader has opened a single entry, and against somebody else's
-   * free API. Most visits look at a handful of species, so most of it was
-   * waste, and on a metered connection it was waste the reader paid for.
-   *
-   * What replaces it costs nothing: the service worker's cache-first routes
-   * already keep every species and sprite you actually open, so browsing the
-   * dex builds an offline copy of the parts you use. Wanting the *whole* thing
-   * offline is a real intent, so it stays one button in Settings — declared
-   * rather than assumed.
-   *
-   * See scripts/runtime-cost.ts for the measurement.
+   * There is deliberately no automatic prime. Doing it on first visit measured
+   * ~4 MB over ~1,320 requests against somebody else's free API, before the
+   * reader opened a single entry. The SW's cache-first routes already keep
+   * whatever you actually open, so this stays one button in Settings.
+   * See scripts/runtime-cost.ts.
    */
 
   return { status, done, total, online, prime, lowBandwidth }

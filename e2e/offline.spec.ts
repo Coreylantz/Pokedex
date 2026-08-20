@@ -1,16 +1,11 @@
 import { expect, test } from '@playwright/test'
 
 /**
- * The service worker, actually exercised.
- *
- * Every other spec blocks workers so a stale precache cannot shadow a fresh
- * build. This one allows them, because the worker is the subject: whether the
- * shell precaches, whether species data and sprites land in the cache-first
- * routes, whether that cache is kept long enough to be worth having, and
- * whether a cold start with the network cut still renders a dex.
+ * Every other spec blocks service workers so a stale precache cannot shadow a
+ * fresh build; here the worker is the subject, so they are allowed.
  *
  * Serial and single-worker: a registration is per-origin, so parallel tests
- * would be claiming and unregistering the same worker underneath each other.
+ * would claim and unregister the same worker underneath each other.
  */
 test.describe.configure({ mode: 'serial' })
 
@@ -31,12 +26,8 @@ test('registers a worker and precaches the app shell', async ({ page }) => {
   await page.goto('/kanata')
   await serviceWorkerReady(page)
 
-  /**
-   * Polled, not read once. A worker becomes active as soon as its install
-   * handler resolves, but Workbox writes precache entries during that install
-   * — so a single read can land mid-population and report a half-filled cache.
-   * This asks the same question until it settles.
-   */
+  // A worker goes active as soon as install resolves, but Workbox writes
+  // precache entries during it, so one read can catch a half-filled cache.
   const precachedUrls = async () =>
     page.evaluate(async () => {
       const names = await window.caches.keys()
@@ -48,16 +39,8 @@ test('registers a worker and precaches the app shell', async ({ page }) => {
       return urls
     })
 
-  /*
-   * The whole set is polled, not just the first entry. Precaching writes many
-   * files and finishes at its own pace; asserting the rest with a single read
-   * after one of them arrives passes on an idle machine and fails when the
-   * other Playwright projects are loading the same server — which is exactly
-   * how it failed the first time it ran inside `npm run verify`.
-   *
-   * Every lazy route chunk is required, not only the entry: without them
-   * "works offline" would be true of the menu and nothing else.
-   */
+  // Every lazy route chunk is required, or "works offline" would be true of
+  // the menu and nothing else.
   const REQUIRED = [
     /\/assets\/index-.*\.js/,
     /\/assets\/index-.*\.css/,
@@ -95,15 +78,6 @@ test('keeps species data and sprites in their own long-lived caches', async ({ p
       return counts
     })
 
-  /*
-   * Polled, not measured once after a fixed wait.
-   *
-   * Species data and sprites arrive from two different hosts at their own pace,
-   * and a sprite is only written to its cache once the image request completes.
-   * A three-second sleep was long enough on a developer machine and not long
-   * enough on a loaded CI runner, which is a test that reports the runner's
-   * load rather than the app's behaviour.
-   */
   await expect
     .poll(
       async () => {
@@ -149,8 +123,8 @@ test('navigateFallback serves a deep link offline', async ({ page, context }) =>
   await serviceWorkerReady(page)
   await page.waitForTimeout(1500)
 
-  // ...then ask for a different one with the network gone. There is no
-  // /kanata/region file on disk; this only works if navigateFallback is wired.
+  // ...then ask for a different one offline. There is no /kanata/region file on
+  // disk, so this only passes if navigateFallback is wired.
   await context.setOffline(true)
   await page.goto('/kanata/region')
   await expect(page.locator('.page__title')).toBeVisible({ timeout: 30_000 })

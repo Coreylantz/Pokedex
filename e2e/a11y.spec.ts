@@ -4,17 +4,10 @@ import type { Result } from 'axe-core'
 import { settled, stubPokeApi } from './fixtures/pokeapi'
 
 /**
- * Automated WCAG 2.1 A/AA scan of every route, at all three viewports, plus
- * axe's best-practice set.
- *
- * The best-practice rules were originally scoped out, with a comment arguing
- * that this shell "genuinely departs" from `landmark-one-main`. That argument
- * was wrong, and the scoping hid a real defect: `role="tabpanel"` had been put
- * on `<main>`, which replaces the landmark rather than adding to it, so the
- * document had no main landmark at all. Lighthouse found it; this suite could
- * not, because the rule was out of scope.
- *
- * So the tag scope now includes best-practice, and nothing is disabled.
+ * WCAG 2.1 A/AA over every route at all three viewports, plus axe's
+ * best-practice set with nothing disabled. Scoping best-practice out once hid
+ * a real defect — `role="tabpanel"` on `<main>` had removed the only landmark,
+ * and this suite could not see it.
  */
 const WCAG = [
   'wcag2a',
@@ -38,11 +31,7 @@ const ROUTES: [name: string, url: string][] = [
 
 const scan = (page: Page) => new AxeBuilder({ page }).withTags(WCAG)
 
-/**
- * Names, node counts and the offending selectors, so a failure says what broke
- * and where — not just "1 !== 0", and not just a rule id you then have to go
- * hunting for in a trace.
- */
+/** Names, counts and selectors, so a failure says what broke and where. */
 const summarise = (violations: Result[]) =>
   violations.map((v) => {
     const where = v.nodes

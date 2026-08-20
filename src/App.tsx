@@ -44,9 +44,8 @@ export default function App() {
   const { settings, set: setSetting, reset: resetSettings } = useSettings()
   const feedback = useFeedback(settings)
   const screenRef = useRef<HTMLElement | null>(null)
-  // The D-pad focuses elements programmatically after a mouse press, which is
-  // exactly the case :focus-visible declines to match. This flag lets the ring
-  // show for pad navigation without turning it on for every mouse click.
+  // The D-pad focuses programmatically after a mouse press, exactly the case
+  // :focus-visible declines to match.
   const [padNav, setPadNav] = useState(false)
   const [fading, setFading] = useState(false)
   const fadeTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
@@ -59,11 +58,7 @@ export default function App() {
   const slugs = useMemo(() => flatEntries.map((e) => e.slug), [flatEntries])
   const { byslug, loaded, failed, failedSlugs, total } = useDexData(slugs)
 
-  /**
-   * Every request failed and nothing is cached — the API is unreachable rather
-   * than merely slow. Distinguished from a partial failure, which the list
-   * reports inline and carries on with.
-   */
+  /** Unreachable, not merely slow: a partial failure is reported inline instead. */
   const dexUnreachable = total > 0 && failed === total && loaded === 0
 
   useEffect(() => {
@@ -96,9 +91,8 @@ export default function App() {
       return
     }
 
-    // Fade the screen out, swap, fade back. Done with opacity on an element
-    // inside the display rather than the View Transitions API, whose snapshots
-    // are taken against the viewport and spill outside the device frame.
+    // Opacity rather than the View Transitions API, whose snapshots are taken
+    // against the viewport and spill outside the device frame.
     clearTimeout(fadeTimer.current)
     setFading(true)
     fadeTimer.current = setTimeout(() => {
@@ -108,12 +102,8 @@ export default function App() {
   }
 
   /**
-   * Held in a ref so `openMon` below can be stable.
-   *
-   * `go` closes over the current route and settings, so it is a new function
-   * every render. Passing it down would change `onSelect` on all 158 memoised
-   * cards each time a species arrived, which is exactly the re-render the memo
-   * exists to prevent.
+   * Held in a ref so `openMon` stays stable: `go` is new every render, which
+   * would change `onSelect` on all 158 memoised cards on every arrival.
    */
   const goRef = useRef(go)
   goRef.current = go
@@ -166,19 +156,13 @@ export default function App() {
       returnTo.current = next.slug
       go({ page: 'dex', mon: next.slug }, { push: false })
     },
-    // `go` is redeclared every render, so listing it would make this callback
-    // change every render too. `route` is here instead: it is the only thing
-    // `go` closes over that affects the outcome, and the rule cannot see
-    // through the call to work that out.
+    // `route` stands in for `go`, which is redeclared every render; it is the
+    // only thing `go` closes over that changes the outcome.
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [visibleEntries, flatEntries, selected, route],
   )
 
-  /**
-   * Where Prev and Next actually go, so those controls can be links with a
-   * real destination rather than buttons that compute one on click. Wraps the
-   * same pool `step` walks, so the href and the handler always agree.
-   */
+  /** Wraps the same pool `step` walks, so href and handler always agree. */
   const stepHref = (delta: number) => {
     const pool = visibleEntries.length ? visibleEntries : flatEntries
     const index = pool.findIndex((e) => e.slug === selected)
@@ -191,14 +175,13 @@ export default function App() {
   function jumpToTop() {
     const screen = screenRef.current
     if (!screen) return
-    // Read the target first: a statement beginning with `(` would otherwise be
-    // parsed as a call on the previous line's value.
+    // Read first: a statement beginning with `(` parses as a call on the
+    // previous line's value.
     const first = screen.querySelector<HTMLElement>('.page__bar .btn')
     screen.scrollTop = 0
     first?.focus()
   }
 
-  // Arrow keys move focus around the screen; the D-pad calls the same thing.
   const pad = useCallback(
     (direction: Direction) => {
       setPadNav(true)
@@ -214,9 +197,8 @@ export default function App() {
   }, [])
 
   /**
-   * One blip for every control on the screen, rather than wiring each one up.
-   * The D-pad is excluded because it already sounds its own move, and the cry
-   * is excluded because the cry is the sound.
+   * Delegated rather than wired per control. The D-pad already sounds its own
+   * move, and the cry is itself the sound.
    */
   const onScreenClick = useCallback(
     (event: MouseEvent<HTMLDivElement>) => {

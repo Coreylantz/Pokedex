@@ -1,15 +1,10 @@
 /**
- * What the app downloads at runtime, which `budget.ts` does not measure.
+ * `budget.ts` weighs the deployed shell and says nothing about the species data
+ * and sprites fetched from PokeAPI, which are an order of magnitude larger.
  *
- * `budget.ts` weighs `dist/` — the shell you deploy. It says nothing about the
- * species data and sprites the app fetches from PokeAPI, and those are an order
- * of magnitude larger. Measuring only the shell and calling it "the app size"
- * is the kind of number that looks good and means little.
- *
- * A sample is measured and extrapolated rather than fetching all 330 species,
- * which would be 990+ requests at somebody else's expense every time this runs.
- * The sample is spread across both dexes so it is not all early-generation
- * species with small sprites.
+ * Sampled and extrapolated rather than fetching all 330, which would be 990+
+ * requests at somebody else's expense per run; spread across both dexes so it
+ * is not all early-generation species with small sprites.
  *
  * Run with: npm run cost
  */
@@ -26,18 +21,14 @@ const data = JSON.parse(
 const SAMPLE = 24
 const API = 'https://pokeapi.co/api/v2'
 
-/** Evenly spaced through the full list, so it is not just the first 24. */
 const all = data.allSlugs
 const step = Math.max(1, Math.floor(all.length / SAMPLE))
 const sample = all.filter((_, i) => i % step === 0).slice(0, SAMPLE)
 
 /**
- * Bytes actually transferred, not bytes after decompression.
- *
- * `fetch` gunzips transparently, so reading the body and measuring it reports
- * the uncompressed size — which for PokeAPI's JSON overstates the real cost by
- * roughly an order of magnitude. `content-length` on a compressed response is
- * the compressed length, which is what a metered connection is billed for.
+ * `fetch` gunzips transparently, so measuring the body overstates PokeAPI's
+ * JSON by roughly an order of magnitude. `content-length` is the compressed
+ * length, which is what a metered connection is billed for.
  */
 const wireBytes = async (url: string): Promise<{ wire: number; raw: number }> => {
   const res = await fetch(url, { headers: { 'accept-encoding': 'gzip, br' } })

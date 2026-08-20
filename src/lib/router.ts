@@ -2,10 +2,6 @@ import regionData from '../data/regions.json'
 import type { Page, Region, RegionData, Route } from './types'
 
 /**
- * Routing, and the region data the routes are validated against.
- *
- * Everything lives in the path rather than the query string:
- *
  *   /                          the first region's menu
  *   /kanata                    that region's menu
  *   /kanata/pokemon            the dex
@@ -14,31 +10,22 @@ import type { Page, Region, RegionData, Route } from './types'
  *   /kanata/region/3           one area
  *   /kanata/settings           settings
  *
- * `readUrl` and `pathFor` are inverses, and both are total: any URL resolves to
- * some route rather than throwing or 404ing, because the address bar is user
- * input and a typo should land on the menu, not on an error.
+ * `readUrl` and `pathFor` are inverses, and both total: the address bar is user
+ * input, so a typo lands on the menu rather than an error.
  */
 
-/**
- * The generated JSON is structurally correct but typed loosely on import:
- * `skin` widens to `string`. The generator validates it, so this is asserted
- * once here rather than re-checked at every use.
- */
+/** `skin` widens to `string` on import; the generator already validates it. */
 const data = regionData as unknown as RegionData
 
 export const regions = data.regions
 
-/** Typed as present, not merely checked: every fallback below relies on it. */
 export const FIRST_REGION: Region = (() => {
   const first = regions[0]
   if (!first) throw new Error('regions.json contains no regions')
   return first
 })()
 
-/**
- * The region for an id, falling back to the first. Always returns one, which
- * is what lets every caller treat the region as present.
- */
+/** Total by design: callers may treat the region as always present. */
 export function regionById(id: string | undefined): Region {
   return regions.find((r) => r.id === id) ?? FIRST_REGION
 }
@@ -57,8 +44,8 @@ export function readUrl(pathname: string = location.pathname): Route {
   if (segment === 'pokemon') {
     page = 'dex'
     const slug = parts.shift()
-    // An unknown slug drops to the plain dex rather than showing an empty
-    // entry page, so a stale bookmark still lands somewhere useful.
+    // An unknown slug drops to the plain dex, so a stale bookmark still lands
+    // somewhere useful.
     if (region.sections.some((s) => s.entries.some((e) => e.slug === slug))) mon = slug ?? null
   } else if (segment === 'region') {
     page = 'region'
@@ -89,6 +76,5 @@ export function pathFor({ regionId, page, mon, area }: Route): string {
   return `/${segments.join('/')}`
 }
 
-/** The URL a patch of the current route would produce, for a link's href. */
 export const hrefFor = (route: Route, patch: Partial<Route>): string =>
   pathFor({ ...route, ...patch })

@@ -1,9 +1,7 @@
 /**
- * Thin PokeAPI client.
- *
- * Every request goes through the service worker's cache-first routes, so this
- * layer only needs an in-memory map to stop React re-rendering from re-issuing
- * work within a session. Persistence and offline behaviour live in the SW.
+ * Persistence and offline behaviour live in the service worker's cache-first
+ * routes, so this layer only needs an in-memory map to stop React re-rendering
+ * from re-issuing work within a session.
  */
 import { titleCase } from './format'
 import type { Pokemon } from './types'
@@ -11,10 +9,8 @@ import type { Pokemon } from './types'
 const API = 'https://pokeapi.co/api/v2'
 
 /**
- * Only the fields this app reads. Typing PokeAPI's full response would be
- * thousands of lines of someone else's schema, and would go stale silently;
- * narrowing to what is actually consumed means a change upstream shows up
- * here as a type error rather than as `undefined` in the UI.
+ * Only the fields this app reads: narrowing to what is consumed means an
+ * upstream change surfaces as a type error rather than `undefined` in the UI.
  */
 interface ApiPokemon {
   species: { name: string }
@@ -66,13 +62,11 @@ async function getJson<T>(path: string): Promise<T> {
 const english = <T extends LocalisedName>(entries: T[]): T | undefined =>
   entries.find((entry) => entry.language.name === 'en')
 
-/** Everything the UI needs about one species, flattened out of two endpoints. */
 export function loadPokemon(slug: string): Promise<Pokemon> {
   return once(slug, async () => {
     const mon = await getJson<ApiPokemon>(`/pokemon/${slug}`)
-    // Some default forms are named `lycanroc-midday`, `mimikyu-disguised` and
-    // so on, which 404 on /pokemon-species. The Pokemon record always carries
-    // the real species name, so resolve through that rather than the slug.
+    // Default forms like `lycanroc-midday` 404 on /pokemon-species, but the
+    // Pokemon record always carries the real species name.
     const species = await getJson<ApiSpecies>(`/pokemon-species/${mon.species.name}`)
 
     const flavour = english(species.flavor_text_entries)
@@ -80,7 +74,7 @@ export function loadPokemon(slug: string): Promise<Pokemon> {
     return {
       displayName: english(species.names)?.name ?? titleCase(slug),
       genus: english(species.genera)?.genus ?? '',
-      // The API stores newlines and soft hyphens from the original cartridge text.
+      // The API stores the cartridge text's newlines and soft hyphens.
       flavourText: flavour
         ? flavour.flavor_text.replace(/­\n/g, '').replace(/[\n\f\r]/g, ' ').trim()
         : '',
@@ -97,9 +91,8 @@ export function loadPokemon(slug: string): Promise<Pokemon> {
       })),
       sprite: mon.sprites.front_default,
       spriteShiny: mon.sprites.front_shiny,
-      // The games' own cry. `latest` is the remastered one; fall back to the
-      // cartridge recording for the species that have no remaster. Some
-      // entries carry an empty string rather than null, which is not a cry.
+      // `latest` is the remaster; some species only have the cartridge
+      // recording, and some carry an empty string rather than null.
       cry: nonEmpty(mon.cries?.latest) ?? nonEmpty(mon.cries?.legacy) ?? null,
     }
   })
@@ -114,7 +107,7 @@ const STAT_LABELS: Record<string, string> = {
   speed: 'Speed',
 }
 
-/** Formats metres the way the games print them: 2'04". */
+/** 2'04", as the games print it. */
 function toFeetInches(metres: number): string {
   const totalInches = Math.round(metres * 39.3701)
   return `${Math.floor(totalInches / 12)}'${String(totalInches % 12).padStart(2, '0')}"`

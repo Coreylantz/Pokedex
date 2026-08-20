@@ -17,10 +17,9 @@ interface ScreenKeys {
 }
 
 /**
- * Decides what one key press means. A module-level function rather than a
- * closure inside the effect: cognitive complexity charges every branch for the
- * functions enclosing it, so the same logic nested two deep scored 18 against
- * a limit of 15 and scores 6 out here.
+ * Module-level rather than a closure in the effect: cognitive complexity
+ * charges every branch for its enclosing functions, scoring this 18 nested
+ * against a limit of 15, and 6 out here.
  */
 function handleKey(event: KeyboardEvent, { screenRef, feedback, canGoBack, onBack }: ScreenKeys) {
   // Anything with a modifier belongs to the browser or the OS.
@@ -44,24 +43,14 @@ function handleKey(event: KeyboardEvent, { screenRef, feedback, canGoBack, onBac
 }
 
 /**
- * The window-level keyboard contract for the device screen.
- *
- * Arrows always move focus, including on an entry page. Paging between Pokemon
- * is what the Prev and Next buttons are for — hijacking the arrows there would
- * break the one navigation model the rest of the app uses.
- *
- * Escape goes back, but only when there is somewhere to go. It is handled here
- * and nowhere else: a second handler on the entry page bubbled into this one
- * and popped two history entries instead of one, which is how you end up two
- * screens away from where you meant to be.
+ * Arrows always move focus, even on an entry page; paging is what Prev and Next
+ * are for. Escape is handled here and nowhere else — a second handler on the
+ * entry page bubbled into this one and popped two history entries.
  */
 export function useScreenKeys(options: ScreenKeys) {
-  /*
-   * Deliberately without a dependency array. The handler closes over
-   * `canGoBack` and `onBack`, both of which change on every navigation, so
-   * re-binding one listener per render is cheaper and far less error-prone
-   * than the stale closure the alternative produces.
-   */
+  // Deliberately no dependency array: the handler closes over values that
+  // change on every navigation, and re-binding one listener beats a stale
+  // closure.
   useEffect(() => {
     const listener = (event: KeyboardEvent) => handleKey(event, options)
     addEventListener('keydown', listener)

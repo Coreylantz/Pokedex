@@ -2,15 +2,10 @@ import type { Decorator, Preview } from '@storybook/react-vite'
 import '../src/styles/index.css'
 
 /**
- * Every component in this app inherits its colours from the device shell:
- * `--scr-ink`, `--scr-bg` and the rest are declared on `.app[data-skin]` and
- * consumed further down. Rendering a story bare would leave every custom
- * property unresolved and the component invisible.
- *
- * So each story is wrapped in the same two elements the app provides — the
- * skinned `.app` and the `.screen` that owns the screen palette — and the skin
- * is a toolbar control, because "does this work on both hardware generations"
- * is the question worth asking of every component here.
+ * Colours are declared on `.app[data-skin]` and consumed further down, so a
+ * bare story would leave every custom property unresolved and the component
+ * invisible. Each is wrapped in the same `.app` and `.screen` the app provides,
+ * with the skin as a toolbar control.
  */
 const withDevice: Decorator = (Story, context) => {
   const { skin, typeface, textSize, contrast } = context.globals
@@ -89,16 +84,13 @@ const preview: Preview = {
 
   parameters: {
     layout: 'centered',
-    // The app paints its own ground; Storybook's backgrounds would sit under
-    // the device and misrepresent the contrast.
+    // Storybook's backgrounds would sit under the device and misrepresent contrast.
     backgrounds: { disable: true },
     controls: { expanded: true },
 
     /**
-     * The same rule set the e2e suite gates on — WCAG 2.0/2.1 A, AA and AAA,
-     * WCAG 2.2 AA, plus axe's best-practice tags. Keeping the two in step
-     * matters: a component that passes here and fails in e2e would make both
-     * checks untrustworthy.
+     * The same rule set the e2e suite gates on. A component that passed here
+     * and failed there would make both checks untrustworthy.
      */
     a11y: {
       config: {},
@@ -117,7 +109,6 @@ const preview: Preview = {
           ],
         },
       },
-      // Fails the test run rather than only colouring a panel nobody opens.
       test: 'error',
     },
   },

@@ -2,12 +2,8 @@ import { useRef, type KeyboardEvent } from 'react'
 import type { Region } from '../lib/types'
 
 /**
- * Which tab each key moves to, given the current index and the last one.
- *
- * A table rather than a chain of conditions: the branching version scored 21
- * on cognitive complexity against a limit of 15, almost all of it from nested
- * ternaries inside an if/else ladder. As data, the wrapping rules are visible
- * at a glance and the handler below is four lines.
+ * A table rather than conditions: the branching version scored 21 on cognitive
+ * complexity against a limit of 15, and the wrapping rules were invisible.
  */
 const MOVES: Record<string, (index: number, last: number) => number> = {
   ArrowRight: (index, last) => (index === last ? 0 : index + 1),
@@ -19,18 +15,11 @@ const MOVES: Record<string, (index: number, last: number) => number> = {
 }
 
 /**
- * Region switcher built as a proper ARIA tablist: arrow keys move between
- * regions, Home/End jump to the ends, and only the active tab is tabbable.
+ * Auto-activating, which the ARIA practices guide permits when switching is
+ * cheap and reversible; manual activation would cost a keystroke per switch.
  *
- * Auto-activating — an arrow key switches region immediately rather than
- * requiring Enter. There are only two regions and switching is cheap and
- * reversible, which is the condition the ARIA practices guide gives for
- * preferring it; manual activation would add a keystroke to every switch.
- *
- * There is one panel, not one per tab: the screen is reused, so every tab
- * points at the same `dex-panel` element. That panel sits inside `<main>`
- * rather than being it — `role="tabpanel"` on the landmark would replace the
- * landmark.
+ * One panel for all tabs, since the screen is reused. It sits inside `<main>`
+ * rather than being it — `role="tabpanel"` on the landmark would replace it.
  */
 export function RegionTabs({
   regions,

@@ -7,14 +7,9 @@ interface PoolOptions<T> {
 }
 
 /**
- * Runs `worker` over `items` with a fixed number of parallel lanes.
- *
- * Both the dex loader and the offline prime need exactly this, and had grown
- * their own copies. Returns the failure count so a caller can tell a complete
- * pass from a partial one — the offline prime depends on that distinction to
- * avoid recording an incomplete download as ready.
- *
- * @returns how many items failed
+ * Returns the failure count so a caller can tell a complete pass from a partial
+ * one — the offline prime uses that to avoid recording a partial download as
+ * ready.
  */
 export async function pooled<T>(
   items: readonly T[],
@@ -28,15 +23,13 @@ export async function pooled<T>(
   const lanes = Array.from({ length: Math.min(limit, items.length) }, async () => {
     while (cursor < items.length) {
       if (cancelled?.()) return
-      // `noUncheckedIndexedAccess` is right to flag this in general, but the
-      // loop condition has already established the index is in range.
+      // The loop condition has already established the index is in range.
       const item = items[cursor++] as T
       let ok = true
       try {
         await worker(item)
       } catch {
-        // One bad item must not abandon the rest; the caller decides what a
-        // non-zero failure count means.
+        // One bad item must not abandon the rest.
         ok = false
         failures++
       }

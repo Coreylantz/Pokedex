@@ -1,22 +1,11 @@
 /**
  * Core Web Vitals under real interaction, on an emulated mid-range phone.
  *
- * This exists because Lighthouse, for all its virtues, cannot measure the one
- * metric that matters most for an app like this. Lighthouse runs a lab load
- * and reports Total Blocking Time as a *proxy* for responsiveness — nobody
- * clicks anything. INP, which replaced FID as a Core Web Vital, is defined by
- * actual interactions, so it can only be measured by actually interacting.
- *
- * Three other things this does that a plain Lighthouse run does not:
- *
- *   - covers every route, not the two worth hand-picking
- *   - drives the interactions a reader really performs — opening the menu,
- *     scrolling a 158-entry grid, opening an entry, working the D-pad
- *   - throttles CPU 4x and the network to Slow 4G, because the device this
- *     app imitates is not the machine it was built on
- *
- * It asserts against Google's own "good" thresholds and exits non-zero, so it
- * is a gate rather than a dashboard.
+ * Lighthouse reports Total Blocking Time as a *proxy* for responsiveness
+ * because nobody clicks anything. INP is defined by actual interactions, so it
+ * can only be measured by interacting — hence this. Covers every route,
+ * throttles CPU 4x and the network to Slow 4G, and exits non-zero, so it is a
+ * gate rather than a dashboard.
  *
  * Run with: npm run vitals
  */
@@ -40,11 +29,7 @@ interface Vitals {
   TTFB?: number
 }
 
-/**
- * Each route with the interactions that actually exercise it. Returning
- * without interacting would leave INP undefined, which reads as a pass and
- * measures nothing.
- */
+/** Returning without interacting leaves INP undefined, which reads as a pass. */
 const ROUTES: [name: string, path: string, drive: (page: Page) => Promise<void>][] = [
   [
     'menu',
@@ -87,9 +72,8 @@ const ROUTES: [name: string, path: string, drive: (page: Page) => Promise<void>]
     'settings',
     '/kanata/settings',
     async (page) => {
-      // The label, not the input. The checkbox itself is visually hidden, so a
-      // click on it is not an interaction the browser attributes to INP —
-      // which is exactly what this harness caught the first time it ran.
+      // The label, not the input: the checkbox is visually hidden, so a click
+      // on it is not an interaction the browser attributes to INP.
       await page.locator('.switch').first().click()
       await page.waitForTimeout(300)
       await page.locator('.btn').first().click()
@@ -137,8 +121,8 @@ try {
     })
     const page = await context.newPage()
 
-    // The library has to be installed before any app code runs, or the
-    // paint entries it needs have already been discarded.
+    // Must be installed before any app code runs, or the paint entries it
+    // needs are already discarded.
     await page.addInitScript(`${library}
       window.__vitals = {}
       webVitals.onLCP((m) => { window.__vitals.LCP = m.value }, { reportAllChanges: true })
@@ -162,8 +146,7 @@ try {
     try {
       await drive(page)
     } catch {
-      // A route that changed shape should not abort the whole run; the missing
-      // INP below is the signal.
+      // A changed route should not abort the run; the missing INP is the signal.
     }
     await page.waitForTimeout(600)
 

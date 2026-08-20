@@ -32,8 +32,7 @@ const meta = {
   title: 'Components/DexCard',
   component: DexCard,
   args: { entry, mon: turtwig, shiny: false, href: '/kanata/pokemon/turtwig', onSelect: fn() },
-  // A grid parent, because the card is `block-size: 100%` and looks wrong
-  // measured on its own.
+  // The card is `block-size: 100%` and looks wrong measured outside a grid.
   decorators: [
     (Story) => (
       <ul className="dex-grid" style={{ inlineSize: '20rem' }}>
@@ -72,9 +71,9 @@ export const LongName: Story = {
 }
 
 /**
- * The accessible name has to contain the visible text, in order, for speech
- * control to reach the card by what is written on it. Asserted in a browser
- * because it depends on how the text actually renders.
+ * Speech control reaches the card by what is written on it, so the accessible
+ * name must contain the visible text in order. Browser-only: it depends on
+ * how the text actually renders.
  */
 export const NameIsBuiltFromContentInReadingOrder: Story = {
   play: async ({ canvasElement }) => {
@@ -82,13 +81,11 @@ export const NameIsBuiltFromContentInReadingOrder: Story = {
     const link = canvas.getByRole('link')
     const spoken = (link.textContent ?? '').toLowerCase()
 
-    // No aria-label. It would replace this content rather than add to it, so a
-    // speech-control user saying what is written on the card would miss.
+    // An aria-label would replace this content rather than add to it.
     expect(link).not.toHaveAttribute('aria-label')
 
-    // Reading order is name, then number, then typing: the name is what you
-    // are looking for and the rest qualifies it. The visual order still puts
-    // the number on top — grid areas let the two differ.
+    // Reading order is name, number, typing; the visual order still puts the
+    // number on top, which grid areas allow.
     expect(spoken.indexOf('turtwig')).toBeGreaterThanOrEqual(0)
     expect(spoken.indexOf('turtwig')).toBeLessThan(spoken.indexOf('001'))
     expect(spoken.indexOf('001')).toBeLessThan(spoken.indexOf('grass'))
@@ -113,10 +110,9 @@ export const SelectingCallsBack: Story = {
 }
 
 /**
- * The focus ring is drawn with an inverted fill plus a transparent outline, so
- * that Windows High Contrast Mode — which discards backgrounds but keeps
- * outlines — still shows something. jsdom has no computed styles worth reading;
- * this only means anything in a real engine.
+ * An inverted fill plus a transparent outline, so Windows High Contrast Mode —
+ * which discards backgrounds but keeps outlines — still shows something.
+ * Browser-only: jsdom has no computed styles worth reading.
  */
 export const FocusIsVisible: Story = {
   play: async ({ canvasElement }) => {
@@ -125,8 +121,7 @@ export const FocusIsVisible: Story = {
 
     const resting = getComputedStyle(button).backgroundColor
     button.focus()
-    // :focus-visible needs a keyboard-ish focus; a programmatic focus after a
-    // real key press qualifies.
+    // :focus-visible needs a keyboard-ish focus; this qualifies.
     await userEvent.keyboard('{Tab}')
     button.focus()
 
