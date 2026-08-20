@@ -40,6 +40,13 @@ interface Vitals {
   TTFB?: number
 }
 
+/** One layout shift, with the elements the browser blames for it. */
+interface Shift {
+  value: number
+  time: number
+  sources: { node: string; dy: number; dh: number }[]
+}
+
 /**
  * Each route with the interactions that actually exercise it. Returning
  * without interacting would leave INP undefined, which reads as a pass and
@@ -123,6 +130,7 @@ const library = await readFile(
 
 let browser: import('@playwright/test').Browser | undefined
 const rows: [string, Vitals][] = []
+const shiftsByRoute = new Map<string, Shift[]>()
 
 try {
   await waitForServer(ORIGIN)
@@ -145,6 +153,32 @@ try {
       webVitals.onCLS((m) => { window.__vitals.CLS = m.value }, { reportAllChanges: true })
       webVitals.onINP((m) => { window.__vitals.INP = m.value }, { reportAllChanges: true })
       webVitals.onTTFB((m) => { window.__vitals.TTFB = m.value })
+
+      // A CLS number on its own says a route is bad, not what to change.
+      // The browser already knows which elements it blamed, so keep them:
+      // this is the difference between a red build and an actionable one.
+      window.__shifts = []
+      new PerformanceObserver((list) => {
+        for (const entry of list.getEntries()) {
+          if (entry.hadRecentInput) continue
+          window.__shifts.push({
+            value: entry.value,
+            time: Math.round(entry.startTime),
+            sources: (entry.sources || []).map((s) => {
+              var n = s.node, desc = 'detached'
+              if (n && n.nodeType === 1) {
+                desc = n.tagName.toLowerCase()
+                if (n.classList.length) desc += '.' + Array.from(n.classList).join('.')
+              }
+              return {
+                node: desc,
+                dy: Math.round(s.currentRect.y - s.previousRect.y),
+                dh: Math.round(s.currentRect.height - s.previousRect.height),
+              }
+            }),
+          })
+        }
+      }).observe({ type: 'layout-shift', buffered: true })
     `)
 
     const cdp = await context.newCDPSession(page)
@@ -168,6 +202,7 @@ try {
     await page.waitForTimeout(600)
 
     rows.push([name, await page.evaluate(() => window.__vitals as Vitals)])
+    shiftsByRoute.set(name, await page.evaluate(() => window.__shifts as Shift[]))
     await context.close()
   }
 } finally {
@@ -204,6 +239,27 @@ console.log(`\n  thresholds: LCP ${GOOD.LCP}  INP ${GOOD.INP}  CLS ${GOOD.CLS}  
 
 if (failures.length) {
   console.error(`  BELOW THRESHOLD\n    ${failures.join('\n    ')}\n`)
+
+  // Only routes that actually failed on CLS, and only shifts big enough to
+  // matter — a full dump is noise nobody reads.
+  for (const failure of failures) {
+    if (!failure.includes('CLS')) continue
+    const route = failure.split(':')[0]!
+    const shifts = (shiftsByRoute.get(route) ?? [])
+      .filter((s) => s.value >= 0.001)
+      .sort((a, b) => b.value - a.value)
+      .slice(0, 6)
+    if (!shifts.length) continue
+
+    console.error(`  what moved on "${route}"`)
+    for (const shift of shifts) {
+      console.error(`    ${shift.value.toFixed(4)} at ${shift.time}ms`)
+      for (const source of shift.sources.slice(0, 3)) {
+        console.error(`      ${source.node}  moved ${source.dy}px, grew ${source.dh}px`)
+      }
+    }
+    console.error('')
+  }
   process.exit(1)
 }
 console.log('  every route within Google’s "good" thresholds.\n')
