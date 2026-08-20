@@ -1,0 +1,40 @@
+name: PR title
+
+# The branch is squash-merged, and GitHub composes the squash commit's subject
+# from the pull request title. That subject is what semantic-release reads to
+# decide the next version, so an unconventional title is not a style problem:
+# it is a release that silently does not happen.
+#
+# `edited` matters as much as `opened` here — fixing the title has to re-run
+# the check, or a corrected title stays red.
+on:
+  pull_request:
+    types: [opened, edited, reopened, synchronize]
+
+concurrency:
+  group: pr-title-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: Conventional title
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      # The same commitlint config the commit-msg hook uses, so a title is held
+      # to exactly the standard a commit message is.
+      - name: Lint the title
+        env:
+          TITLE: ${{ github.event.pull_request.title }}
+        run: printf '%s\n' "$TITLE" | pnpm exec commitlint
