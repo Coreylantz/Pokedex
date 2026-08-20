@@ -20,7 +20,6 @@ interface DexScreenProps {
   onToggleFilter: () => void
   query: string
   onQuery: (query: string) => void
-  availableTypes: readonly string[]
   activeTypes: readonly string[]
   onToggleType: (type: string) => void
   onClearTypes: () => void
@@ -54,7 +53,6 @@ export function DexScreen({
   onToggleFilter,
   query,
   onQuery,
-  availableTypes,
   activeTypes,
   onToggleType,
   onClearTypes,
@@ -108,7 +106,6 @@ export function DexScreen({
             id="finder-panel"
             query={query}
             onQuery={onQuery}
-            types={availableTypes}
             activeTypes={activeTypes}
             onToggleType={onToggleType}
             onClearTypes={onClearTypes}

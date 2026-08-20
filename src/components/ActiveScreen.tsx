@@ -34,7 +34,6 @@ export interface ActiveScreenProps {
 
   visibleEntries: readonly DexEntry[]
   byslug: ReadonlyMap<string, Pokemon>
-  availableTypes: readonly string[]
   activeTypes: readonly string[]
   query: string
   shiny: boolean
@@ -200,7 +199,6 @@ export function ActiveScreen(props: ActiveScreenProps) {
         onToggleFilter={props.onToggleFilter}
         query={props.query}
         onQuery={props.onQuery}
-        availableTypes={props.availableTypes}
         activeTypes={props.activeTypes}
         onToggleType={props.onToggleType}
         onClearTypes={props.onClearTypes}

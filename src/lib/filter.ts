@@ -2,6 +2,16 @@ import { dexNumber } from './format'
 import type { DexEntry, Pokemon } from './types'
 
 /**
+ * Hard-coded rather than derived from loaded species: deriving it meant the
+ * filter gained chips and reflowed as the dex streamed in.
+ */
+export const ALL_TYPES: readonly string[] = [
+  'bug', 'dark', 'dragon', 'electric', 'fairy', 'fighting', 'fire', 'flying',
+  'ghost', 'grass', 'ground', 'ice', 'normal', 'poison', 'psychic', 'rock',
+  'steel', 'water',
+]
+
+/**
  * The dex list's search and type filter.
  *
  * Extracted from the component because it was the single most complex thing in

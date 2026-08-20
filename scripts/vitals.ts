@@ -154,9 +154,8 @@ try {
       webVitals.onINP((m) => { window.__vitals.INP = m.value }, { reportAllChanges: true })
       webVitals.onTTFB((m) => { window.__vitals.TTFB = m.value })
 
-      // A CLS number on its own says a route is bad, not what to change.
-      // The browser already knows which elements it blamed, so keep them:
-      // this is the difference between a red build and an actionable one.
+      // The browser knows which elements it blamed for each shift; a bare
+      // CLS number does not, so keep the sources for the failure report.
       window.__shifts = []
       new PerformanceObserver((list) => {
         for (const entry of list.getEntries()) {
@@ -240,8 +239,7 @@ console.log(`\n  thresholds: LCP ${GOOD.LCP}  INP ${GOOD.INP}  CLS ${GOOD.CLS}  
 if (failures.length) {
   console.error(`  BELOW THRESHOLD\n    ${failures.join('\n    ')}\n`)
 
-  // Only routes that actually failed on CLS, and only shifts big enough to
-  // matter — a full dump is noise nobody reads.
+  // Capped and filtered: a full shift dump is noise nobody reads.
   for (const failure of failures) {
     if (!failure.includes('CLS')) continue
     const route = failure.split(':')[0]!

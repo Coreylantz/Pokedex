@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { expect, fn, userEvent, within } from 'storybook/test'
 import { DexToolbar } from './DexToolbar'
-
-const TYPES = ['bug', 'fire', 'grass', 'ground', 'ice', 'normal', 'water']
+import { ALL_TYPES } from '../lib/filter'
 
 /**
  * The search panel. Its defining rule is that typing does nothing until you
@@ -15,7 +14,6 @@ const meta = {
     id: 'finder-panel',
     query: '',
     onQuery: fn(),
-    types: TYPES,
     activeTypes: [],
     onToggleType: fn(),
     onClearTypes: fn(),
@@ -90,5 +88,15 @@ export const SearchFieldIsProperlyLabelled: Story = {
 
     expect(input).toHaveAccessibleName('Name or number')
     expect(input).not.toHaveAttribute('placeholder')
+  },
+}
+
+/** Guards against the chip set going back to being derived from loaded data. */
+export const TypeChipsAreTheWholeFixedDomain: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement)
+    const group = canvas.getByRole('group', { name: 'Type' })
+    expect(within(group).getAllByRole('button')).toHaveLength(ALL_TYPES.length)
+    expect(ALL_TYPES).toHaveLength(18)
   },
 }
