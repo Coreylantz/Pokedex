@@ -2,6 +2,25 @@ import { dexNumber } from './format'
 import type { DexEntry, Pokemon } from './types'
 
 /**
+ * Every Pokemon type, alphabetically.
+ *
+ * The filter used to derive its chips from whichever species had arrived so
+ * far, which meant the panel gained chips and reflowed while the dex was still
+ * loading — the largest layout shift in the app, and one that only showed up
+ * on a slow connection where the panel could be opened mid-load.
+ *
+ * A fixed list is also the more honest model: these eighteen are the domain a
+ * reader is choosing from, and which of them happen to have been fetched yet
+ * is an implementation detail. Selecting a type absent from a region answers
+ * "0 of 158 match", which is a true answer rather than a missing control.
+ */
+export const ALL_TYPES: readonly string[] = [
+  'bug', 'dark', 'dragon', 'electric', 'fairy', 'fighting', 'fire', 'flying',
+  'ghost', 'grass', 'ground', 'ice', 'normal', 'poison', 'psychic', 'rock',
+  'steel', 'water',
+]
+
+/**
  * The dex list's search and type filter.
  *
  * Extracted from the component because it was the single most complex thing in

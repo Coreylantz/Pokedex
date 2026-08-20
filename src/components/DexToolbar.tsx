@@ -1,4 +1,5 @@
 import { useId, useState, type FormEvent } from 'react'
+import { ALL_TYPES } from '../lib/filter'
 import { titleCase } from '../lib/format'
 import { PixelIcon } from './PixelIcon'
 
@@ -6,7 +7,6 @@ interface DexToolbarProps {
   id: string
   query: string
   onQuery: (query: string) => void
-  types: readonly string[]
   activeTypes: readonly string[]
   onToggleType: (type: string) => void
   onClearTypes: () => void
@@ -25,7 +25,6 @@ export function DexToolbar({
   id,
   query,
   onQuery,
-  types,
   activeTypes,
   onToggleType,
   onClearTypes,
@@ -73,7 +72,7 @@ export function DexToolbar({
       <fieldset className="finder__types">
         <legend className="finder__label">Type</legend>
         <div className="type-chips">
-          {types.map((type) => (
+          {ALL_TYPES.map((type) => (
             <button
               key={type}
               type="button"

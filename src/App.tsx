@@ -138,14 +138,6 @@ export default function App() {
     go({ regionId: id, mon: null, page: 'menu' }, { push: false })
   }
 
-  const availableTypes = useMemo(() => {
-    const set = new Set<string>()
-    for (const entry of flatEntries) {
-      for (const type of byslug.get(entry.slug)?.types ?? []) set.add(type)
-    }
-    return [...set].sort()
-  }, [flatEntries, byslug])
-
   const visibleEntries = useMemo(
     () => filterEntries(flatEntries, byslug, { query, activeTypes }),
     [flatEntries, byslug, query, activeTypes],
@@ -264,7 +256,6 @@ export default function App() {
       area={selectedArea}
       visibleEntries={visibleEntries}
       byslug={byslug}
-      availableTypes={availableTypes}
       activeTypes={activeTypes}
       query={query}
       shiny={shiny}
