@@ -22,11 +22,18 @@
 
    `contain-intrinsic-size` is not optional here: without a placeholder size,
    skipped cards collapse to nothing, the scroll height changes as they enter
-   and leave, and the scrollbar jumps under your thumb. The value is the card's
-   real rendered height, so the estimate is exact and nothing shifts. */
+   and leave, and the scrollbar jumps under your thumb.
+
+   12.55rem is the card measured at the default text size, not a guess: art
+   6.5rem, name and number 1.27rem each, types 1.52rem, three 0.2rem gaps,
+   0.5rem padding and a 3px border. It was 11.5rem, which was 16px short, and
+   every card entering view for the first time made up the difference by
+   moving. The leading `auto` keyword means the browser substitutes the real
+   height once a card has been rendered, so this value only has to carry the
+   first pass and the other text sizes. */
 .dex-card {
   content-visibility: auto;
-  contain-intrinsic-size: auto 11.5rem;
+  contain-intrinsic-size: auto 12.55rem;
 }
 
 /* Named areas rather than source order.
@@ -148,11 +155,23 @@
   overflow-wrap: anywhere;
 }
 
+/* No min-block-size: a hidden pill holds the row open instead, so the reserved
+   height is a pill's real height at whatever text size is in force rather than
+   a number that has to be kept in step by hand. The 1rem that used to be here
+   was 8px short of the 1.52rem a pill actually occupies, and that 8px was most
+   of this screen's layout shift. */
 .dex-card__types {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.2rem;
-  min-block-size: 1rem;
+}
+
+/* Occupies the space and paints nothing. `visibility: hidden` rather than
+   `opacity: 0` so it is also removed from the accessibility tree, and the
+   background is dropped so a forced-colours mode cannot paint it back in. */
+.dex-card__type-ghost {
+  visibility: hidden;
+  background: none;
 }
 }

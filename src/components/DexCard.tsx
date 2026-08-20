@@ -52,13 +52,30 @@ export const DexCard = memo(function DexCard({
         </span>
 
         <span className="dex-card__types">
-          {mon
-            ? mon.types.map((type) => (
-                <span key={type} className="type-pill" data-type={type}>
-                  {titleCase(type)}
-                </span>
-              ))
-            : null}
+          {mon ? (
+            mon.types.map((type) => (
+              <span key={type} className="type-pill" data-type={type}>
+                {titleCase(type)}
+              </span>
+            ))
+          ) : (
+            /*
+              A real pill, hidden, rather than an empty box with a guessed
+              height. The row is the last thing to gain content, so whatever
+              space it fails to reserve is space every card below it jumps by
+              when the species arrives.
+
+              Reserving it with a fixed min-height means hard-coding a pill's
+              height, which is line-height plus padding plus border, all three
+              of which move with the text-size setting. Rendering the pill
+              itself and hiding it gets the exact height for free and cannot
+              drift from the real thing. The non-breaking space is what gives
+              it a line box; an empty span would collapse to its padding.
+            */
+            <span className="type-pill dex-card__type-ghost" aria-hidden="true">
+              {'\u00A0'}
+            </span>
+          )}
         </span>
 
         <span className="dex-card__art">
