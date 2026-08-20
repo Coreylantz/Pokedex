@@ -18,6 +18,8 @@ interface Navigator {
 /** Collected in the page by scripts/vitals.ts, read back over CDP. */
 interface Window {
   __vitals?: { LCP?: number; INP?: number; CLS?: number; TTFB?: number }
+  /** Layout shifts with the elements blamed for them, collected by the vitals harness. */
+  __shifts?: { value: number; time: number; sources: { node: string; dy: number; dh: number }[] }[]
 }
 
 /**
