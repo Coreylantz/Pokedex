@@ -12,7 +12,6 @@ function focusableIn(root: Element): HTMLElement[] {
   )
 }
 
-/** Read off the resolved template rather than guessed, so breakpoints hold. */
 function gridColumns(el: Element | undefined): number {
   const grid = el?.closest('.dex-grid')
   if (!grid) return 1

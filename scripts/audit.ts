@@ -18,13 +18,11 @@ const root = dirname(dirname(fileURLToPath(import.meta.url)))
 const PORT = 4178
 const ORIGIN = `http://localhost:${PORT}`
 
-/** The routes worth auditing: the landing screen and the heaviest page. */
 const ROUTES = [
   ['menu', '/kanata'],
   ['dex', '/kanata/pokemon'],
 ] as const
 
-/** Waits rather than sleeping a fixed time. */
 async function waitForServer(url: string, timeoutMs = 30_000) {
   const deadline = Date.now() + timeoutMs
   while (Date.now() < deadline) {

@@ -35,7 +35,6 @@ export function DeviceShell({
   onConfirm,
   children,
 }: {
-  /** The nameplate, or null when the shell is hidden. */
   brand: ReactNode
   onPad: (direction: Direction) => void
   onConfirm: () => void

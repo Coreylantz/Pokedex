@@ -63,6 +63,5 @@ export function filterEntries(
   })
 }
 
-/** True when anything is actually narrowing the list. */
 export const isFiltering = ({ query, activeTypes }: DexFilter): boolean =>
   query.trim() !== '' || activeTypes.length > 0

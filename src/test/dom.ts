@@ -4,7 +4,6 @@
  * where `Cannot read properties of null` names whatever touched it.
  */
 
-/** In a test an index is a premise, so state it once rather than sprinkling `!`. */
 export function must<T>(value: T | null | undefined, what: string): T {
   if (value === null || value === undefined) throw new Error(`expected ${what} to exist`)
   return value
@@ -24,7 +23,6 @@ export function text(root: ParentNode, selector: string): string {
   return q(root, selector).textContent ?? ''
 }
 
-/** Keeps `qa(...)[0]` and its optional index out of the tests. */
 export function nth<T extends Element = HTMLElement>(
   root: ParentNode,
   selector: string,

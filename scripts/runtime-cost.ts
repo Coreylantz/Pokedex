@@ -21,7 +21,6 @@ const data = JSON.parse(
 const SAMPLE = 24
 const API = 'https://pokeapi.co/api/v2'
 
-/** Evenly spaced through the full list, so it is not just the first 24. */
 const all = data.allSlugs
 const step = Math.max(1, Math.floor(all.length / SAMPLE))
 const sample = all.filter((_, i) => i % step === 0).slice(0, SAMPLE)

@@ -109,7 +109,6 @@ const preview: Preview = {
           ],
         },
       },
-      // Fails the test run rather than only colouring a panel nobody opens.
       test: 'error',
     },
   },

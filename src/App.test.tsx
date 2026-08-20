@@ -19,7 +19,6 @@ declare global {
 // Tells React that act() is legitimate here rather than a misuse in production.
 globalThis.IS_REACT_ACT_ENVIRONMENT = true
 
-/** The regions, indexed with a thrown error rather than an optional. */
 function regionAt(index: number) {
   const region = regionData.regions[index]
   if (!region) throw new Error(`regions.json has no region at ${index}`)
@@ -70,10 +69,7 @@ describe('Twin Dex', () => {
     stubApi()
   })
 
-  /**
-   * Several rounds rather than one long wait: a lazy route resolves in stages,
-   * and a single tick lands mid-way and sees the Suspense fallback.
-   */
+  /** A lazy route resolves in stages, so one tick lands mid-way on the fallback. */
   async function settle(rounds = 4) {
     for (let i = 0; i < rounds; i++) {
       await act(async () => {

@@ -14,7 +14,6 @@ import type { DraftEntry, Resolved } from './build-types.ts'
 // A Set here, an array in the app, which derives a suffix regex from the order.
 const ALLOWED_VARIANTS: ReadonlySet<string> = new Set<string>(VARIANT_LIST)
 
-/** Asks the API rather than pattern-matching the suffix, which regional forms break. */
 async function resolveSpecies(slug: string): Promise<Resolved> {
   const mon = await fetch(`https://pokeapi.co/api/v2/pokemon/${slug}`)
   if (!mon.ok) throw new Error(`pokemon fetch failed for ${slug}: ${mon.status}`)

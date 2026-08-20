@@ -26,10 +26,8 @@ test('registers a worker and precaches the app shell', async ({ page }) => {
   await page.goto('/kanata')
   await serviceWorkerReady(page)
 
-  /**
-   * Polled: a worker goes active as soon as install resolves, but Workbox
-   * writes precache entries during it, so one read can catch a half-filled cache.
-   */
+  // A worker goes active as soon as install resolves, but Workbox writes
+  // precache entries during it, so one read can catch a half-filled cache.
   const precachedUrls = async () =>
     page.evaluate(async () => {
       const names = await window.caches.keys()
@@ -41,13 +39,8 @@ test('registers a worker and precaches the app shell', async ({ page }) => {
       return urls
     })
 
-  /*
-   * The whole set is polled, not just the first entry: reading the rest once
-   * one arrives passes on an idle machine and fails under a loaded runner.
-   *
-   * Every lazy route chunk is required, or "works offline" would be true of the
-   * menu and nothing else.
-   */
+  // Every lazy route chunk is required, or "works offline" would be true of
+  // the menu and nothing else.
   const REQUIRED = [
     /\/assets\/index-.*\.js/,
     /\/assets\/index-.*\.css/,
@@ -85,8 +78,6 @@ test('keeps species data and sprites in their own long-lived caches', async ({ p
       return counts
     })
 
-  // Polled rather than slept on: a fixed wait passed locally and failed on a
-  // loaded runner, which measures the runner rather than the app.
   await expect
     .poll(
       async () => {
