@@ -1,29 +1,18 @@
 /**
- * Subsets the Silkscreen webfonts down to the glyphs this app can actually
- * draw, and writes the result into `public/fonts/`.
+ * Subsets the Silkscreen webfonts into `public/fonts/`; the originals live in
+ * `fonts-src/` and are never shipped. Run with: npm run build:fonts
  *
- * The originals live in `fonts-src/` and are never shipped. Run with:
- *   npm run build:fonts
- *
- * Choosing the character set is the whole problem. Most of the text on screen
- * does not exist in this repository — species names, genus lines and flavour
- * text all arrive from PokeAPI at runtime — so scraping the source would
- * produce a set that looks complete and then drops a glyph the first time
- * somebody opens Farfetch'd or Flabébé. A missing glyph does not fail loudly;
- * it silently swaps one character to the fallback face mid-word.
- *
- * So the set below is deliberately a superset: every character the source uses,
- * plus the ranges English Pokemon data is drawn from. That costs a little size
- * and buys the guarantee that nothing falls back.
+ * The character set is deliberately a superset. Most text on screen arrives
+ * from PokeAPI at runtime, so scraping the source would look complete and then
+ * silently swap a glyph to the fallback face mid-word on Flabébé.
  */
 import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
 import { dirname, join, resolve } from 'node:path'
 import subsetFont from 'subset-font'
-// Both are leaf modules with no imports of their own, so Node's type stripping
-// can load them directly. `format.ts` cannot be imported here: it reaches for
-// `./variants` without a file extension, which the bundler resolves and Node
-// does not.
+// Leaf modules, so Node's type stripping loads them directly. `format.ts`
+// cannot: it imports `./variants` without an extension, which the bundler
+// resolves and Node does not.
 import { pooled } from '../src/lib/pool.ts'
 import { SUFFIX_PATTERN } from '../src/lib/variants.ts'
 
@@ -55,14 +44,9 @@ async function charsInSource(): Promise<string> {
 }
 
 /**
- * Every character the API will actually hand this dex: display names, genus
- * lines and English flavour text for all 330 species, fetched once and cached
- * in `fonts-src/charset.txt`.
- *
- * Guessing at "ASCII plus Latin-1" costs 2 kB per weight for accented letters
- * that may never appear, while guessing at "ASCII only" saves 36% and breaks
- * the first name carrying an é. Neither guess is necessary — the data set is
- * fixed and enumerable, so it gets enumerated.
+ * Enumerated rather than guessed: "ASCII plus Latin-1" costs 2 kB per weight
+ * for letters that may never appear, while "ASCII only" saves 36% and breaks
+ * the first name carrying an é. Cached in `fonts-src/charset.txt`.
  *
  * Pass --refresh to re-fetch after changing the region lists.
  */
@@ -114,8 +98,8 @@ const CHARSET = [
   await charsInSource(),
   // Everything the API will hand us for these 330 species.
   await charsInDexData(data.allSlugs),
-  // The typographic punctuation PokeAPI's transcribed cartridge text is
-  // inconsistent about, kept whether or not this sample happened to use it.
+  // PokeAPI's cartridge text is inconsistent about these, so keep them whether
+  // or not this sample used them.
   '‐‑–—‘’“”…',
 ].join('')
 

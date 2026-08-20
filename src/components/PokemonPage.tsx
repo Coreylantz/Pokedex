@@ -23,19 +23,12 @@ interface PokemonPageProps {
 const MAX_BASE_STAT = 255
 
 /**
- * Full-screen entry view. This replaces the dex listing on the device screen
- * rather than floating over it, so it is a real page: it owns the URL, the
- * browser back button returns to the list, and focus moves to the heading on
- * arrival the way it would after a navigation.
+ * A real page rather than an overlay: it owns the URL, back returns to the
+ * list, and focus moves to the heading as it would after a navigation. Laid
+ * out the way the handheld games print an entry, imperial units included.
  *
- * Laid out the way the handheld games print an entry: sprite beside the number,
- * name and genus; height and weight in imperial like the English releases; the
- * dex text; then the habitat, which is the second generation's "AREA" page
- * rendered as this region's habitat name.
- *
- * Escape is deliberately not handled here. App owns a single window-level key
- * handler for it; a second one on this element would bubble into that one and
- * pop two history entries instead of one.
+ * Escape is deliberately not handled here — App owns one window-level handler,
+ * and a second would bubble into it and pop two history entries.
  */
 export function PokemonPage({
   entry,
@@ -52,9 +45,8 @@ export function PokemonPage({
   const headingRef = useRef<HTMLHeadingElement | null>(null)
   const statsId = useId()
   const cryRef = useRef<HTMLAudioElement | null>(null)
-  // A recorded cry is not guaranteed to exist, and a URL that is present is not
-  // guaranteed to resolve. Either way the control should not be offered, so the
-  // button disappears the moment the audio proves unplayable.
+  // A present URL is not guaranteed to resolve, so the button disappears the
+  // moment the audio proves unplayable.
   const [cryBroken, setCryBroken] = useState(false)
   const [crying, setCrying] = useState(false)
 
@@ -88,8 +80,8 @@ export function PokemonPage({
       })
   }
 
-  // Moving focus to the heading is what makes this read as a navigation to a
-  // screen reader instead of content silently swapping underneath.
+  // Without this a screen reader hears content swap silently rather than a
+  // navigation.
   useEffect(() => {
     headingRef.current?.focus()
   }, [entry.slug])

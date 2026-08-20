@@ -5,19 +5,12 @@ import type { Settings, Voice } from './types'
 type Note = readonly [number, number, number]
 
 /**
- * Menu blips and haptic taps.
+ * Synthesised with square-wave oscillators rather than shipped audio: bytes
+ * instead of kilobytes, and a square wave is what the imitated hardware had.
  *
- * Synthesised with square-wave oscillators rather than shipped as audio files:
- * a handful of bytes instead of kilobytes, offline for free, and a square wave
- * is what the hardware being imitated actually had.
- *
- * A single sustained tone reads as an error beep, not a menu. Real handheld UI
- * sounds are very short and usually two-stepped — a rising pair to confirm, a
- * falling pair to go back, a bare tick to move. Each voice below is a small
- * note sequence for that reason.
- *
- * Both sound and vibration are off by default. Sound that starts itself is
- * hostile, and the AudioContext cannot start before a gesture anyway.
+ * Each voice is a short note sequence, not one tone — a sustained tone reads as
+ * an error beep rather than a menu. Off by default; the AudioContext cannot
+ * start before a gesture anyway.
  */
 const VOICES: Record<Voice, readonly Note[]> = {
   move: [[1480, 0, 0.022]],
@@ -50,7 +43,7 @@ export function useFeedback(settings: Pick<Settings, 'sound' | 'haptics'>) {
           const gain = ctx.createGain()
           osc.type = 'square'
           osc.frequency.setValueAtTime(freq, at)
-          // Quiet, and decayed rather than cut, which would click.
+          // Decayed rather than cut, which would click.
           gain.gain.setValueAtTime(0.035, at)
           gain.gain.exponentialRampToValueAtTime(0.0001, at + dur)
           osc.connect(gain).connect(ctx.destination)
@@ -58,7 +51,7 @@ export function useFeedback(settings: Pick<Settings, 'sound' | 'haptics'>) {
           osc.stop(at + dur)
         }
       } catch {
-        // No audio available; silence is an acceptable outcome for a blip.
+        // Silence is an acceptable outcome for a blip.
       }
     },
     [settings.sound],

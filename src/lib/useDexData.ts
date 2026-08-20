@@ -6,10 +6,6 @@ import type { Pokemon } from './types'
 const CONCURRENCY = 8
 
 /**
- * Loads every species in a region, streaming results in as they arrive so the
- * grid fills progressively instead of blocking on the slowest request.
- * Species already fetched by the offline prime resolve from memory instantly.
- *
  * `failed` is part of the contract, not diagnostics: callers need
  * `loaded + failed` to know the pass has settled, because `loaded` alone never
  * reaches `total` when anything 404s.
@@ -18,24 +14,15 @@ export function useDexData(slugs: readonly string[]) {
   const [byslug, setBySlug] = useState<ReadonlyMap<string, Pokemon>>(() => new Map())
   const [loaded, setLoaded] = useState(0)
   /**
-   * Which slugs failed, not just how many.
-   *
-   * A count is enough for the list, which only reports a total. An entry page
-   * needs to tell "this species has not arrived yet" from "this species is not
-   * coming", because those are a spinner and an error screen respectively —
-   * and without the distinction a failed entry shows "Loading…" forever.
+   * Which slugs failed, not just how many: an entry page must tell "not arrived
+   * yet" from "not coming" — a spinner versus an error screen.
    */
   const [failedSlugs, setFailedSlugs] = useState<ReadonlySet<string>>(() => new Set())
 
   /**
-   * Arrivals are collected here and published once per frame rather than one
-   * state update per species.
-   *
-   * Setting state per arrival meant 158 renders of a 158-card grid during the
-   * load — measurably 14% of frames dropped and a 283 ms worst frame while
-   * scrolling, because each update also re-ran the type and filter passes over
-   * the whole list. Batching turns that into roughly one render per frame. See
-   * scripts/scroll-jank.ts.
+   * Arrivals batch here and publish once per frame. One state update per
+   * species meant 158 renders of a 158-card grid: 14% of frames dropped and a
+   * 283 ms worst frame. See scripts/scroll-jank.ts.
    */
   const pending = useRef<Map<string, Pokemon>>(new Map())
   const frame = useRef<number | undefined>(undefined)
@@ -65,8 +52,8 @@ export function useDexData(slugs: readonly string[]) {
         const mon = await loadPokemon(slug)
         if (cancelled) return
         pending.current.set(slug, mon)
-        // requestAnimationFrame rather than a timer: it coalesces to exactly
-        // one render per painted frame, and pauses entirely on a hidden tab.
+        // rAF rather than a timer: one render per painted frame, and it
+        // pauses entirely on a hidden tab.
         frame.current ??= requestAnimationFrame(publish)
       },
       {

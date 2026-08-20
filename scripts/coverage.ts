@@ -1,16 +1,10 @@
 /**
- * How much of the shipped JavaScript and CSS actually runs.
+ * How much shipped JS and CSS actually runs. A perfectly tree-shaken bundle can
+ * still be 60% unused on first paint; the fix for that is splitting, not shaking.
  *
- * Tree shaking is a build-time question: did the bundler drop code nothing
- * imports? Coverage is the runtime one: of the code that did ship, how much
- * executes? A perfectly tree-shaken bundle can still be 60% unused on first
- * paint, and the fix for that is code splitting rather than shaking.
- *
- * Measured twice per route, because the two numbers mean different things:
- *
- *   - on load:  what a first paint paid for but did not use
- *   - after use: what remains unused once the screen has been driven, which is
- *     the code that is genuinely dead weight for that route
+ * Measured twice per route:
+ *   - on load:   what a first paint paid for but did not use
+ *   - after use: what is genuinely dead weight for that route
  *
  * Run with: npm run coverage
  */
@@ -62,7 +56,7 @@ interface Tally {
   used: number
 }
 
-/** Merges overlapping intervals so nested V8 ranges are not counted twice. */
+/** Merges overlaps so nested V8 ranges are not counted twice. */
 function merged(ranges: { start: number; end: number }[]): number {
   const sorted = [...ranges].sort((a, b) => a.start - b.start)
   let used = 0
@@ -77,10 +71,7 @@ function merged(ranges: { start: number; end: number }[]): number {
   return used
 }
 
-/**
- * V8 reports JS coverage as nested function ranges with execution counts; CSS
- * comes back as a flat list of used ranges. Two shapes, one measure.
- */
+/** V8 reports JS as nested ranges with counts, CSS as a flat used list. */
 interface JsEntry {
   url: string
   source?: string
@@ -93,19 +84,15 @@ interface CssEntry {
 }
 
 /**
- * Counts the *uncovered* ranges, not the covered ones.
- *
- * V8 nests coverage: the outermost range of a module spans the entire file and
- * has a non-zero count as soon as the module is evaluated, with unexecuted
- * functions appearing as zero-count holes inside it. Summing covered ranges
- * therefore reports ~100% for any file that loaded at all — which is exactly
- * the wrong answer, and what this script printed on its first run. Chrome
- * DevTools measures the holes and subtracts, so this does too.
+ * Counts the *uncovered* ranges. V8's outermost range spans the whole module
+ * and is non-zero the moment it evaluates, so summing covered ranges reports
+ * ~100% for anything that loaded at all. DevTools measures the holes and
+ * subtracts; so does this.
  */
 const tallyJs = (entries: JsEntry[]): Tally =>
   entries.reduce(
     (acc, entry) => {
-      // Vite's own preview assets only; ignore anything cross-origin.
+      // Vite's preview assets only.
       if (!entry.url.startsWith(ORIGIN)) return acc
       const total = entry.source?.length ?? 0
       const holes = entry.functions.flatMap((fn) =>
@@ -139,10 +126,8 @@ try {
   browser = await chromium.launch()
 
   /**
-   * Each figure comes from its own page load. Restarting coverage on a live
-   * page does not give a clean baseline — the scripts are already evaluated,
-   * so the second measurement reports nearly everything as covered regardless
-   * of what the interaction touched.
+   * Each figure needs its own page load: restarting coverage on a live page
+   * reports nearly everything as covered, the scripts having already evaluated.
    */
   const measure = async (path: string, drive?: (page: Page) => Promise<void>) => {
     const page = await browser!.newPage()

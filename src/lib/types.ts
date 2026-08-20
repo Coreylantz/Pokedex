@@ -1,13 +1,8 @@
 /**
- * Shared shapes.
- *
- * Types-only module: it emits nothing at runtime. Everything here describes
- * either the generated dex data (`src/data/regions.json`, written by
- * `scripts/build-dex.ts`) or the flattened view of PokeAPI the UI actually
- * consumes.
+ * Describes the generated dex data (`src/data/regions.json`, from
+ * `scripts/build-dex.ts`) and the flattened view of PokeAPI the UI consumes.
  */
 
-/** One dex entry. */
 export interface DexEntry {
   regionalNo: number
   /** National number; a regional form keeps its species'. */
@@ -22,7 +17,6 @@ export interface Section {
   entries: DexEntry[]
 }
 
-/** Which Pokedex hardware renders a region. Used by `Region` below. */
 type Skin = 'gen1' | 'gen2'
 
 export interface Region {
@@ -41,13 +35,12 @@ export interface RegionData {
   allSlugs: string[]
 }
 
-/** One base stat, as `Pokemon.stats` below. */
 interface Stat {
   name: string
   value: number
 }
 
-/** A species as the UI needs it, flattened out of PokeAPI's two endpoints. */
+/** Flattened out of PokeAPI's two endpoints. */
 export interface Pokemon {
   displayName: string
   genus: string
@@ -75,10 +68,7 @@ export interface Settings {
   textSize: 'normal' | 'large' | 'largest'
   contrast: boolean
   reduceMotion: boolean
-  /**
-   * Data saver. Stops the app downloading the whole dex in the background and
-   * halves what a download costs when you do ask for one.
-   */
+  /** Halves what an offline download costs, and skips the shiny sprites. */
   lowBandwidth: boolean
 }
 
@@ -91,8 +81,6 @@ export interface Route {
   area: number | null
 }
 
-/** The three voices `useFeedback` can play. */
 export type Voice = 'move' | 'select' | 'back'
 
-/** Progress of the offline priming pass. */
 export type PrimeStatus = 'idle' | 'priming' | 'ready' | 'error'

@@ -1,17 +1,11 @@
 /**
- * Lighthouse audit against a real production build.
+ * The counterpart to `budget.ts`, which only weighs `dist/`: Lighthouse loads
+ * the app in Chrome and measures what actually happens.
  *
- * This is the counterpart to `budget.ts`, which only weighs the files in
- * `dist/`. Lighthouse loads the app in Chrome and measures what actually
- * happens: how long until something is painted, how much of the shipped
- * JavaScript went unused, whether the PWA installs, and an accessibility pass
- * that overlaps the axe suite but scores contrast and document structure too.
+ * A report, not a gate — it sees one route in one viewport, while the e2e suite
+ * runs axe over eleven states at three viewports and fails the build.
  *
  * Run with: npm run audit
- *
- * The e2e suite still owns accessibility enforcement — it runs axe against
- * eleven states across three viewports and fails the build. Lighthouse sees
- * one route in one viewport, so it is a report, not a gate.
  */
 import { spawn } from 'node:child_process'
 import { mkdir, writeFile } from 'node:fs/promises'
@@ -30,7 +24,7 @@ const ROUTES = [
   ['dex', '/kanata/pokemon'],
 ] as const
 
-/** Waits for the preview server to answer rather than sleeping a fixed time. */
+/** Waits rather than sleeping a fixed time. */
 async function waitForServer(url: string, timeoutMs = 30_000) {
   const deadline = Date.now() + timeoutMs
   while (Date.now() < deadline) {
@@ -51,7 +45,7 @@ const preview = spawn(
   { cwd: root, stdio: 'ignore', shell: process.platform === 'win32' },
 )
 
-// Chrome comes from Playwright's download, so this needs no separate browser.
+// Chrome comes from Playwright's download; no separate browser needed.
 let browser: import('@playwright/test').Browser | undefined
 try {
   await waitForServer(ORIGIN)
@@ -85,8 +79,7 @@ try {
         `TBT ${metric('total-blocking-time')}  ` +
         `CLS ${metric('cumulative-layout-shift')}`,
     )
-    // Cross-checks scripts/coverage.ts, which measures the same thing through
-    // the CDP profiler rather than Lighthouse's trace.
+    // Cross-checks scripts/coverage.ts, which reads the CDP profiler instead.
     summary.push(
       `       unused JS ${metric('unused-javascript')}  ` +
         `unused CSS ${metric('unused-css-rules')}  ` +
@@ -97,9 +90,8 @@ try {
       (a) => a.score === 0 && lhr.categories.accessibility?.auditRefs.some((r) => r.id === a.id),
     )
     for (const audit of a11y) {
-      // Weight 0 means the audit is reported but does not move the score, so
-      // print it either way and say which — otherwise a "100" beside a listed
-      // failure looks like one of them is lying.
+      // Weight 0 is reported but does not move the score, so say which —
+      // otherwise a "100" beside a listed failure looks like a lie.
       const weight =
         lhr.categories.accessibility?.auditRefs.find((r) => r.id === audit.id)?.weight ?? 0
       const items = (audit.details as { items?: { node?: { selector?: string } }[] } | undefined)

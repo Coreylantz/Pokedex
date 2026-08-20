@@ -10,19 +10,12 @@ interface State {
 }
 
 /**
- * Catches render errors so a bug in one screen cannot blank the whole device.
+ * A class because `componentDidCatch` still has no hook equivalent. Sits inside
+ * the device frame, so a broken screen looks like a Pokedex with a fault rather
+ * than a broken website.
  *
- * Without this, any thrown error unmounts the React tree and leaves an empty
- * page — no shell, no way back, nothing to report. A class component because
- * `componentDidCatch` still has no hook equivalent.
- *
- * The boundary sits inside the device frame, so a broken screen still looks
- * like a Pokedex with a fault rather than a broken website.
- *
- * There is no reset logic here on purpose. The boundary renders inside App's
- * keyed `.screen__page` wrapper, so a route change unmounts and replaces it
- * with fresh state. Resetting from `componentDidUpdate` would duplicate that
- * and cost a second render on every navigation.
+ * No reset logic on purpose: it renders inside App's keyed `.screen__page`, so
+ * a route change already unmounts it with fresh state.
  */
 export class ErrorBoundary extends Component<Props, State> {
   override state: State = { error: null }
@@ -32,9 +25,8 @@ export class ErrorBoundary extends Component<Props, State> {
   }
 
   override componentDidCatch(error: Error, info: ErrorInfo) {
-    // Kept to the console rather than sent anywhere: this app has no backend,
-    // and quietly shipping a reader's stack traces somewhere is not a thing to
-    // do by default.
+    // Console only: there is no backend, and quietly shipping a reader's stack
+    // traces somewhere is not a default worth having.
     console.error('Screen failed to render:', error, info.componentStack)
   }
 

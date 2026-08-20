@@ -9,10 +9,7 @@ import rawRegionData from './data/regions.json'
 
 // The generator validates this shape; the JSON import widens the unions.
 const regionData = rawRegionData as unknown as RegionData
-/**
- * Smoke test: mounts the whole app against a stubbed PokeAPI and asserts the
- * dex actually renders, so a runtime error can never ship silently.
- */
+/** Mounts the whole app against a stubbed PokeAPI, so a runtime error cannot ship silently. */
 
 declare global {
   // eslint-disable-next-line no-var
@@ -48,16 +45,15 @@ function stubApi({ failSprites = false } = {}) {
         { headers: { 'content-type': 'application/json' } },
       )
     }
-    // A /pokemon/{slug} request. The client resolves the species endpoint from
-    // `species.name` rather than the slug, so the stub has to supply it.
+    // The client resolves the species endpoint from `species.name`, not the
+    // slug, so the stub has to supply it.
     const slug = url.split('/pokemon/')[1] ?? ''
     return new Response(
       JSON.stringify({
         id: 1,
         height: 7,
         weight: 69,
-        // The shared stripper, not a copy of it — this stub carried its own
-        // suffix list and it had already drifted out of step with the real one.
+        // The shared stripper: a local copy had already drifted out of step.
         species: { name: speciesName(slug) },
         types: [{ slot: 1, type: { name: 'grass' } }],
         stats: [{ stat: { name: 'hp' }, base_stat: 45 }],
@@ -75,13 +71,8 @@ describe('Twin Dex', () => {
   })
 
   /**
-   * Lets everything asynchronous finish: the fade timer, the streaming species
-   * loaders, and the dynamic `import()` behind each lazily-loaded screen.
-   *
-   * Several rounds rather than one long wait, because a lazy route resolves in
-   * stages — the chunk's promise settles, React re-renders past the Suspense
-   * boundary, and only then does that screen's own effects run. A single tick
-   * lands in the middle of that and sees the fallback.
+   * Several rounds rather than one long wait: a lazy route resolves in stages,
+   * and a single tick lands mid-way and sees the Suspense fallback.
    */
   async function settle(rounds = 4) {
     for (let i = 0; i < rounds; i++) {
@@ -139,8 +130,7 @@ describe('Twin Dex', () => {
 
     const sprites = container.querySelectorAll('.dex-card__sprite')
     expect(sprites).toHaveLength(kanata.count)
-    // Decorative: the species name is right there in the same link, so an alt
-    // of "Turtwig sprite" would read the same thing twice on all 158 cards.
+    // Decorative: the name is in the same link, so alt text would read twice.
     for (const img of sprites) expect(img.getAttribute('alt')).toBe('')
     expect(q(container, '.app').dataset.skin).toBe('gen1')
 
@@ -159,8 +149,7 @@ describe('Twin Dex', () => {
     expect(text(container, '.page__title')).toBe(kanata.name)
     expect(container.querySelectorAll('.area__button')).toHaveLength(kanata.sections.length)
 
-    // Clicking an area brings up its own page — information only. The Pokemon
-    // live in the Pokedex; repeating them here would just be a second dex.
+    // Information only: repeating the Pokemon here would be a second dex.
     await open(nth(container, '.area__button', 0))
     expect(text(container, '.page__title')).toBe(must(kanata.sections[0], 'first section').label)
     expect(text(container, '.page__blurb')).toBe(must(kanata.sections[0], 'first section').note)
@@ -225,7 +214,7 @@ describe('Twin Dex', () => {
     const input = q<HTMLInputElement>(container, '.finder__input')
     await act(async () => {
       // React tracks the previous value on the node, so a plain assignment is
-      // ignored; going through the native setter is what a real keystroke does.
+      // ignored.
       must(
         Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value')?.set,
         'the native value setter',
@@ -270,10 +259,9 @@ describe('Twin Dex', () => {
 
     const right = q(container, '.dpad__btn--right')
 
-    // A real browser focuses a button on mousedown, which would drag focus out
-    // of the screen and make every press land on the first card. The control
-    // has to cancel that, so assert the cancellation rather than trusting it —
-    // jsdom's .click() moves no focus and would hide the bug entirely.
+    // A real browser focuses a button on mousedown, dragging focus out of the
+    // screen. jsdom's .click() moves no focus, so assert the cancellation
+    // rather than trusting it.
     const mousedown = new MouseEvent('mousedown', { bubbles: true, cancelable: true })
     await act(async () => {
       right.dispatchEvent(mousedown)
@@ -332,9 +320,8 @@ describe('Twin Dex', () => {
   })
 
   it('never downloads the whole dex without being asked', async () => {
-    // ~4 MB across ~1,320 requests used to happen on the first visit before the
-    // reader had opened anything. Nothing should reach for the full dex on its
-    // own; only the entries actually on screen get fetched.
+    // ~4 MB over ~1,320 requests used to fire on first visit. Nothing may reach
+    // for the full dex on its own.
     const container = await mount('/kanata/pokemon')
 
     expect(localStorage.getItem('twindex:primed:v2')).toBeNull()
@@ -359,8 +346,8 @@ describe('Twin Dex', () => {
 
     // Every sprite 502s, so the pass must not be recorded as complete.
     expect(localStorage.getItem('twindex:primed:v2')).toBeNull()
-    // The exact wording Settings shows once priming has genuinely finished.
-    // Asserting a string the app never renders would pass no matter what.
+    // The exact wording Settings shows: a string the app never renders would
+    // pass no matter what.
     expect(container.textContent).not.toContain('available with no network')
   })
 })
@@ -373,8 +360,7 @@ describe('dex data', () => {
       for (const section of region.sections) {
         for (const entry of section.entries) {
           expect(entry.nationalNo).toBeGreaterThanOrEqual(1)
-          // Alternate forms are numbered from 10000 up and 404 on
-          // /pokemon-species, which would break the detail view.
+          // Alternate forms are numbered from 10000 and 404 on /pokemon-species.
           expect(entry.nationalNo).toBeLessThan(10000)
         }
       }
@@ -417,8 +403,7 @@ describe('dex data', () => {
   })
 
   it('keeps primates and kaiju designs out of Kanata', () => {
-    // No monkeys or apes north of the treeline, and no rubber-suit monsters in
-    // a region built on real northern wildlife.
+    // No primates north of the treeline, and no kaiju in a wildlife region.
     const banned = new Set([
       'mankey', 'primeape', 'annihilape', 'aipom', 'ambipom',
       'chimchar', 'monferno', 'infernape',
@@ -487,8 +472,7 @@ describe('dex data', () => {
   })
 
   it('keeps evolution lines adjacent and in ascending stage order', () => {
-    // A representative sample of lines whose national numbers are non-sequential,
-    // which is exactly where an ordering mistake would hide.
+    // Non-sequential national numbers, where an ordering mistake would hide.
     const lines = [
       ['pichu', 'pikachu', 'raichu'],
       ['cleffa', 'clefairy', 'clefable'],

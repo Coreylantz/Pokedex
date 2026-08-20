@@ -9,24 +9,20 @@ import { storybookTest } from '@storybook/addon-vitest/vitest-plugin'
 const dir = dirname(fileURLToPath(import.meta.url))
 
 /**
- * Two test projects, because they answer different questions.
+ * `unit` is the jsdom suite: logic that never needs a renderer, and is far
+ * faster without one.
  *
- * `unit` is the jsdom suite: routing, formatting, data invariants — logic that
- * never needs a renderer, and is far faster without one.
- *
- * `stories` runs every Storybook story in a real Chromium. That is the whole
- * point of it: focus rings and `:focus-visible`, computed colour and contrast,
- * sequential keyboard navigation, `content-visibility`, real layout, and the
- * axe checks that depend on all of them. jsdom either stubs those or does not
- * implement them, so asserting them there would be asserting nothing.
+ * `stories` runs every story in a real Chromium, which is the whole point:
+ * focus rings, computed contrast, sequential keyboard navigation,
+ * `content-visibility` and the axe checks that depend on them. jsdom stubs
+ * those or lacks them, so asserting them there asserts nothing.
  */
 export default defineConfig({
   test: {
     projects: [
       defineProject({
-        // Icons here too: App.test.tsx mounts the whole app, which reaches
-        // PixelIcon and its `~icons/...` virtual imports. Without the plugin
-        // the suite fails to resolve them rather than failing an assertion.
+        // App.test.tsx mounts the whole app, reaching PixelIcon's `~icons/...`
+        // virtual imports; without the plugin the suite fails to resolve them.
         plugins: [react(), Icons({ compiler: 'jsx', jsx: 'react' })],
         test: {
           name: 'unit',

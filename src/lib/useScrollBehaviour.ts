@@ -1,13 +1,8 @@
 import { useEffect, useRef, useState, type RefObject } from 'react'
 
 /**
- * Remembers where the list was scrolled to, and what was focused, across a
- * trip into an entry and back.
- *
- * Without this, coming back from an entry drops you at the top of a
- * 158-item grid with focus on the document — which for a keyboard or screen
- * reader user means starting the whole list again. Restoring both the scroll
- * position and the card you left from is what makes back feel like back.
+ * Restores scroll *and* focus: without the focus half, back drops a keyboard or
+ * screen reader user at the top of a 158-item grid, starting the list again.
  */
 export function useScrollRestoration(
   screenRef: RefObject<HTMLElement | null>,
@@ -30,8 +25,7 @@ export function useScrollRestoration(
     const slug = returnTo.current
     if (!slug) return
 
-    // CSS.escape because a slug can contain characters a selector would
-    // otherwise read as syntax.
+    // A slug can contain characters a selector would read as syntax.
     screen.querySelector<HTMLElement>(`[data-slug="${CSS.escape(slug)}"]`)?.focus()
     returnTo.current = null
   }, [screenRef, selected])
@@ -39,13 +33,7 @@ export function useScrollRestoration(
   return { listScroll, returnTo }
 }
 
-/**
- * True once the reader has genuinely reached the end of a long list.
- *
- * The dex runs to well over a hundred entries, so a way back to the top earns
- * its place — but only at the bottom, and only when the list is long enough
- * for that to have meant something.
- */
+/** Only at the bottom, and only when the list was long enough to be worth it. */
 export function useAtBottom(
   screenRef: RefObject<HTMLElement | null>,
   deps: readonly unknown[],
@@ -56,12 +44,8 @@ export function useAtBottom(
     const screen = screenRef.current
     if (!screen) return
 
-    /*
-     * Coalesced to one measurement per frame. The three reads below are all
-     * layout properties, so running them on every scroll event forces a
-     * synchronous reflow several times per frame — and `content-visibility` on
-     * the cards makes `scrollHeight` more expensive to answer, not less.
-     */
+    // One measurement per frame: the reads below are layout properties, and
+    // `content-visibility` on the cards makes `scrollHeight` dearer, not cheaper.
     let queued = 0
     const measure = () => {
       queued = 0

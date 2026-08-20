@@ -13,12 +13,9 @@
  *   4. Early availability  — is the variety there before the endgame, or does
  *                            it all arrive at the top of the dex?
  *
- * Counting is per species. It used to be per evolution line — three stages of
- * one line being one design decision — but the line grouping came from a
- * `lineHead` field that went away with the /explained data, and the API's
- * evolution chains are not fetched here. The consequence is real and worth
- * knowing when reading the output: a three-stage line now counts three times,
- * so long lines are over-weighted relative to single-stage species.
+ * Counting is per species, not per evolution line, so a three-stage line
+ * counts three times and long lines are over-weighted. Worth knowing when
+ * reading the output.
  *
  * Run with: npm run diagnose
  */
@@ -38,8 +35,8 @@ const TYPES = [
   'steel', 'fairy',
 ]
 
-// One request per type gives both the full membership of that type across the
-// national dex and the authoritative damage chart — no hand-typed matchups.
+// One request per type yields both national membership and the authoritative
+// damage chart, so no matchups are hand-typed.
 interface TypePayload {
   pokemon: { pokemon: { name: string; url: string } }[]
   damage_relations: {
@@ -103,13 +100,7 @@ const nationalShare: Record<string, number> = Object.fromEntries(
 
 const bar = (n: number, max: number, width = 26) => '█'.repeat(Math.round((n / max) * width)) || '·'
 
-/**
- * Numbers like "47% exposure" mean nothing on their own, so the same metrics
- * are computed over real shipped regional dexes as a control. Comparison is
- * per species rather than per line, because grouping the control dexes into
- * evolution lines would cost hundreds of extra requests for no extra insight —
- * and the same measure is applied to our regions for the comparison.
- */
+/** A control: "47% exposure" means nothing without shipped dexes to compare to. */
 const CONTROLS = [
   'kanto', 'original-johto', 'hoenn', 'original-sinnoh',
   'original-unova', 'kalos-central', 'galar', 'paldea',
@@ -145,8 +136,7 @@ for (const name of CONTROLS) {
 for (const region of data.regions) {
   const entries = region.sections.flatMap((s) => s.entries)
 
-  // One record per species. See the caveat at the top of this file: this was
-  // per-line until the line grouping was removed with the /explained data.
+  // Per species — see the caveat at the top of this file.
   interface Line { head: string; firstNo: number; finalTypes: string[]; finalSlug: string }
   const lines = new Map<string, Line>()
   for (const entry of entries) {
@@ -185,8 +175,7 @@ for (const region of data.regions) {
   }
 
   // ---- 2. Offensive coverage --------------------------------------------
-  // For each defending type, how many lines in the pool hold a STAB move type
-  // that hits it for 2x or better.
+  // Per defending type: how many pool members hold a STAB type hitting it 2x+.
   console.log('\n-- Offensive coverage: lines that can hit each type super-effectively (by STAB) --')
   const holes: string[] = []
   for (const def of TYPES) {
@@ -201,8 +190,7 @@ for (const region of data.regions) {
   }
 
   // ---- 3. Defensive exposure --------------------------------------------
-  // If one attacking type shreds a large share of the pool, the region is a
-  // pushover for anyone who brings it.
+  // One attacking type shredding a large share makes the region a pushover.
   console.log('\n-- Defensive exposure: share of the pool each attacking type beats --')
   const exposure = TYPES.map((atk) => {
     const hit = pool.filter((l) => multiplier(atk, l.finalTypes) > 1).length
@@ -260,8 +248,8 @@ for (const region of data.regions) {
     )
   }
 
-  // Ice called out by name: it was the type this whole diagnostic was built to
-  // adjudicate, and the shipped-dex maximum is the only meaningful ceiling.
+  // Ice is the type this diagnostic was built to adjudicate, and the
+  // shipped-dex maximum is the only meaningful ceiling.
   const myIce = mine.share.ice ?? 0
   const shippedIce = controlProfiles.map((p) => p.share.ice ?? 0).sort((a, b) => b - a)
   console.log(

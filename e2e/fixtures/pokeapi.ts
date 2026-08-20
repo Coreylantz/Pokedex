@@ -1,15 +1,10 @@
 import type { Expect, Locator, Page } from '@playwright/test'
 
 /**
- * One PokeAPI stub for every spec.
+ * One stub for every spec: copy-pasted payloads had already drifted, and tests
+ * that disagree about their own fixture are testing different apps.
  *
- * The payload was copy-pasted across seven specs and had already drifted —
- * `cries` present in some and absent in others, one file merging the two
- * endpoints into a single object. Tests that disagree about their own fixture
- * are testing different apps.
- *
- * Nothing here touches the network: sprites resolve to a local icon so runs are
- * deterministic and PokeAPI is never hit.
+ * Nothing here touches the network — sprites resolve to a local icon.
  */
 
 const SPECIES = {
@@ -36,10 +31,7 @@ const POKEMON = {
 }
 
 interface Overrides {
-  /**
-   * Merged over the default Pokemon payload. `types` and `stats` replace
-   * wholesale rather than merging, which is what a caller varying them wants.
-   */
+  /** `types` and `stats` replace wholesale, which is what a caller varying them wants. */
   pokemon?: Record<string, unknown>
   species?: Record<string, unknown>
 }
@@ -50,8 +42,7 @@ export async function stubPokeApi(page: Page, { pokemon = {}, species = {} }: Ov
     if (url.includes('/pokemon-species/')) {
       return route.fulfill({ json: { ...SPECIES, ...species } })
     }
-    // The client resolves the species endpoint from `species.name` rather than
-    // the slug, so the stub has to supply it.
+    // The client resolves the species endpoint from `species.name`, not the slug.
     const slug = url.split('/pokemon/')[1]
     return route.fulfill({ json: { ...POKEMON, species: { name: slug }, ...pokemon } })
   })
@@ -61,10 +52,7 @@ export async function stubPokeApi(page: Page, { pokemon = {}, species = {} }: Ov
   )
 }
 
-/**
- * A silent WAV of `seconds`, built as bytes so no audio asset is needed.
- * Long enough by default that a playing state is observable rather than a race.
- */
+/** Built as bytes so no audio asset is needed, and long enough not to race. */
 export function silentWav(seconds = 2) {
   const rate = 8000
   const samples = rate * seconds
@@ -86,10 +74,8 @@ export function silentWav(seconds = 2) {
 }
 
 /**
- * `boundingBox()` is null for an element that is not rendered. Every caller
- * here is measuring something it has already asserted is visible, so the null
- * is a bug in the test rather than a case to handle — this turns it into a
- * readable failure instead of a `possibly null` at every call site.
+ * Every caller has already asserted visibility, so a null box is a bug in the
+ * test rather than a case to handle. Fails readably instead of `possibly null`.
  */
 export async function box(locator: Locator) {
   const rect = await locator.boundingBox()

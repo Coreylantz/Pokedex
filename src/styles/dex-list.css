@@ -16,14 +16,11 @@
   gap: 0.5rem;
 }
 
-/* A regional dex is 158 cards and the screen shows about six. `auto` lets the
-   browser skip layout, style and paint for the ones scrolled out of view,
-   which is most of them for most of the time.
-
-   `contain-intrinsic-size` is not optional here: without a placeholder size,
-   skipped cards collapse to nothing, the scroll height changes as they enter
-   and leave, and the scrollbar jumps under your thumb. The value is the card's
-   real rendered height, so the estimate is exact and nothing shifts. */
+/* 158 cards, about six on screen, so `auto` skips layout and paint for most of
+   them most of the time. `contain-intrinsic-size` is not optional with it:
+   without a placeholder, skipped cards collapse and the scrollbar jumps under
+   your thumb. The leading `auto` keyword means the browser substitutes each
+   card's real height once rendered, so this only has to carry the first pass. */
 .dex-card {
   content-visibility: auto;
   contain-intrinsic-size: auto 11.5rem;

@@ -1,21 +1,13 @@
 /**
- * Audits how this stylesheet uses the cascade.
+ * Audits how this stylesheet uses the cascade — layer, then specificity, then
+ * source order. Almost every confusing CSS bug here came from the first and
+ * third rather than the second, so this checks:
  *
- * The cascade is decided by, in order: layer, then specificity, then source
- * order. Almost every confusing CSS bug in this project came from the first
- * and third of those rather than the second — a rule in a later layer quietly
- * beating a more specific one, or two rules of equal weight where only their
- * order decided the winner.
- *
- * So this checks the things that actually bite:
- *
- *   1. Rules outside any layer. Unlayered styles beat every layered rule
- *      regardless of specificity, which makes them invisible landmines.
- *   2. The explicit layer-order statement, and whether it survives the build.
- *   3. !important, which opts out of the cascade entirely.
- *   4. Selectors defined in more than one file within one layer, where source
- *      order alone decides the winner.
- *   5. Specificity outliers worth knowing about.
+ *   1. Unlayered rules, which beat every layered one regardless of specificity
+ *   2. The layer-order statement, and whether it survives the build
+ *   3. !important, which opts out of the cascade entirely
+ *   4. Selectors in more than one file within a layer, where order alone decides
+ *   5. Specificity outliers
  *
  * Run with: npm run css:audit
  */
@@ -65,8 +57,7 @@ for (const file of files) {
         if (match?.[1]) layer = match[1]
         else if (!head.startsWith('@')) unlayered.push({ file, layer: '(none)', selector: head })
       } else if (depth === 1 && layer) {
-        // At-rules inside a layer (@font-face, @media, @keyframes) count as
-        // that layer having content, but are not selectors to compare.
+        // At-rules count as the layer having content, but are not selectors.
         rules.push({ file, layer, selector: head })
       }
       depth++
@@ -122,8 +113,8 @@ try {
   const html = await readFile(resolve(dist, 'index.html'), 'utf8')
   const css = built ? await readFile(resolve(assets, built), 'utf8') : ''
 
-  // Either location is fine; the point is that the shipped page states the
-  // order somewhere rather than relying on first-appearance.
+  // Either location is fine, so long as the shipped page states the order
+  // rather than relying on first-appearance.
   const inHtml = /@layer\s+[a-z]+\s*,/.test(html)
   const inCss = /@layer\s+[a-z]+\s*,/.test(css)
 
@@ -131,7 +122,7 @@ try {
     console.log(
       `  ok   the layer order ships explicitly (in ${inHtml ? 'index.html' : 'the stylesheet'})`,
     )
-    // It has to come before the stylesheet, or the stylesheet declares it first.
+    // Must precede the stylesheet, or the stylesheet declares the order first.
     if (inHtml) {
       const layerAt = html.search(/@layer\s+[a-z]+\s*,/)
       const linkAt = html.search(/<link[^>]+rel="stylesheet"/)
